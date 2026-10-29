@@ -1,13 +1,13 @@
 # A working session on AAT v3 — illustrative
 
-*Draft, revised after two de novo audits. The store, ids, versions and counts are invented; no aat-v3 store exists yet. The defects it works on are real and cited to ASF (`~/src/arch/asf/`) at commit `4ee2b89`. Statement versions are shown as `v:` plus a short prefix of their digest; commit ids appear only after "as of". Lines marked **[invented]** are invented words in a real person's mouth and must not be quoted as theirs.*
+*Draft, revised after three de novo audits. The store, ids, versions and counts are invented; no aat-v3 store exists yet. The defects it works on are real and cited to ASF (`~/src/arch/asf/`) at commit `4ee2b89`. Statement versions are shown as `v:` plus a short prefix of their digest; commit ids appear only after "as of". Lines marked **[invented]** are invented words in a real person's mouth and must not be quoted as theirs.*
 
 ## Founding
 
 ```
 $ cd ~/src/aat-v3 && vsect init --name aat-v3 --steward joseph --decider joseph
 Founded store "aat-v3".
-  .vsect/kinds.yaml   name, steward, decider, store mapping — no kinds declared
+  .vsect/kinds.yaml   name, steward, decider, store mapping — no kinds of AAT's own declared
   main.outline.md     no parts or chapters: the outline's structure is the steward's to name
   influx/             empty
   CHANGELOG.md        founding entry written
@@ -17,12 +17,13 @@ Founded store "aat-v3".
 
 ```
 $ vsect bring --predecessor ~/src/arch/asf/01-aat-core/src/
-Brought 174 records from ASF (at 4ee2b89) into influx.
-  612 statement tags found; their tag words map to claim / definition / scope / choice by
-    the reviewed table in .vsect/predecessor-asf.yaml (Derived ×242, Hypothesis ×22 … → claim)
-  ASF findings carried with them: 61 (from Working Notes "Follow-up items" and audits that
-    name a segment), waiting to be placed as segments land
-  ASF status words recorded as ASF's own claims (lowest rung), never as standing here
+Brought 173 segments from ASF (at 4ee2b89) into influx, unchanged.
+  Their statements will be made as each is carved (vsect new <influx item>): most of
+    their tags don't parse as statements yet, and their tag words are mostly standing words.
+  ASF findings carried with them: 61, in reports/asf-*.md (from Working Notes "Follow-up
+    items" and audits that name a segment) — unplaced until the statements they concern exist
+  ASF's status words will be recorded as ASF's own claims (lowest rung) as statements land,
+    never as standing here
 ```
 
 ## Arriving cold, a week in
@@ -88,11 +89,20 @@ Audit 731548's B-3 finding was verified adversarially before it reached this sto
 
 ```
 $ vsect refute segment:scope-adaptive-system#exclusion \
-    --by report:asf-audit-731548#B-3 --counterexample "tabular RL: o_t = Ω_t, transition law unknown"
-Refuted, as of 4a91d0e. It reads as broken everywhere it appears.
-  premise of segment:agent-environment#full-access-vacuous → marked broken
-  narrated by teaching:part-i-front-door                  → marked stale
+    --by report:asf-audit-731548#B-3 \
+    --counterexample 'tabular RL: $o_t = \Omega_t$, transition law unknown'
+Refuted, as of 4a91d0e+dirty. Marked in scope-adaptive-system.md, above the statement.
+  premise of segment:agent-environment#full-access-vacuous → broken, marked in its file
+  narrated by teaching:part-i-front-door                  → stale, marked in its file
 What replaces it? > (Enter: leave the gap visible until the root question is answered)
+```
+
+Anyone who opens `scope-adaptive-system.md` now — in an editor, on GitHub — meets the mark before the claim:
+
+```markdown
+> [!vsect refuted] Refuted 2026-10-29 by counterexample — tabular RL: $o_t = \Omega_t$, transition law unknown. `vsect why segment:scope-adaptive-system#exclusion` (event 9f2c…).
+
+*[Claim (exclusion)]* A system with nothing left to learn is outside the scope, …
 ```
 
 ## The root question, and what its answer does
@@ -128,42 +138,61 @@ The agent then drafts the root as a term group and revises:
 
 ```
 $ vsect revise def:epistemic-target
+definition:epistemic-target
   • typed-target (new) — minted. Declared: definition.
 $ vsect revise segment:scope-adaptive-system
   • residual-learnable  v:7e02 → v:f19d   [redefined: now H(S_t | C_t) > 0]
       → 2 statements rest on it as a premise; their checks stop counting:
         segment:scope-agency#cascade, segment:agent-environment#boundary
-  • exclusion (refuted) replaced by exclusion-learnable (new) — minted.
+  • exclusion — gone, and exclusion-learnable is new. What happened to exclusion?
+      [retired / renamed / superseded / split / merged] superseded by exclusion-learnable
+      → exclusion-learnable minted; the refutation mark comes off with the old text.
+      → 1 statement cites exclusion as a premise and should now cite its successor:
+        segment:agent-environment#full-access-vacuous
 ```
 
-Nothing was edited in the two dependents. Their checks stop counting because what they rest on now means something else, and `next` lists them to re-read.
+Nothing was edited in the two dependents. Their checks stop counting because what they rest on now means something else, and `next` lists them to re-read. (Typing `def:` is fine; vsect answers in the kind's full name, `definition:`, which is what it records.)
 
 ## Getting it checked, and the landing rule at work
 
 ```
 $ vsect verify def:epistemic-target#typed-target
-Brief (bare): briefs/verify-typed-target.md
-  "Would you do an independent, adversarial check of def:epistemic-target, statement
-   typed-target? Read it as it stands at v:3a77 (`vsect read --at v:3a77 def:epistemic-target`).
-   Write your report from briefs/report-skeleton.md to reports/verify-typed-target.md.
-   Re-derive from what is written rather than from what you can tell was meant; test concrete
-   systems against each clause; check that every summary says no more than the statement
-   under it."
+Brief (bare, stage one of two): briefs/verify-typed-target.md
+  "Would you do an independent, adversarial check of definition:epistemic-target#typed-target?
+   It is given below as it stands at v:3a77, with the statements it rests on; the author's
+   discussion of it is not, so that your reading is your own. Re-derive from what is written
+   rather than from what you can tell was meant, and test concrete systems against each
+   clause. Write your report from briefs/report-skeleton.md to reports/verify-typed-target.md."
+  (Stage two — the glosses and discussion, checked against the statement — is written when
+   this report is taken.)
 ```
 
 While the verifier works, the author tightens a sentence: "the structure invariant under the agent's actions" becomes "the invariant structure". Then:
 
 ```
 $ vsect take reports/verify-typed-target.md
-Finding F1 → def:epistemic-target#typed-target, read at v:3a77 (from the spans it quotes)
-  outcome: confirmed (re-derived; the verifier read none of the author's working)
+Check C1 → definition:epistemic-target#typed-target, read at v:3a77
+    (declared by the report; its quotes occur in that version)
+  outcome: confirmed (re-derived; the verifier declares it read only what the brief gave)
   ⚠ The statement is now v:8c15. Its text changed after the check:
       - θ: the structure invariant under the agent's actions
       + θ: the invariant structure
     The check stays with v:3a77. Restore the qualifier, or get the new wording checked.
+  Stage two brief written: briefs/verify-typed-target-glosses.md
 ```
 
-That warning exists because the estate's previous attempt landed a verified statement with its qualifier dropped and kept the word "exact" (`~/src/aat-refactored`, commit `d60c511`). Nobody had to remember to look; the version mismatch is what vsect sees.
+That warning exists because the estate's previous attempt landed a verified statement with its qualifier dropped and kept the word "exact" (`~/src/aat-refactored`, commit `d60c511`). Nobody had to remember to look; the version mismatch is what vsect sees — and it can show the two texts because it kept v:3a77, which was never committed.
+
+The author thinks the shorter wording means the same, and says so:
+
+```
+$ vsect revise def:epistemic-target
+  • typed-target  v:3a77 → v:8c15
+      Did the meaning change, or only the words? [reworded/redefined] reworded
+      → recorded as your claim. Brief for a different mind: briefs/equiv-typed-target.md
+        ("Is 'the invariant structure' equivalent to 'the structure invariant under the
+        agent's actions', as it bears on what C1 checked?")
+```
 
 ## Committing
 
@@ -171,7 +200,7 @@ That warning exists because the estate's previous attempt landed a verified stat
 $ vsect commit -m "Root: typed epistemic target; old exclusion refuted; coupling regime renamed"
 Committed 5e7a2c1
   Role: author · Session: <harness session id>
-  Read-at: def:epistemic-target#typed-target@v:8c15, segment:scope-adaptive-system@…
+  Read-at: definition:epistemic-target#typed-target@v:8c15, segment:scope-adaptive-system@…
   Pending: 1 rewording awaiting a second mind; 1 check bound to an earlier version
 ```
 

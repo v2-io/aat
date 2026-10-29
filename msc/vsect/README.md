@@ -1,6 +1,6 @@
 # vsect — design draft
 
-*Status: **draft, proposed.** Written 2026-10-28 by a Claude (Opus 5.5) fork of the aat-v3 coordinator, at Joseph Wecker's request, then revised the same evening after two de novo audits (Claude and Codex, in `../vsect-audits/`) and the coordinator's judgment of them. Nothing here is decided. This README is written for a reader who was not in the session.*
+*Status: **draft, proposed.** Written 2026-10-28 by a Claude (Opus 5.5) fork of the aat-v3 coordinator, at Joseph Wecker's request, then revised the same evening after two de novo audits (Claude and Codex, in `../vsect-audits/`) and the coordinator's judgment of them, and again after a third audit (Gemini, `agy-audit.md`) of that revision's contracts and the coordinator's round-2 judgment — that integration by a fresh Claude instance. Nothing here is decided. This README is written for a reader who was not in the session.*
 
 ## What vsect is meant to be
 
@@ -19,9 +19,9 @@ A previous attempt (2026-09-29, `~/src/aat-refactored/scratch/vsect-hypothetical
 1. [`model.md`](model.md) — the logical model a user holds in mind, opening with the principle everything rests on ("one fate, one atom"): statements, records, evidence, standing, events, findings, questions, decisions, teaching, views, influx.
 2. [`vsect.md`](vsect.md) — the porcelain: design rules, the bare-`vsect` dashboard, the verbs grouped by the work they serve, output for three audiences, what the tool refuses, what is built first.
 3. [`session-aat.md`](session-aat.md) — one illustrative working session on AAT v3, using real defects from ASF's Part I. Illustrative: no such store exists yet.
-4. [`core.md`](core.md) — the contracts underneath (grammar, identity, versions, edges, events, projections, reports, reconciliation, authority, command contracts, fixtures). For implementers and checkers; a user never needs it.
-5. [`storage.md`](storage.md) — what the files look like, how a predecessor corpus is imported, how spec-lite differs, and the move to udon.
-6. [`open.md`](open.md) — open questions (four need Joseph), how each audit finding was handled, and per-element provenance.
+4. [`core.md`](core.md) — the contracts underneath (grammar, identity, versions, edges, events, projections, reports, outlines, refutation marks, reconciliation, addressing, authority, command contracts, fixtures). For implementers and checkers; a user never needs it.
+5. [`storage.md`](storage.md) — what the files look like (including the stored versions, briefs, reports and the mark a refuted statement carries in its own file), how a predecessor corpus is imported, how spec-lite differs, and the move to udon.
+6. [`open.md`](open.md) — open questions (five need Joseph), how each finding of both audit rounds was handled, where the round-2 integration went beyond its judgment, and per-element provenance.
 
 ## Register
 

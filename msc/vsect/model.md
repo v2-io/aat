@@ -1,6 +1,6 @@
 # The logical model — what you hold in mind while using vsect
 
-*Draft, revised after two de novo audits (2026-10-28). This is the model vsect presents to its users. The contracts that make it hold — grammar, identity, versions, edges, events, projections, reconciliation — are in [`core.md`](core.md), which a user should never need to read. Files are described in [`storage.md`](storage.md).*
+*Draft, revised after three de novo audits (2026-10-28). This is the model vsect presents to its users. The contracts that make it hold — grammar, identity, versions, edges, events, projections, reconciliation — are in [`core.md`](core.md), which a user should never need to read. Files are described in [`storage.md`](storage.md).*
 
 ## One fate, one atom
 
@@ -26,7 +26,7 @@ Each statement does one thing — its **statement-kind** — and is judged by wh
 
 ### Record — where statements are kept
 
-A **record** is a file: `kind:slug`. It is the unit you open, read, file, order in an outline and cite as a whole. Some records hold exactly one statement and take that statement's kind (a question, a decision, a purpose statement, a report, a term group). Others hold several statements and exist to keep them together for reading — an AAT **segment** is one of these. A segment is not a kind of truth; it is a container, and it fails only by holding the wrong things together. A record's kind never changes; a record that turns out to be the wrong kind is retired and replaced, linked by `was:`.
+A **record** is a file: `kind:slug`. It is the unit you open, read, file, order in an outline and cite as a whole. Some records hold exactly one statement — the record *is* the statement, so it needs no marking inside (a question, a decision, a purpose statement, a report, a spec-lite card). Others hold several statements and exist to keep them together for reading — an AAT **segment** is one of these. A segment is not a kind of truth; it is a container, and it fails only by holding the wrong things together. So a segment never gets one grade of its own: where a segment is listed, what is broken in it comes first, then counts. A record's kind never changes; a record that turns out to be the wrong kind is retired and replaced, linked by `was:`.
 
 ### Store
 
@@ -51,6 +51,8 @@ A statement's **evidence** is everything recorded as done to secure it, sorted i
 
 A statement's **standing** is what its evidence currently supports, computed from the record of acts, shown with the moment it was computed at. It is always computed; there is no way to type it. Until a store has declared exactly how standing is computed for each statement-kind (and tested that computation), vsect shows the raw evidence on each line instead of any summary. A statement's standing lapses when its own text changes, **and when the meaning of something it leans on changes** — a redefined premise or definition upstream stales the checks downstream.
 
+One thing about standing is written into the files, because a reader without vsect must not be misled: when a statement is refuted, vsect writes a short mark above it in its own file, and above each statement that rested on it. The mark comes off when the statement is replaced.
+
 The author separately declares what a statement *is claimed to be* — its **form** (exact under named premises, qualitative, approximate, statistical) — and that is shown beside the standing, never merged into it.
 
 ### Event
@@ -61,7 +63,7 @@ An **episode** groups the events of one sitting — an audit, a verification pas
 
 ### Finding
 
-A **finding** is an item in a report that targets a statement at the version the reporter read. It stays visible on that statement until it is disposed of: answered (by a revision someone other than its author has confirmed answers it), rejected (with a reason), or carried as a known defect. A finding vsect cannot place is kept visible as **unplaced** until a mind binds it.
+A **finding** is an item in a report that says something is wrong or missing in a statement, at the version the reporter read. (A report also carries **checks** — "I re-derived it and it holds", or "it broke" — which are evidence on a line, not findings; a check that broke something opens a finding as well.) A finding stays visible on that statement until it is disposed of: answered (by a revision someone other than its author has confirmed answers it), rejected (with a reason), or carried as a known defect. A finding vsect cannot place is kept visible as **unplaced** until a mind binds it.
 
 ### Question
 
@@ -89,17 +91,18 @@ A **view** selects and orders records and adds no claims. The **outline** is the
 
 ### Influx
 
-**Influx** is where material waits before becoming part of the store. Each crossing ends *landed* (where), *rejected* (the submitter erred), *needs-review* (the store is honestly unsure) or *skipped* (wrong kind of drop). Material from a **predecessor corpus** (ASF, for AAT v3) crosses with its history: its own findings arrive as findings, and its own status words arrive as what the old corpus claimed — the lowest rung, never standing here.
+**Influx** is where material waits before becoming part of the store. Each crossing ends *integrated* (where it went), *rejected* (the submitter erred), *needs-review* (the store is honestly unsure) or *skipped* (wrong kind of drop). *Integrated* is said of the influx item; *landed* is said of an outline row, and the two are kept apart. Material from a **predecessor corpus** (ASF, for AAT v3) crosses with its history: it arrives as it is; its own findings arrive as findings, and its own status words arrive as what the old corpus claimed — the lowest rung, never standing here. Its statements are made when a piece of it is **carved** into a record, by a mind deciding what each old tag was.
 
 ## Small words used above
 
-- **version**: the digest of a statement's text (after canonical normalization) together with the versions of what it declares it leans on.
+- **version**: the digest of a statement's text (after canonical normalization), its kind and its declared form. A check is bound to the statement's version together with the versions of everything it leans on, and every version vsect has seen can be read back.
 - **lift**: an act that moves a statement up a rung.
 - **certified**: a claim about a statement that anyone can check without trusting its author — a named criterion, a reader independent enough for the rung, a dated event, a way to re-run it.
 - **crossing**: a piece of influx becoming something in the store, or being turned away.
-- **ceiling**: the strongest standing a statement could ever reach, given what it is.
+- **ceiling**: the strongest standing a statement could ever reach, given what it is, the form it is claimed in, the lines it can stand on, and the ceilings of what it rests on.
+- **carve**: make records and statements out of influx material, deciding what each piece is.
 - **profile**: a starting set of declarations a store may adopt at founding.
 
 ## Kinds — admitted, not inherited
 
-A kind (of statement or of record) earns its place when it fails differently, and is repaired differently, from every other kind. A store starts with **no** declared kinds: `vsect init` writes none. Candidate kinds for a theory store — the statement-kinds above, and record kinds such as term group, derivation, worked example, experiment, run, teaching, question, decision, purpose, report and predecessor material — are offered as founding material, to be run through the founding questions against real records before anything is declared. The first such test planned for AAT v3 is re-marking five ASF Part I segments into statements and checking where their existing findings fall.
+A kind (of statement or of record) earns its place when it fails differently, and is repaired differently, from every other kind. A store starts with **no** declared kinds of its own: `vsect init` writes none. (vsect's own records — questions, decisions, purposes and reports, which its verbs write — are built in.) Candidate kinds for a theory store — the statement-kinds above, and record kinds such as term group, derivation, worked example, experiment, run, teaching and predecessor material — are offered as founding material, to be run through the founding questions against real records before anything is declared. The first such test planned for AAT v3 is re-marking five ASF Part I segments into statements and checking where their existing findings fall.
