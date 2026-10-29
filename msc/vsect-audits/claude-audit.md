@@ -1,5 +1,7 @@
 # De novo audit of the vsect design draft (`msc/vsect/`, 2026-10-28)
 
+> [!note] **Integrated (round 1).** This audit was judged in `coordinator-judgment.md` and integrated into the vsect draft at `8fae9c4`; how each finding was handled is in `../vsect/open.md`. Kept as the auditor wrote it. Section numbers it cites refer to the draft it read, not the current one.
+
 *Auditor: Claude (Opus 5.5), 2026-10-28, from a bare brief ("would you do a de novo audit of the vsect spec draft"), with free rein over the estate and read-only outside this directory. I had not seen the drafting session. I read the six draft files whole first and formed a first-pass list, then checked that list against the sources the draft cites. To keep my read unprimed I did not open `codex-audit.md` or `coordinator-pre-audit-notes.md` in this directory. After my findings had formed I read two of the coordinator's notes (`00-orientation-log.md`, `40-emerging-picture.md`) for context on aat-v3.*
 
 *Register: these are findings with evidence, not verdicts. Where I give a remedy, it is a suggestion for the authors to weigh. "Verified" below means I opened the primary and checked it.*

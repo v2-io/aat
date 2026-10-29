@@ -1,5 +1,7 @@
 # De novo audit of the `vsect` draft
 
+> [!note] **Integrated (round 1).** This audit was judged in `coordinator-judgment.md` and integrated into the vsect draft at `8fae9c4`; how each finding was handled is in `../vsect/open.md`. Kept as the auditor wrote it. Section numbers it cites refer to the draft it read, not the current one.
+
 **Audit date:** 2026-10-28
 **Auditor:** Codex
 **Disposition:** Do not implement the write path or advertise computed epistemic state until the blockers below have a normative resolution. The draft has a strong and unusually concrete user-facing workflow, but its central integrity promises are presently under-specified.

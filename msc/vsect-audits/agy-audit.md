@@ -1,5 +1,7 @@
 # De Novo Audit of the `vsect` Specification Draft (`83dd98b`)
 
+> [!note] **Integrated (round 2).** This audit was judged in `coordinator-judgment.md` (*Round 2*) and integrated into the vsect draft at `db6d4e5`; how each finding was handled is in `../vsect/open.md`. Kept as the auditor wrote it. Section numbers it cites refer to `83dd98b`, not the current draft.
+
 **Auditor:** Antigravity (`agy`, Gemini 4 Argon)  
 **Target:** `~/src/aat-v3/msc/vsect/` (`README.md`, `model.md`, `vsect.md`, `session-aat.md`, `core.md`, `storage.md`, `open.md`) at commit `83dd98b`  
 **Cross-checked primaries:**
