@@ -67,7 +67,7 @@ Status in its own words: "proposed. Nothing here is decided." Key moves (my comp
 3. Continue first-hand reading: SP-30 push files 01–04 (esp. 02-typed-predicate, 03-comprehension-lift-scout); Ch.2 roots (`maps/asf-vol1-theory.md` entries 1, 18–21); aat-refactored Tier 1 (de novo review, Ch.2 verifier, specimen-worked); ASF meta-process review (`msc/meta-process-review-2026-07-07/` 00-INDEX, PROCESS-MAP-v0.udon:440-489, 01-findings); spec-lite card exemplar `src/rule-strings-like-ruby.md` + sidecar + `sop/influx/udon-team-notes.md`.
 4. Only then draft anything in aat-v3 beyond msc/ — and per deploy-3, write only what the founding session can know; route the outline to Joseph.
 
-**Housekeeping flagged to Joseph:** the audits/spikes finder accidentally published its map as a private claude.ai artifact (https://claude.ai/artifact/3AhcjFYaj5K1vSPGwxJhNf); not deleted pending his word. (2026-10-28: Joseph asked for it to be deleted; the delete needs his confirmation, so it is his to do via `/artifacts`.) ASF memory `project_aat_reboot.md` has a stale path (`~/src/aat-reboot/` → `~/src/aat-refactored/`) — not edited (outside this repo; his call).
+**Housekeeping flagged to Joseph:** the audits/spikes finder accidentally published its map as a private claude.ai artifact (https://claude.ai/artifact/3AhcjFYaj5K1vSPGwxJhNf); not deleted pending his word. (2026-10-28: Joseph asked for it to be deleted; Joseph deleted it himself via `/artifacts` the same night.) ASF memory `project_aat_reboot.md` has a stale path (`~/src/aat-reboot/` → `~/src/aat-refactored/`) — not edited (outside this repo; his call).
 
 ## Decisions & direction, 2026-10-28 evening (Joseph's words verbatim; my calls marked)
 
