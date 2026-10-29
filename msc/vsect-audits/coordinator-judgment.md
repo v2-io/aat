@@ -55,3 +55,29 @@ They are complementary with little overlap: Codex audited vsect as an **integrit
 ## What I'm guarding in the integration
 
 Both audits pull toward specification completeness, which is right underneath and wrong on top. Joseph's verdict on the 09-29 sketch was "plumbing without the porcelain". So: **`vsect.md` stays porcelain** (the verbs, the dashboard, what the user sees and is asked); the integrity contracts land in a separate core document (model + declarations + grammar + edges + events + reconciliation + command contracts + fixtures-to-write), which the user never needs to read. "The constraints are the product; the taxonomy is the packaging" (grok, RC1 90). And "one fate, one atom" opens the model, before any table.
+
+---
+
+# Round 2 — judgment of the `agy` (Gemini 4 Argon, medium) audit of the revision at 83dd98b
+
+*Bare brief (`agy-brief.md`); run interactively by Joseph after my print-mode run stalled. Read whole. Spot-checked at the primary: B1's quote of Joseph (`spec-lite/sop/adr/landed-not-integrated.md:47`, verbatim ✓); A3's `Proof Step` ×6 in `deriv-sector-condition.md` ✓; `*[Definition (transition opacity)]*` ✓. My quick regex counts 65 paren-less tags where agy reports 91 — different patterns; treat its census numbers as one auditor's, the direction (most ASF tags don't parse under §1 as written) as sound.*
+
+This audit is the first outside read of the revision's new layer (`core.md`, the reworked `storage.md`), and it is mechanically sharp: it executed the contracts against the porcelain and the real corpora. Several defects were introduced by round 1's integration (synthesized mechanisms not traced end-to-end) — exactly what a second round exists to catch.
+
+**Adopt all ten load-bearing findings and all eight secondary ones, with these forms:**
+
+- **A1** — store canonical statement snapshots (`.vsect/objects/<own-version>` or git blobs) and record `own-version` + declaration digest on lifecycle events. Without it `read --at`, diffs, equivalence briefs and rename detection cannot run.
+- **A2** — replace the opaque recursive digest with a **dependency-version vector** (the statement's own version plus each premise/definition's own version, over the closure), with `confirm-rewording(S, v1, v2)` defining an equivalence on own-versions; a check holds iff every component is equivalent. Staleness stays transitive (L2's intent kept), re-binding becomes O(1). Require premise ∪ defined-by to be a DAG; a sentinel for unwritten targets. Note in open.md: confirming a root rewording asserts *unconditional* equivalence — if the confirmer can only say "equivalent for criterion C", dependents re-bind individually.
+- **A3** — any heading ends a span; `of` uses the same span rule; teaching edges live only in frontmatter; id uniqueness is per record; tag markers stripped before hashing; predecessor import is raw influx, with tag normalization done when a segment is carved, not by a word table.
+- **A4** — §4 is the *core* edge set, extensible by store declaration (resolving the line-5 contradiction); add edges for citing purpose/decision/aim, question concerns/blocks, recognition-over-instances, template specialization; specify the `proves` reverse coupling (a broken or stale derivation undercuts its claim's derivation line).
+- **A5** — event envelope + per-act-class payloads; add `revise` and `era`.
+- **A6** — report items typed check / finding / equivalence / finding-review; porcelain verbs (or `findings` sub-verbs) for confirm-rewording, confirm-answered, dispose-finding; a storage home for unplaced findings, reports and briefs.
+- **A7** — reverse §7.4: the report's declared version first, quotes as a consistency check; quote search only for free-form reports.
+- **A8** — an outline grammar section in core.md; container rows project broken-first + counts, never a scalar.
+- **A9** — `read`/`descends-from` are declared provenance (seeded by `verify`), stated honestly; the independence predicate excludes the shared premises/definitions both must read. The deeper point is a **real design tension, routed to open.md, not resolved by fiat:** "one fate, one atom" puts a claim's defending discussion inside its atom, but a de novo verifier should re-derive without the author's working. Proposed handling: `verify` gives the claim's formal clause + its declared premises/definitions; derivations (their own records) and defending discussion are withheld. Whether withholding part of an atom is coherent is a question for Joseph.
+- **A10** — **`grain: record`** for single-statement record kinds (the record *is* the statement; no tags needed). Elegant: card stores (spec-lite) and container stores (AAT segments) run on one engine. Add `strength:`, `depends:`/`per:`/`test-fixtures:`, `context:` sidecars, and `terms:`/«…»/⟦…⟧ to the spec-lite list and a core contract.
+- **B1** — influx crossings use `integrated` (Joseph's ruling, verified); `landed` stays the outline row-type.
+- **B2** — **`refute` writes a visible, generated mark into the record file** (a callout naming the event). This is ASF routing §4.1 — "A segment must never lie about its own status, even transiently … In the segment. Not a quiet note in tracking." — and outranks the "nothing computed is written into files" convenience. `check` verifies the mark matches the trail.
+- **B3** normalizer as a precise pipeline; **B4** canonical kind names in ids and paths; **B5** ceiling = f(statement-kind, form, lines, premise ceilings); **B6** `+dirty` moments; **B7** `revise` is the single reconcile verb (`reconcile` = `revise --all`) with split/merge/supersede/rename choices; **B8** heuristic counts outside the exact-agreement surface.
+
+**Guarding, as in round 1:** `vsect.md` stays porcelain — new mechanism goes to `core.md`/`storage.md`; new verbs only where a moment of real work needs one (A6's confirm/dispose are such moments). Nothing declined.
