@@ -1,0 +1,45 @@
+commit 219ec67  2026-11-04 15:34:19 -0700  Joseph A Wecker
+asf-system: Joseph's first feedback on the model and councils-46's answers, verbatim, for the vsect lead
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_013g85SGnCLP561nShufJM9P
+Claude-Agent: 9011573d-9666-41e3-bf3d-90c37792b769
+
+commit 6a69a5f  2026-11-04 13:18:04 -0700  Joseph A Wecker
+asf-system iteration 2 and KERNEL draft 3 (the vsect lead's turn on both)
+
+ASF model: a changeset's ripples (confirms, restatement rebinds) are its own
+propagation, not new global findings; a third regime models that limiting case
+and strengthenings are separated as discovery from rework. Illustrative rho:
+sprint 1.45, founding 1.00, founding with changesets 0.83 (rework only 0.76).
+The margin is now the core loop's 0.42, which the land-only experiment
+measures. Check is an event and review the atom; ASF prefixes map to statement
+kinds only as hints. All six demands judged kernel.
+
+KERNEL draft 3 admits them: arrangement (rendering needs an authored
+composition), store addressing, identity versus name (the old-slug mapping as
+a projection), tool actors with their version as era, guards reading declared
+projections, importance declared plus computed. Lexicon updated to match.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_013g85SENo7Xw8xKc5sjcr2d
+Claude-Agent: 0903e35e-b03e-407c-97af-e97ae41f543d
+
+commit cd1dd62  2026-11-04 13:15:14 -0700  Joseph A Wecker
+asf-system: decision points as yellow rounded boxes, not diamonds (Joseph)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_013g85SGnCLP561nShufJM9P
+Claude-Agent: 9011573d-9666-41e3-bf3d-90c37792b769
+
+commit 786cdb1  2026-11-04 13:13:57 -0700  Joseph A Wecker
+asf-system: ASF system model, iteration 1 (councils-46) against KERNEL draft 2
+
+model.yaml (lanes, kinds, stations with slot and drainer, sinks, tagged flow gains), render.py
+(swimlane/Petri SVG plus structural checks and timeless flow computation), and the handoff note
+with six demands ASF makes of the kernel. Handed to the vsect lead for iteration 2 on both.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_013g85SGnCLP561nShufJM9P
+Claude-Agent: 9011573d-9666-41e3-bf3d-90c37792b769
+
