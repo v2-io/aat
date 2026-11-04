@@ -33,3 +33,29 @@ Outcomes used: **integrated** (became a record here) · **left** (stays in ASF; 
 **Found in the source:** the intro paragraph order (action-transition, opacity, Markov) differs from the Formal Expression's (action-transition, fresh, opacity), so a reader meets the three things in two orders; the carve made the body order follow the formal order and the intro paragraphs travel with their statements, which ASF's section layout cannot do.
 
 **Cost:** about 15 minutes felt; mostly the Epistemic Status split and the opacity-kind decision.
+
+## 3. `def-observation-function` (ASF `01-aat-core/src/def-observation-function.md`, 93 lines at `2133cf2e`) → `src/def-observation-function.md`, **integrated**
+
+**Became:** 5 statements from ASF's 4 tags. `observation-function`, `observation-kernel`, `epistemic-opacity` (definitions); `fresh-noise` (choice); and one **new statement the carve pulled out of the fresh-noise tag's span**: `kernel-is-learnable-content` (claim, exact; premises `fresh-noise` and `#def-action-transition#fresh-transition`). It had to come out: ASF's own Epistemic Status says it "does not follow from the kernel's definition alone" and gives the counterexample without fresh noise, and ASF's checks C7 (check 7) and C9 (check 8) checked exactly this sentence. A claim that can be refuted while the clause it sat under stands is a separate atom. The intro's second paragraph was **split** (lossiness → `observation-function`; the kernel sentences → `observation-kernel`'s opening); the Epistemic Status was split four ways.
+
+**Findings carried** (`reviews/asf-scope-adaptive-system-check-8.md`): F3 → `observation-kernel` (the opening sentence, now this statement's first sentence, uses "the conditional law of $o_t$ given state and action", the phrase the Formal Expression says names the mixture, not the kernel — the carve makes the defect sit inside the statement it contradicts, which is where it belongs); F4 → `fresh-noise` and `#def-action-transition#fresh-transition` (neither conditions on the whole law $\theta$). Both open in ASF since 2026-10-31; unchanged here.
+
+**Left in ASF:** the audit-gold harvest (lines 57–92). Live follow-ups: *is $a_{t-1}$ cashed in downstream or vestigial?* — a watch-item on Parts II–III, left; *constitutive-opacity triad named as such* — marked superseded in-place (the three are now one scope's typed anatomy); *known-noise instantiations* — marked resolved in-place. The pragmatic/epistemic action partition belongs to the strategy machinery. Left.
+
+**Found in the source:** a derived, independently checked claim was living untagged inside a definitional clause's paragraph (above). Record-grain vsect bound C7/C9 to the whole segment, so the record cannot say that *this sentence* is what was re-derived. That is the clearest case in the cluster for statement grain.
+
+**Cost:** about 25 minutes felt; the new statement and the two splits.
+
+## 4. `def-chronica` (ASF `01-aat-core/src/def-chronica.md`, 110 lines at `2133cf2e`) → `src/def-chronica.md`, **integrated**
+
+**Became:** 2 statements from ASF's 1 tag: `chronica` (definition) and `non-forkable` (**claim, qualitative**, premise `chronica`). ASF carried the non-forkability consequence inside the definition's prose ("a consequence the framework will lean on heavily"); it can be wrong while the definition stands, so it is its own atom. The ordinal-not-metric paragraph stays inside `chronica`: given the definition as a sequence, it cannot fail separately. Text verbatim; the intro's three paragraphs re-ordered so each sits with its statement.
+
+**Carried as questions:** `question:does-the-abstract-chronica-need-the-tractus-chro` (closer: awaiting the `03-llm-core` interiority sub-scope — ASF held it as a Working Note since 2026-05-01 with Joseph's framing quoted); `question:the-chronica-is-ordinal-event-indexed-not-metric` (the two downstream implications).
+
+**Carried as finding** (`reviews/asf-working-notes-follow-ups.md` F1): "Duplicating an agent's *state*" in `non-forkable` names the wrong object (audit gold, Claude 472913); still in the text at HEAD.
+
+**Left in ASF:** the audit-gold harvest (lines 160–199) and the 2026-08-12 candidate spike (two forward candidates: a TRACTUS/CHRONICA forensics architecture; a fork-undetectability experiment). The spike candidates are owed work in ASF's sense, not this store's yet; left and listed. Follow-ups left: *digital-substrate non-forkability needs two sentences* (a `#scope-agent-identity` matter); *where do priors / $M_0$ live* (a `#form-agent-model` matter; it recurs in that segment's own gold); *linear vs branching histories*; *the $\mathcal H$ collision rationale* (NOTATION uses plain $H$).
+
+**Found in the source:** three of the four live follow-ups on this segment target other segments. The gold was harvested per segment and filed where the reader was standing, not where the defect is. A crossing has to re-route them, and most route out of the cluster.
+
+**Cost:** about 15 minutes felt.
