@@ -1,0 +1,60 @@
+# aat-v3 store declarations. Founded 2026-11-04 as a PILOT (see README.md): one Chapter 1 cluster
+# of ASF crossed, to compare founding-a-new-store with refactoring ASF in place. Nothing here is canon.
+#
+# Grain. vsect 0.1.0 reads one statement per record. The crossed segments are carved into
+# statements in their text (`*[Word (id)]*` tags, `statements:` frontmatter) per the design in
+# msc/vsect/, but the tool does not read that grain yet: standing, basis and findings bind to the
+# record. `statements:` is therefore a declared field (shown, not computed) until the tool grows.
+#
+# Edges. `depends:` is ASF's record-grain edge, carried as-is so the tool has a basis to bind to.
+# Statement-grain `premise:` / `defined-by:` live inside `statements:` and are unread for now.
+#
+# `predecessor:` holds what ASF said about the record (slug, commit, its typed status/stage words).
+# It is provenance, shown as typed. It is never standing here.
+name: aat-v3
+steward: joseph
+decider: joseph
+stores:
+  asf: ../arch/asf
+kinds:
+  segment:
+    grain: record
+    find:
+      - "src/*.md"
+    edges:
+      depends: depends
+    note: >-
+      One carved ASF segment: a container of tagged statements, read by vsect 0.1.0 as one
+      statement until the tool reads tags.
+  review:
+    grain: record
+    find:
+      - "reviews/*.md"
+    note: What a verifier, auditor or integrator sent back, or a predecessor's review carried across; its body is not edited after `vsect take`.
+  question:
+    grain: record
+    find:
+      - "questions/*.md"
+    note: An open item about the work, with a closer.
+  item:
+    grain: record
+    find:
+      - "items/*.md"
+    note: Work owed, with an owner.
+edges:
+  depends:
+    in_basis: true
+    meaning: true
+    on_refute: broken
+    note: >-
+      Carried from ASF at record grain. A reference that names a segment not in this store
+      resolves in the predecessor (`asf/segment:<slug>`) and is a basis component this store
+      cannot bind to until that segment is crossed.
+declared_fields: [predecessor, statements]
+lines:
+  derivation: [drafted, premises-checked, independently-rederived]
+  simulation: [prediction-committed, run-once, swept, reproduced-by-another]
+  instance: [mapping-proposed, mapping-checked, prediction-checked]
+  imported: [named, recalled, found-by-search, checked-at-secondary, checked-at-primary]
+  measured: [anecdotal, measured-once, robust, calibrated]
+  testimony: [captured, corroborated, corroborated-by-another-kind]
