@@ -1,0 +1,28 @@
+schema: vsect-event/0
+id: d4f5ec2b9619b7f50ce12211c31c6f332a81c22729d2be9a175301680be9c2fa
+at: 2026-11-04T18:42:02Z
+store: aat-v3
+act: place-finding
+about: segment:def-chronica
+actor:
+  name: ASF audit gold, 2026-05-30 harvest (de novo auditors, attributed per item)
+  role: auditor
+  identity: declared
+normalizer: vsect-norm/0
+basis:
+  segment:def-action-transition: d63308e3e10bafbe0d7648a71dd3ff3e6941e898c4ec0fc64b1e22ccbcac917b
+  segment:def-agent-environment: 54ed06cb12e06ac306aa644f466923a6610d40e19c04ef144a2d7f8d353013df
+  segment:def-chronica: 2417b38eda61d7e6ba2fd91599b2464ae922e252c3d6a1d2f1df9e126dc89c48
+  segment:def-observation-function: 2b35ea7505fd32f1df574bd1d674231b5c124ad0d5777e9c6a2192ff1fde776d
+finding: review:asf-working-notes-follow-ups#F1
+taken-by:
+  name: Claude Fable 5.1 (pilot)
+  session: 9011573d-9666-41e3-bf3d-90c37792b769
+  role: integrator
+  agent: 9011573d-9666-41e3-bf3d-90c37792b769/a31e3538c77d44ea5
+  agent-type: general-purpose
+  parent: 9011573d-9666-41e3-bf3d-90c37792b769
+  identity: harness-agent
+target: segment:def-chronica
+text: 'Statement: `def-chronica#non-forkable`.'
+version-from: current

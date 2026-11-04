@@ -1,0 +1,19 @@
+schema: vsect-event/0
+id: e3d0bb67340b730a31c5c5549e79c6fb63998b60588d9b80cfff0d9ac40d3a6c
+at: 2026-11-04T18:42:02Z
+store: aat-v3
+act: take
+about: review:asf-working-notes-follow-ups
+actor:
+  name: Claude Fable 5.1 (pilot)
+  session: 9011573d-9666-41e3-bf3d-90c37792b769
+  role: integrator
+  agent: 9011573d-9666-41e3-bf3d-90c37792b769/a31e3538c77d44ea5
+  agent-type: general-purpose
+  parent: 9011573d-9666-41e3-bf3d-90c37792b769
+  identity: harness-agent
+normalizer: vsect-norm/0
+items:
+- F1:finding
+review: reviews/asf-working-notes-follow-ups.md
+review-version: 793f7a66e274988005a63792ca74377d87a1da3b223b8ece87f619ef64a42f94

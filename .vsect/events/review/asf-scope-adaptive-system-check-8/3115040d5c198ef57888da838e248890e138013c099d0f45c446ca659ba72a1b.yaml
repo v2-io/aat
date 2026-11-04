@@ -1,0 +1,22 @@
+schema: vsect-event/0
+id: 3115040d5c198ef57888da838e248890e138013c099d0f45c446ca659ba72a1b
+at: 2026-11-04T18:42:02Z
+store: aat-v3
+act: take
+about: review:asf-scope-adaptive-system-check-8
+actor:
+  name: Claude Fable 5.1 (pilot)
+  session: 9011573d-9666-41e3-bf3d-90c37792b769
+  role: integrator
+  agent: 9011573d-9666-41e3-bf3d-90c37792b769/a31e3538c77d44ea5
+  agent-type: general-purpose
+  parent: 9011573d-9666-41e3-bf3d-90c37792b769
+  identity: harness-agent
+normalizer: vsect-norm/0
+items:
+- F1:finding
+- F3:finding
+- F4:finding
+- F5:finding
+review: reviews/asf-scope-adaptive-system-check-8.md
+review-version: b420edceb5b3e6d6ccf0f578cabfd94fc233a324494d017af545053577aa4327

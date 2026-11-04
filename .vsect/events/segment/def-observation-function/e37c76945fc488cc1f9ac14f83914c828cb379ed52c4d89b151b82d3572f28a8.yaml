@@ -1,0 +1,27 @@
+schema: vsect-event/0
+id: e37c76945fc488cc1f9ac14f83914c828cb379ed52c4d89b151b82d3572f28a8
+at: 2026-11-04T18:42:02Z
+store: aat-v3
+act: place-finding
+about: segment:def-observation-function
+actor:
+  name: Claude Opus 5.5 (A.1 check 8)
+  role: independent checker
+  identity: declared
+normalizer: vsect-norm/0
+basis:
+  segment:def-action-transition: d63308e3e10bafbe0d7648a71dd3ff3e6941e898c4ec0fc64b1e22ccbcac917b
+  segment:def-agent-environment: 54ed06cb12e06ac306aa644f466923a6610d40e19c04ef144a2d7f8d353013df
+  segment:def-observation-function: 2b35ea7505fd32f1df574bd1d674231b5c124ad0d5777e9c6a2192ff1fde776d
+finding: review:asf-scope-adaptive-system-check-8#F3
+taken-by:
+  name: Claude Fable 5.1 (pilot)
+  session: 9011573d-9666-41e3-bf3d-90c37792b769
+  role: integrator
+  agent: 9011573d-9666-41e3-bf3d-90c37792b769/a31e3538c77d44ea5
+  agent-type: general-purpose
+  parent: 9011573d-9666-41e3-bf3d-90c37792b769
+  identity: harness-agent
+target: segment:def-observation-function
+text: 'Statement: `def-observation-function#observation-kernel` (ASF target: `#def-observation-function`, opening paragraph, line 15).'
+version-from: current
