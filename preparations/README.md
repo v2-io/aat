@@ -11,17 +11,17 @@ Where the work on the new ASF (this repo) and the new verisectorium and vsect (`
 - **Where the store lives.** The store is not the repo. It lives wherever the OS convention puts it, as relata's does.
 
 **Where the thinking is (2026-11-04):**
-- **Too complicated, and not sophisticated enough.** Joseph found the kernel drafts (`vsect/KERNEL.md`, draft 3) and the ASF system model (`asf-system/`, iteration 2) both. They lost the framework that had been coming together, the one built on RC1 and the maturation plan. The cause, on the vsect lead's account: the kernel was drafted without reading RC1's core files (01–04, 07, 08, 11) or the verisectorium theory store. Those already define atoms, dimensions, kinds and the lexical core.
+- **Too complicated, and not sophisticated enough.** Joseph found the kernel drafts (`asf-earlier-vsect/KERNEL.md`, draft 3) and the ASF system model (`asf-system/`, iteration 2) both. They lost the framework that had been coming together, the one built on RC1 and the maturation plan. The cause, on the vsect lead's account: the kernel was drafted without reading RC1's core files (01–04, 07, 08, 11) or the verisectorium theory store. Those already define atoms, dimensions, kinds and the lexical core.
 - **The agreed next step is a rethink, not a repair.**
   - Read RC1 whole, and the theory store's outline and its core segments.
   - Then write one short component map: what verisectorium already defines (the kernel, mostly as written), what vsect must implement, and what ASF must declare (its kinds as dimensions, and its transitions as movements on them).
-  - `vsect/KERNEL.md` and `vsect/vsect-lexicon.md` are folded into that map, not kept alongside it.
+  - `asf-earlier-vsect/KERNEL.md` and `asf-earlier-vsect/vsect-lexicon.md` are folded into that map, not kept alongside it.
 - **The first concrete input is the influx list.** councils-46's step 1: read the sprint's influx maps (`asf-sprint-2026-10/influx-scout/`, `internal-surfaces/`) and record each source with how far it was explored.
 
 ## What is here
 
 - **`asf-system/`.** The ASF system model, iterations 1 and 2, moved from `arch/msc/asf-system/`. `HISTORY-from-arch.txt` holds its commit history there. `joseph-feedback-2026-11-04.md` has his questions on it.
-- **`vsect/`.** The vsect drafts and plans:
+- **`asf-earlier-vsect/`.** The vsect drafts and plans:
   - `MATURATION-PLAN.md` and the other lead session's `-notes`, `-scratch` and `-experts-and-councils`;
   - `KERNEL.md` (draft 3) with `KERNEL-check-1.md`;
   - `vsect-lexicon.md`.
