@@ -3,7 +3,7 @@ depends:
   - def-agent-environment
   - def-observation-function
   - def-action-transition
-predecessor:
+source:
   store: asf
   slug: def-chronica
   commit: 2133cf2e

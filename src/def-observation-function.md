@@ -2,7 +2,7 @@
 depends:
   - def-agent-environment
   - def-action-transition
-predecessor:
+source:
   store: asf
   slug: def-observation-function
   commit: 2133cf2e

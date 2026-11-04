@@ -4,7 +4,7 @@ depends:
   - def-action-transition
   - def-observation-function
   - def-chronica
-predecessor:
+source:
   store: asf
   slug: scope-adaptive-system
   commit: 2133cf2e

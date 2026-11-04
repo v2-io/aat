@@ -9,7 +9,7 @@
 # Edges. `depends:` is ASF's record-grain edge, carried as-is so the tool has a basis to bind to.
 # Statement-grain `premise:` / `defined-by:` live inside `statements:` and are unread for now.
 #
-# `predecessor:` holds what ASF said about the record (slug, commit, its typed status/stage words).
+# `source:` holds what the source said about the record (slug, commit, its typed status/stage words).
 # It is provenance, shown as typed. It is never standing here.
 name: aat-v3
 steward: joseph
@@ -50,7 +50,7 @@ edges:
       Carried from ASF at record grain. A reference that names a segment not in this store
       resolves in the predecessor (`asf/segment:<slug>`) and is a basis component this store
       cannot bind to until that segment is crossed.
-declared_fields: [predecessor, statements]
+declared_fields: [source, statements]
 lines:
   derivation: [drafted, premises-checked, independently-rederived]
   simulation: [prediction-committed, run-once, swept, reproduced-by-another]

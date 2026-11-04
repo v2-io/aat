@@ -1,6 +1,6 @@
 ---
 depends: []
-predecessor:
+source:
   store: asf
   slug: def-agent-environment
   commit: 2133cf2e

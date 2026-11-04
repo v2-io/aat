@@ -1,7 +1,7 @@
 ---
 depends:
   - def-agent-environment
-predecessor:
+source:
   store: asf
   slug: def-action-transition
   commit: 2133cf2e
