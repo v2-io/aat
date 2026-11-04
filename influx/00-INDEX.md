@@ -19,3 +19,17 @@ Outcomes used: **integrated** (became a record here) · **left** (stays in ASF; 
 **Found in the source:** (1) the intro paragraph and the Formal Expression say the same thing twice, with the Formal Expression's channel list adding only the $\lvert\mathcal A\rvert \geq 2$ gloss; a cold reader meets the three channels three times (intro, formal, epistemic status). (2) The umbrella/tier paragraph names five segments outside this cluster and the LEXICON; it is teaching about the cascade sitting inside a root definition. Kept attached to `coupling` because it fixes the meaning of the word *agent*, which is this statement's; flagged **needs-review** as a carve judgment. (3) The record-grain `depends: []` understates what the boundary rests on (above).
 
 **Cost:** about 25 minutes felt; the carve decisions (two kinds, the hidden premise, where the umbrella paragraph belongs) were the cost, not the typing.
+
+## 2. `def-action-transition` (ASF `01-aat-core/src/def-action-transition.md`, 91 lines at `2133cf2e`) → `src/def-action-transition.md`, **integrated**
+
+**Became:** 3 statements, matching ASF's three tags one-to-one: `action-transition` (definition), `fresh-transition` (**choice**: "the Markov commitment ... by declaration"), `transition-opacity` (definition; names $\theta_T$). The intro's three paragraphs each state one of them and were assigned accordingly (¶1 → action-transition, ¶3 → fresh-transition, ¶2 → transition-opacity). The Epistemic Status paragraph was **split** into three `of` spans, one sentence group per statement; it was one paragraph in ASF speaking for three things.
+
+**Carve judgment, needs-review:** the audit gold (2026-05-30) recorded two substrates reading `*[Definition (transition opacity)]*` as mistyped (a postulate- or scope-flavored claim, not an object introduced) and a third withdrawing the objection. The carve keeps it a definition: its first sentence names $\theta_T$ and places its randomness under $\pi_0$, and its last sentence disclaims any requirement. If the pilot's kinds are ever run through the founding questions, this is the first case to test.
+
+**Statement-grain edge record grain hides:** `transition-opacity` is defined through `#scope-adaptive-system`'s reference measure $\pi_0$ and its possible-worlds rule (`defined-by: segment:scope-adaptive-system#possible-worlds`). Same shape as crossing 1: a root definition leans on the scope that leans on it, and only statement grain can say which parts.
+
+**Left in ASF:** the audit-gold harvest (lines 157–193). Its follow-ups: *hidden learnability/smoothness assumption* and *practical $\Omega$-sizing cost* are questions about the theory's reach, not defects in these statements; left as ASF influx. The eq-tag-typing follow-up is answered by the carve (above). "Doesn't the LLM case violate transition opacity?" is marked dissolved in-place (2026-10-30). The rest is pedagogy.
+
+**Found in the source:** the intro paragraph order (action-transition, opacity, Markov) differs from the Formal Expression's (action-transition, fresh, opacity), so a reader meets the three things in two orders; the carve made the body order follow the formal order and the intro paragraphs travel with their statements, which ASF's section layout cannot do.
+
+**Cost:** about 15 minutes felt; mostly the Epistemic Status split and the opacity-kind decision.
