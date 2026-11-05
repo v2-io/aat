@@ -8,7 +8,7 @@
 *`verisectorium-review/recommendation.md` stays the list of what to promote from the prior incarnation.*
 
 *How to read it:*
-- *Part A is the model as we now understand it.*
+- *Part A is the model as we now understand it, built from the primitives in A0.*
 - *Part B is who owns what.*
 - *Part C is the steps.*
 - *Part D lists the assumptions and open questions, so none of them hardens silently.*
@@ -19,6 +19,25 @@
 
 ## Part A: The model
 
+### A0. The primitives everything is built from
+
+- **Truth claim.** An assertion whose standing is a **certainty**, earned from accumulated evidence (RC1's `evidence/*` lines) and lowered by refutation or lapse.
+- **Decision.** A choice at a branch point whose standing is its **backing** (RC1's `decision/*`: grounds, consultation, accountability, falsifiers) and the importance it was made at, *for* a target.
+- **Attested fact.** Asserted and checkable, but carried without a trail: agent ids, dates. The floor where recursion stops.
+- **Attribute.** A deterministic measurement, with no standing at all: a formula and the moment it was computed.
+
+**Everything else is composed of these:**
+- an aspect's value is a truth claim ("this section is stale", "this result is novel"), a decision ("treat it as provisional for now"), or both;
+- importance is an attribute (reach, for a target) plus a decision (the stakes);
+- a composite's coherence is a truth claim about the whole;
+- a rule is a decision whose application is computed.
+
+**Certainty is always recorded separately from the value it qualifies.** An aspect carries a value, a basis, and a certainty:
+- "novelty: high", given as a label, is a value with low certainty;
+- "relative freshness: darn fresh", produced by a rule from an attribute, is held with the certainty of that rule's application. The rule's own fitness is a separate decision.
+
+A value never stands in for its certainty, just as RC1's substitution law keeps one dimension from standing in for another. Graduation (A2) is about *how* a value is produced. Certainty is about *how strongly* it is held. They move separately.
+
 ### A1. Records, identity, composites
 
 - **A record is the unit with one fate:** anything that can be refuted, superseded or ratified while its neighbors carry on. That is RC1's record, and the archived design's statement, and today's "atom": one thing under three names. **Record** is the word here.
@@ -28,6 +47,10 @@
   - It has an aspect of its own, **coherence**: does this hold together, read as a whole? A whole-document review moves it, and that review binds to the exact versions of every section.
   - A change to any section's content lapses the composite's coherence.
   - **Ratifying a section can be guarded on its composite's coherence holding at current versions.** That is "one change forces a look at the whole, and its neighbors, before ratification", expressed as a lapse and a guard. The sections remain separate records.
+- **Composites nest, and the nesting is neither a strict tree nor strictly forward.** In ASF the levels are: a segment {statements, derivation, intro prose, …} → chapters and appendices → parts → volumes → the theory. Each level is a composite with its own coherence.
+  - **Dependencies run mostly backward, but not only.** A segment requires earlier ones. But an introduction depends on later segments, and a notation or cross-cutting group cuts across the hierarchy. So groupings may overlap.
+  - **A dependency carries a predicate:** on content alone, or on content with some aspect at a threshold ("rests on #x with certainty at least re-derived").
+  - **Upward lapse is a declared rule, not automatic.** A section's change lapses its segment's coherence. Whether that in turn lapses the chapter's coherence depends on a rule: for instance, only when the segment's headline claim changes, or its certainty crosses a band. Without such rules, every edit would lapse the whole theory.
 - **Composition has three honest shapes, plus one exemption** (RC1 03 and 11):
   - **reify:** a composite becomes a record, as above;
   - **cluster:** typed parts under one identity, each with its own write rules (body, working notes, events, companions);
@@ -152,6 +175,22 @@ In ASF, one deliberation often produces several kinds at once. Record each as wh
   - rounds wait on submissions, never on deliveries.
 - **Unity on importance can come before unity on truth.** Importance is itself decidable, and revisable.
 
+### A4b. Change obligations: rules that ask questions
+
+Most higher-order rules, and probably many lower-order ones at first, will act less like guards that pass or fail and more like a business-rules engine that **generates obligations** for a proposed change. They take three forms:
+- **Invariants to keep:** "this change must leave X unchanged."
+- **Places to look:**
+  - "Have you checked adjacent segments for this?"
+  - "Are you sure this hasn't also changed such-and-such?"
+  - "Does this Part I change require changing the SVG metaphor in the introduction?"
+- **Ancillary evidence to gather before a decision.** For example, a preparer agent lists the non-adjacent segments that mention a term without depending on it, as input to deciding whether they need checking before the chapter is declared coherent. That list is a *description*-style reference (RC1 06 and 11), run at that moment.
+
+How obligations work:
+- They attach to the episode.
+- Each is discharged by a recorded act: a check, a preparer's report, or a decision that it doesn't apply.
+- The episode's commit guard, and any ratification of a composite's coherence, require them all discharged.
+- A rule that generates obligations is itself a decision in the definition (the system kind). It can graduate like an aspect: from a checklist line, to a rule with a matcher, to a procedure with its own record.
+
 ### A5. Global stability: episodes, ripple, and the breaker
 
 - **A stable store is at a fixed point:** no rule would fire, and nothing demands work, as far as we know.
@@ -199,6 +238,18 @@ In ASF, one deliberation often produces several kinds at once. Record each as wh
 
   In ASF's case the SOPs may live as records of the system definition. That is Joseph's suggestion.
 - **What leaves:** the canon's word is *efflux*. The name for deliveries into sibling stores is still open. Not "set aside", which is a sink word for a delivery.
+
+### A7. Fitness, concordance and cost: analyses over the trail
+
+- **Fitness aspects.** Readability, teachability, conciseness, coherence, coupling, novelty, impact. These are values on records or composites, with a basis and a certainty like any aspect, often fed by attributes. They graduate like any aspect.
+- **Kendall's τ: concordance between two orderings of the same records.** τ needs only orderings, which suits ladders (they're ordinal). Places it applies:
+  - **claimed against established strength:** calibration across different ladders without forcing a common scale;
+  - **importance against the order work was done:** drain order;
+  - **reading order against dependency order:** each discordant pair is a forward reference;
+  - **members' rankings:** Kendall's W, the many-rater form, carried in a council's unity report.
+- **A cost matrix per ladder.** The cost of moving from rung *i* to rung *j* (a re-derivation costs more than a confirmation), weighed against the importance-for-target of closing that gap. Priority is then importance-weighted gaps priced by that matrix. That's RC1 07's gap economics, made computable.
+
+Like the flow model, all of these are analyses over the trail. None is part of the definition.
 
 ## Part B: Who owns what
 
@@ -276,3 +327,33 @@ In ASF, one deliberation often produces several kinds at once. Record each as wh
    - plus this plan's aspect, attribute, band, graduation, episode, composite.
 
    It should be built as the template's lexicon store, not as a free-standing file.
+
+---
+
+## Appendix: discussed, but not in this plan
+
+*Things that came up across 2026-11-03 and 11-04 and are not carried above. Some are recorded elsewhere; some may only be floating in transcripts. Listed so they aren't silently lost.*
+
+- **The steward's accountability and veto.** Joseph: *"I'll have ultimate veto power independently because in the eyes of the law and the world I shoulder full actual accountability and reputation for the outcomes."* How that relates to `decision/accountability` and to council closes is open.
+- **A council's composition is part of its record.** The diversity of perspectives and underlying models is recorded, "in case there are questions about its outcomes later at a higher level."
+- **In-meeting acts:**
+  - a research subcommittee that reports back without interrupting the meeting;
+  - adding a member with a needed perspective;
+  - near-identical motions counting as seconds;
+  - follow-up questions to members based on what others said.
+
+  See the councils spikes (`~/src/arch/msc/councils/spikes/`) and the collaborative council file.
+- **Decision theory, Joseph, 2026-11-03:**
+  - deciding under one regime, even arbitrarily, as the most effective way to gather evidence, with pilots as its routine form;
+  - information, importance and decision space evolving together, and going wrong when conflated;
+  - fiat by an accountable owner;
+  - theorems conditioned on A and on B, the whole never exceeding its weakest link.
+
+  Verbatim in `foundations/research/dialog-for-kernel-2026-11-04.md`, window 1.
+- **What a changeset gathers.** It "pulls into its changeset all of the memories of other related/adjacent/historical things," drains several sources at once, and possibly has a specialist do the gathering. What must fit in one mind is the intent, the invariant and the judgment calls, with verified transforms and mechanical checks for the rest. Both are in `foundations/asf-flows.md` §6.
+- **Where the store lives.** The README records Joseph's decision: outside the repo, by OS convention, as relata does. He later allowed the repo "only if it doesn't overly complicate … atomically coherent changesets". Part B's replay rule and SPECIMEN #3 should start from that default.
+- **The influx inventory as its own first step:** the whole source list from the sprint's maps, with exploration state and read-by / not-read-by. That's separate from crossing the five roots.
+- **Decisions lapsing:** assumptions as edges, with a lapse when one changes or the decision's importance-for-target rises (kernel draft 3).
+- **The interface:** an `ant`-shaped request on stdin with a structured result (kernel draft 3; the vsect lead's plan-read addendum).
+- **Truth as the frame for councils:** unity of purpose; members differ by experience, context, reasoning and angle; divergence means adjudicating truth "from the perspective of the system they know most about." Also high-councils (`~/src/arch/msc/councils/high-councils/`).
+- **Reports as records:** v2's projections into the repo, "often recorded as curated collections of atoms", meaning a report can be an arrangement.
