@@ -2,6 +2,8 @@
 
 Where the work on the new ASF (this repo) and the new verisectorium and vsect (`~/src/verisectorium/`) is discussed and prepared, from 2026-11-04. Joseph: this is now where we work on the stuff. Anything copied here supersedes its original.
 
+> [!note] **The plan now lives in [`PLAN.md`](PLAN.md)** (2026-11-04, councils-46 with Joseph): the model as currently understood (composites, aspects and standing, decisions, movers and council charters, episodes and stability, intake), who owns what, the steps, and the assumptions and open questions. It supersedes `asf-earlier-vsect/KERNEL.md` and `vsect-lexicon.md` as the place where the plan lives, and the ASF system model's iterations 1–2.
+
 ## Where things stand
 
 **Decided by Joseph:**
