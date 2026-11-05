@@ -227,6 +227,8 @@ They are separated by what they are about. Conflating them has happened repeated
 
 One deliberation often produces several kinds at once. Record each as what it is, linked by `caused-by`.
 
+**Liveness is a work decision, not part of the definition.** Who is answerable for working a queue *now*, and what wakes them, is an assignment with a target and usually an expiry, recorded as a work decision. For now, the agent working on v2, verisectorium and ASF's model is the trigger, as far as anything needs one. Joseph: when it can be abstracted away, "delegated and scheduled and triggered and so forth, it will be readily apparent very likely." Until then, queues are at least visible at session start and close.
+
 **Interior acts are escalated by importance, not by type.** A confirmation at a root needs more independence than at a leaf. The act's importance is its record's importance *for* what rests on it.
 
 **A decision records its assumptions as edges** to the records they rest on. It lapses, as under-secured, when one of them changes or when its importance-for-target rises above what it was made at. Lapsing asks for the decision to be secured again; it doesn't reverse it.
@@ -238,7 +240,7 @@ One deliberation often produces several kinds at once. Record each as what it is
   - its guard (which may read positions, credences, judged values and attributes, each named, per A0);
   - its evidence requirement;
   - what its close writes;
-  - its decision-maker slot.
+  - **its admissible mechanisms,** each with the conditions that select it. A queue can have several: a rule for the easy cases, a single agent for most, and a council where importance-for-target is high or the kinds involved call for judgment. A council's charter, or that charter's agenda, is derived from what it is adjudicating. The definition names the mechanisms and how one is selected; it says nothing about how a mechanism works inside. A council stays a black box with a charter.
 - **Who fills slots is decided later.** Joseph: *"treat each vsect transition-edge as a queue that is drained by a 'decision-maker' and not specify a council or agent etc."*; *"especially not initially."*
 - **Kinds of mover, cheapest first:**
   - rules: deterministic band crossings and lapses;
