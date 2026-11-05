@@ -65,15 +65,31 @@ A value never stands in for its certainty, just as RC1's substitution law keeps 
 
 ### A2. Standing: what moves, and what sustains it
 
-**Three things can move** for any record:
-- its **content**;
-- what it **claims**: declared form, register, scope;
-- what its trail has **established**: computed standing.
+**What a change does to standing** (revised after Joseph's corrections, 2026-11-04):
+- **A content change lowers certainty automatically.** Every check bound to what changed lapses, so the record's computed certainty drops until something re-establishes it. That one act opens both sides of adjudication at once:
+  - *is the new content right?*
+  - *does it still earn what it claims?*
+- **Adjudication is usually what *finds* a mismatch, not what starts from one.** A check, a review or a coherence read discovers that claimed and established standing have come apart, or that they haven't.
+- **There is only ever one current epistemic label.** A record can't say "used to be exact, with high certainty" next to its present state; its history is a function of the log. So "no softened ghost" isn't a discipline agents must remember. v2 makes it impossible to get wrong.
 
-Adjudication starts from a mismatch between claimed and established. It repairs in one of three ways:
-- **secure:** a recorded act raises what is established;
-- **revise the content** so it can earn the claim. This resets the standing the edit invalidates, which restarts those ladders;
-- **lower the claim:** last (strengthen-before-soften), and by replacement, never by keeping a softened ghost.
+**One common case: a defect found in a claim. It runs in two phases, inside one episode.**
+1. **Honest intermediate.** The claim, or its certainty, is lowered at once to what is now true. "No longer exact; conditional on X." Downstream records that rest on it are notified, but the episode *holds* their re-stabilization. Re-settling everything around a lowered value that may be raised again shortly wastes the most cycles where the most rests on it.
+2. **The strengthening attempt.** A spike works every angle for what *would* keep the earlier value true. It often finds more than that:
+   - a way to raise the ladder above where it was;
+   - or the same value, secured with less uncertainty.
+
+   Those ripples are the welcome kind. When no strengthening exists, the spike can often mint a no-go that illuminates something central. That is a result too, and it ripples widely as part of the same changeset.
+
+Securing and revising are the two halves of **strengthen**. Lowering the claim is **soften**, and it comes last.
+
+**This is one scenario, not a taxonomy of adjudication.** Others include:
+- fidelity corrections;
+- coherence repairs;
+- notational changes;
+- reordering prerequisites to resolve a chapter's incoherence;
+- crossings, ratifications and importance assignments.
+
+The kinds of adjudication aren't settled. They should come from cases like this one, each with its specimen, not from a list drawn up in advance.
 
 **Aspects are values on a record, sorted by what sustains them** (Joseph's sort, one step more abstract than RC1's sort by what falsifies):
 - **evidenced:** a truth claim with accumulated evidence. This is certainty: RC1's `evidence/*` lines (derivation, in-vivo, wild-empirical, instance, testimony, carriage), each with its own ladder;
@@ -277,6 +293,44 @@ How obligations work:
 
 Like the flow model, all of these are analyses over the trail. None is part of the definition.
 
+### A8. What established work already holds
+
+*From `research/knowledge-graphs.md` (a fresh agent, 2026-11-04). Each item is its finding as reported. Grades are its own: checked at the primary source, or at abstract grade. Verify before building on any of it; the truth-maintenance items first, since they rest on abstracts.*
+
+- **Truth maintenance is the closest ancestor** (Doyle 1979; de Kleer's ATMS 1986).
+  - Status is computed from recorded justifications, never set by hand, with the reasoner separate from what records its results.
+  - Contradictions become *nogoods*.
+  - Each conclusion is labeled with the assumption sets it holds under. That is the native form of "theorems conditioned on A and on B", and of A5's discoveries that apply "only if this changeset commits".
+  - **It exposes a gap: circular support.** Composites guarantee cycles, and this plan doesn't say whether a cycle can support itself. That is now open question 8.
+- **Fixpoints: order-invariance needs more than termination.** The monotone assumption guarantees the automated layer stops. It doesn't guarantee that it stops at the same answer whatever order rules fire in, which RC1 requires. The precise condition: every rule's output is a monotone function of its inputs, checkable at stage 1 by stratification. The same theory names the breaker's two shapes in advance: odd loops oscillate, even loops are tensions.
+- **Build systems: bind checks to what they directly read.** vsect 0.1 binds each check to its whole transitive basis. That is a "deep trace", the one design that can't stop propagation when a rebuilt input comes out unchanged ("early cutoff"); `vsect confirm` was that cutoff done by hand.
+  - Binding to direct reads only, with transitivity used for notification only (RC1 06's own rule), answers A1's upward-lapse question and bears on open question 1.
+  - *Proposed for v2's event model.*
+- **Truth discovery and data fusion.**
+  - Discounting sources that copy each other (Dong et al. 2009) is the coherence default in established form.
+  - Subjective logic adds independent evidence and averages dependent evidence.
+  - Dawid–Skene (1979) estimates a check's error rates when the true answer is never observed. That is what A2's likelihood ratios need.
+- **Assurance cases.** A4b's change obligations are what that field calls *defeaters*, identified doubts to be eliminated. Two lessons from it:
+  - confidence isn't one number;
+  - there must be a place for doubts nobody has identified yet.
+
+  Requirements tools have flagged links as "suspect" for decades, and in practice clearing them decays into ignoring them. That is a warning for obligations; the agent reports it from forums and hasn't verified it.
+- **From knowledge graphs proper:**
+  - **One uniform statement shape for every aspect value from the start,** so graduation fills slots instead of changing representation.
+  - **"Unknown value" and "no value" as positive statements** (Wikidata), which supports recorded decline events.
+  - **Closed-world semantics for the trail:** absence means unrun. This must be declared if anything is ever exported, because knowledge-graph tooling assumes the open world.
+  - **PROV and nanopublications for interchange,** not a triplestore as the engine.
+  - **Identity precedents:**
+    - the Stacks Project's permanent tags, kept even for removed results, with an explanation;
+    - the OBO rule that a changed meaning gets a new identifier.
+  - **Two clocks for "as of a moment":** when something happened and when it was recorded. Design this before late recording or corrections.
+- **What the research judged genuinely new here:**
+  - the substitution law, as something checkable;
+  - the commitment law;
+  - independence recorded, not assumed;
+  - importance always *for* a target;
+  - under-recording treated as equal dishonesty.
+
 ## Part B: Who owns what
 
 | Layer | Owns | Changed how, now |
@@ -346,6 +400,7 @@ Like the flow model, all of these are analyses over the trail. None is part of t
 4. ASF's `disc-*` and `impl-*` segments: teaching, recognitions, or arrangements?
 5. The name for deliveries into sibling stores.
 6. Whether "computed" ever needs to be a basis for aspects, or stays the attributes underneath them.
+8. **Circular support** (from A8): can a cycle of records support itself? ASF composites guarantee cycles. Truth maintenance has worked answers; the certainty projection needs one.
 7. **The lexicon.** The kernel drafts' lexicon is superseded. Its replacement should be built from RC1's settled words:
    - record, dimension (with namespace), line, mover, channel, ladder, rung, trail, projection, era;
    - binding, dangle, collide;
