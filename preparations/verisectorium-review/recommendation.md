@@ -2,6 +2,8 @@
 
 *councils-46, 2026-11-04, for Joseph. First pass. Read whole or in the parts named in `reading-notes.md` beside this file, which also says what I have not read. Judged against this week's experience: the sprint, the councils work, the kernel drafts and my ASF model. "Move" means: promote out of `.archive/prior-incarnation/` as live material at the top of `~/src/verisectorium/`. Everything not named stays archived, as influx.*
 
+> [!note] **Status, 2026-11-04 (later the same day).** The promote / read-first / leave-archived lists below are still current. They are what step 1 of Joseph's plan carries into verisectorium's template and seed records. The plan itself, and the answer to open question 1, are now in `~/src/verisectorium/SCRATCH-for-joseph.md`: co-evolve, anchored both ways, with a hand-written definition in two layers (template, then store) and no self-hosting yet. Open question 2 is folded into that file's refinement 2 (SPECIMEN #3 decides it). Open question 3, where councils attach, is still open.
+
 ## The short version
 
 The prior incarnation already holds the framework the kernel drafts and my ASF model lost. RC1 defines kinds by their epistemic dimensions, transitions as each dimension's movers, and status as a projection over the trail. The theory canon and the realization brainstorm give the intake, feedback and SOP routes every store needs. And RC1's open fork 6, EPISODE (2026-08-30), is your atomic-changeset question, already found from the other side. It comes with a working counter-design: live_docs' session-scoped trail, with per-record history as a projection.
@@ -133,6 +135,6 @@ A choice is owed between **record** (RC1) and **atom** (the canon and the kernel
 
 ## The open questions this raises for you
 
-1. **Should this canon be ASF-shaped or not?** The canon segments were written from this estate's instances. RC1 says it is "the founding agent's" model for any store. ASF would then be a store founded by running RC1 10's questions against its own material, with the five root segments from Line B as the first specimens.
+1. *(Answered by Joseph's plan; see the status note at the top.)* **Should this canon be ASF-shaped or not?** The canon segments were written from this estate's instances. RC1 says it is "the founding agent's" model for any store. ASF would then be a store founded by running RC1 10's questions against its own material, with the five root segments from Line B as the first specimens.
 2. **Is EPISODE the changeset, and does SPECIMEN #3 come first?** RC1's own discipline says the specimen comes before the object. Our Line A data, and a cascade from one of the five roots, are natural material for it.
 3. **Where councils attach.** I'd say they're movers of Backing (and of Evidence, as tribunals), not a general "decision-maker". Does that match what you meant by transitions drained by decision-makers?
