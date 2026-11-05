@@ -347,6 +347,20 @@ Like the flow model, all of these are analyses over the trail. None is part of t
     - the Stacks Project's permanent tags, kept even for removed results, with an explanation;
     - the OBO rule that a changed meaning gets a new identifier.
   - **Two clocks for "as of a moment":** when something happened and when it was recorded. Design this before late recording or corrections.
+- **live_docs (Samuel Wecker), a running system** (from `theory/influx/verisect-and-ldocs.md`, a 2026-08-29 comparison by a Fable session; I read its §§0–1 and 7–8). It runs pieces this plan only proposes:
+  - **The episode, running as a session.** Every change goes through one choke point that writes both a per-document history entry and a line in the open session's write-ahead log. Per-document history is materialized *from* that log, which is the direction A5 proposes. Closing a session **blocks** until every revision-class change carries a reason, and folds the log into one review file. A human then signs the review afterward, without blocking anything. The comparison's proposed deltas:
+    - record that the signer is not the session's author;
+    - decay a review when a document it covered is edited again;
+    - add the three missing event fields: criterion, commitment (before or after the outcome was seen), and era. Four of RC1's seven event fields are already present.
+  - **The cascade, in two passes:**
+    1. a read-only walk collects a verdict for every reachable neighbor: *inconsequential*, *cascade*, *incompatible*, or *context-request*;
+    2. one batch write pass applies them.
+
+    That is a concrete inner structure for an episode: verdicts first, as obligations (A4b), then one commit. The comparison proposes adding *undercut* as a fifth verdict, which lowers computed strength and rewrites no prose. A cascade reaching more than three documents from one edit is flagged as a single-responsibility smell.
+  - **Two graphs, kept apart.** An acyclic navigational hierarchy (`belongs_to`, whose interior nodes are signposts) is separate from a cyclic dependency web (`requires`, plus `relates` for see-also). Only `requires` and `belongs_to` cascade. This bears directly on A1's nesting: chapters, parts and volumes are the navigational hierarchy, and what a segment rests on is the dependency web. They are different graphs with different propagation rules.
+  - **The restated-ownership repair.** A copied enumeration is collapsed to a link to the one record that owns it, instead of being kept in sync. That cuts restatement churn at its source.
+  - **Queues get clocks at session close.** Unsigned reviews, drift flags and warnings each print their top items when a session closes, the one moment every agent already passes through.
+  - **The design split the comparison recommends:** a small invariant core (identity, edges, trail, membrane) with kinds and dimensions declared per store as data, read by rules and procedures. The engine stays simple. That matches Part B.
 - **What the research judged genuinely new here:**
   - the substitution law, as something checkable;
   - the commitment law;
@@ -392,7 +406,7 @@ Like the flow model, all of these are analyses over the trail. None is part of t
    - the template's two enums;
    - the four layout-bound segments, re-cut (scratch §5).
 
-   Then write `TEMPLATE.outline.md`. Read `theory/influx/verisect-and-ldocs.md` §7 first, because it bears on the trail's grain.
+   Then write `TEMPLATE.outline.md`. (`theory/influx/verisect-and-ldocs.md` §7 is now read; its bearing is in A8.)
 2. **The smallest v2:** the definition format; the event log as primary; `init` / `reinit`; source and chunk with crossing outcomes and exploration state; one record kind with its aspects.
 3. **`v2 init` on aat-v3,** with the verisectorium core only (influx, SOP, def, canonical view). Then ASF's dialect declaration, on paper, for Line B's five root segments: `def-agent-environment`, `def-action-transition`, `def-observation-function`, `def-chronica`, `scope-adaptive-system`.
 4. **ASF's first hand-written definitions:** only what the five roots demand. Each gap becomes a recorded demand.
