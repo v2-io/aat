@@ -33,8 +33,11 @@
 - a rule is a decision whose application is computed.
 
 **Certainty is always recorded separately from the value it qualifies.** An aspect carries a value, a basis, and a certainty:
-- "novelty: high", given as a label, is a value with low certainty;
-- "relative freshness: darn fresh", produced by a rule from an attribute, is held with the certainty of that rule's application. The rule's own fitness is a separate decision.
+- `novelty: high` · basis: decided, label by X · certainty: low. X gave it in passing, with no literature search behind it.
+- `novelty: high` · basis: decided, label by Y · certainty: moderate. Y gave it after a literature search. Same value, same graduation level, different certainty.
+- `relative freshness: darn fresh` · basis: rule `freshness@v3` over the attribute recency · certainty: high that the rule was applied correctly. Whether the rule itself is a good measure of freshness is a separate decision, with its own backing.
+
+Certainty is its own recorded value. It is never inferred from the value, from the basis, or from how far the aspect has graduated. A label can be held with moderate certainty, and a procedural value can be held with low certainty if its procedure is untested.
 
 A value never stands in for its certainty, just as RC1's substitution law keeps one dimension from standing in for another. Graduation (A2) is about *how* a value is produced. Certainty is about *how strongly* it is held. They move separately.
 
