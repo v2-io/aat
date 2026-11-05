@@ -79,6 +79,29 @@ Adjudication starts from a mismatch between claimed and established. It repairs 
 
 Many aspects mix these. A warrant is itself a truth claim with a certainty.
 
+**Certainty is computed, by a declared weight-of-evidence projection** (proposed; not yet discussed in depth). A truth claim's certainty is never typed. It is computed from its evidence events, each of which records:
+- its line;
+- its rung;
+- its outcome: confirmed, narrowed or broken;
+- whether its criterion was committed before the outcome was seen;
+- who did it, and what they had read.
+
+The natural form is weight of evidence in Good's and Turing's sense: log-likelihood ratios that add up.
+
+**They add only across evidence that is independent.** RC1's coherence default is the rule that enforces this. Agreement adds weight only to the degree that descent is shown to be cut. Within one line of descent, the strongest item counts and repeats add nothing. Several things then follow:
+- **Contributions with no evidential force count as zero.** A self-check found nothing in 116 of 116 (likelihood ratio about 1). A check whose criterion was set after the outcome is likewise excluded, by the commitment law.
+- **A refutation is not a large negative weight.** A rebut caps the claim, and it becomes a no-go.
+- **Strength does not travel up `supports` chains** (RC1 06). A dependent is bounded by its weakest necessary premise, and a weakened premise undercuts it.
+
+**The likelihood ratios are priors, measurable from the trail.** For example, a first independent check finds something in about 42% of cases (65 of 153). The concordance between claimed and established strength (A7) calibrates them over time. Because every contribution is a recorded act, this computation raises certainty only through acts, which is consistent with the monotone assumption.
+
+**Unread prior work that bears directly on this:**
+- the canon row `form-evidence-ledger` ("status is a projection of an evidence ledger + event trail; priors separate from likelihoods; single decision rule, no points-tangle", carried over from relata);
+- relata's shipped verification scheme;
+- `theory/influx/synthesis/relata-methods-for-verisectorium-2026-08-05.md` (433 lines; the influx index calls its transfer map "the largest unabsorbed body").
+
+Read these before designing the projection.
+
 **Importance is an aspect, and always *for* a target:** a purpose, a decision, a consumer. Its basis is computed reach (what rests on this, for that target) plus decided stakes (how much that target matters). A record has no importance in general, only importance-for.
 
 **RC1's other dimensions,** placed in this sort:
