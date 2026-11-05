@@ -1,9 +1,11 @@
 # The plan: v2, verisectorium's template, and ASF as the first store
 
-*Status: working plan, 2026-11-04. Written by councils-46 (Claude Opus 5.5) from a day's dialog with Joseph. **Proposed throughout**, except what is quoted from Joseph, which is his. It replaces, as the place where the plan lives:*
-- *`asf-earlier-vsect/KERNEL.md` (draft 3) and `vsect-lexicon.md`. Both are folded in here, as the README asked;*
+*Status: working plan, 2026-11-04. Written by councils-46 (Claude Opus 5.5) from a day's dialog with Joseph, then revised against two outside reads: `research/knowledge-graphs.md`, and `research/plan-review-1.md`, a de novo review by a fresh Fable agent of the version at `6b90d14`. **Proposed throughout**, except what is quoted from Joseph, which is his.*
+
+*It replaces, as the place where the plan lives:*
+- *`asf-earlier-vsect/KERNEL.md` (draft 3) and `vsect-lexicon.md`;*
 - *`~/src/verisectorium/SCRATCH-for-joseph.md` §§1–7;*
-- *the ASF system model, iterations 1–2 (`asf-system/`). That was a flow sketch, not a definition; its renderer is kept as a smoke test.*
+- *the ASF system model, iterations 1–2 (`asf-system/`). That was a flow sketch, not a definition. Its renderer is kept as a smoke test.*
 
 *`verisectorium-review/recommendation.md` stays the list of what to promote from the prior incarnation.*
 
@@ -13,7 +15,11 @@
 - *Part C is the steps.*
 - *Part D lists the assumptions and open questions, so none of them hardens silently.*
 
-*RC1 means `~/src/verisectorium/.archive/prior-incarnation/theory/influx/segments-model-rc1/`, the epistemic core this builds on. Read it whole before arguing with Part A. Its 01–04, 07, 08 and 11 are what the kernel drafts missed.*
+*A8 records where outside reads came from and what is still unverified. Their content has been moved into the sections it changes, so the plan has one current answer per question.*
+
+*RC1 means `~/src/verisectorium/.archive/prior-incarnation/theory/influx/segments-model-rc1/`, the epistemic core this builds on. Read it whole before arguing with Part A.*
+
+*Every number from the sprint carries its measurement condition. Two of them changed meaning once their conditions were restored (A2, A5).*
 
 ---
 
@@ -21,10 +27,15 @@
 
 ### A0. The primitives everything is built from
 
-- **Truth claim.** An assertion. Its evidence reaches *positions* on RC1's `evidence/*` ladders (what has been done to it), and its *credence*, the probability it is true, is derived from those positions. Refutation and lapse lower both.
-- **Decision.** A choice at a branch point whose standing is its **backing** (RC1's `decision/*`: grounds, consultation, accountability, falsifiers) and the importance it was made at, *for* a target.
-- **Attested fact.** Asserted and checkable, but carried without a trail: agent ids, dates. The floor where recursion stops.
-- **Attribute.** A deterministic measurement, with no standing at all: a formula and the moment it was computed.
+- **Truth claim.** An assertion. Its evidence reaches *positions* on RC1's `evidence/*` ladders, recording what has been done to it, and its **credence**, P(true), is derived from that evidence (A2). Refutation and lapse lower both.
+- **Decision.** A choice at a branch point. Its standing is its **backing** (RC1's `decision/*`: grounds, consultation, accountability, falsifiers) and the importance it was made at, *for* a target.
+- **Attested fact.** Asserted and checkable, but carried without a trail: agent ids, dates, the steward at the time. This is the floor where recursion stops. RC1 08 says what the floor rests on, in three layers:
+  - **reproducibility,** the main defense against fabrication, wherever a check can be re-run;
+  - **tamper-evidence** around the trail;
+  - **identity** at the substrate's grain.
+
+  Below those is named trust.
+- **Attribute.** A deterministic measurement with no standing at all: a formula, and the moment it was computed.
 
 **Everything else is composed of these:**
 - an aspect's value is a truth claim ("this section is stale", "this result is novel"), a decision ("treat it as provisional for now"), or both;
@@ -32,162 +43,179 @@
 - a composite's coherence is a truth claim about the whole;
 - a rule is a decision whose application is computed.
 
-**Position and credence are two different things, and both are recorded** (refined 2026-11-04, after Joseph's questions about what "certainty on a ladder" can mean):
-- **Position** is where a record stands on a ladder. For evidenced aspects it records *what has been done*: is there an independent re-derivation bound to this version, or not? It is computed from the trail, and given a faithful trail it is a fact, not a guess.
-- **Credence** is how strongly a proposition is believed. For a truth claim, that's the probability the claim is true, *derived* from the positions its evidence has reached (A2, weight of evidence). For a decided or soft aspect ("novelty: high", given as someone's judgment), the value is the judgment, and the credence is that judge's belief about where the truth lies on the scale.
+**Four quantities, kept apart** (refined after Joseph's questions about what "certainty on a ladder" can mean, and after review 1 §1.1). Each is consumed differently, and a guard names which one it reads:
 
-**A credence is a distribution over the scale, never a bare number.** Its form depends on the kind of scale:
-- **Unordered set** (categories with no order): a probability for each category. Concentration is all that matters; there is no near miss.
-- **Ordered ladder:** a probability for each rung, where being one rung off is less wrong than three. The statements that mean something are *cumulative*: "at least deps-verified, with probability 0.9". They are also what consumers need. A guard or a dependency predicate is written as **P(rung ≥ k) ≥ θ**, never as "label k, certainty high".
-- **The label shown is a summary** (the mode or median) of the distribution. Uncertainty spreads mass onto neighboring rungs.
-- **The number of rungs matters.** Maximum uncertainty is one bit on a two-rung scale and about 2.6 bits on six, so scalar "certainties" can't be compared across ladders of different sizes.
-- **Scales are bounded,** so at the top or bottom rung, mass can only spread one way. Cumulative statements handle that correctly. Averages are pulled toward the middle and shouldn't be used.
+| Quantity | What it is | Form | A guard on it reads |
+|---|---|---|---|
+| **position** | where a record stands on a ladder: what has been done, e.g. an independent re-derivation bound to this version | a fact, computed from the trail | `position ≥ re-derived` (deterministic) |
+| **credence of a truth claim** | P(true) | one number in [0, 1], derived (A2) | `P(true) ≥ 0.9` |
+| **judged value** | where the truth lies on an aspect's value scale ("novelty: high") | a distribution over that scale | `P(value ≥ high) ≥ 0.8` |
+| **forecast** | what a re-check would find after a lapse | a distribution over the ladder | *never a standing guard.* It only orders and holds work: what to re-check first; what an episode may hold rather than re-settle |
 
-**Examples**, with value, basis and credence written separately:
-- `novelty: high` · basis: decided, by X, in passing · credence: P(≥ high) ≈ 0.4.
-- `novelty: high` · basis: decided, by Y, after a literature search · credence: P(≥ high) ≈ 0.8. Same value, same graduation level, different credence.
-- `relative freshness: stale` · basis: rule `freshness@v3` over the attribute recency · credence that the rule was *applied* correctly: near 1. Whether the rule is a good measure of freshness is a separate decision, with its own backing.
+**Distributions over a scale behave according to the scale:**
+- **Unordered set:** a probability per category. Concentration is all that matters; there is no near miss.
+- **Ordered scale:** being one step off is less wrong than three. The meaningful statements are cumulative ("at least high, with probability 0.8"), and guards on judged values are written that way.
+- **The label shown is a summary** (the mode or median).
+- **The number of steps matters.** Maximum uncertainty is one bit on two steps and about 2.6 bits on six, so scalar "certainties" can't be compared across scales of different sizes.
+- **Scales are bounded,** so at the ends mass spreads only one way. Cumulative statements handle that correctly; averages don't, and shouldn't be used.
 
-**Credence is never inferred from the value, the basis, or the graduation level,** and a value never stands in for its credence, just as RC1's substitution law keeps one dimension from standing in for another. Graduation (A2) is about *how* a value is produced. Position is about what has been done. Credence is about how strongly it is believed. All three move separately.
+**A judge's stated confidence is testimony, not the credence** (review 1 §1.2). When X writes `novelty: high`, together with "about 40% sure", that is an attested fact about X. The system's credence in the value is *computed* from it, with a judge-specific likelihood ratio that calibration estimates (A2, A7). Examples, with value, basis and credence written separately:
+- `novelty: high` · basis: decided, by X, in passing, X stating 0.4 · credence: computed from X's statement and X's record.
+- `novelty: high` · basis: decided, by Y, after a literature search, Y stating 0.8 · credence: computed likewise. The basis (a search, or none) is read by the projection, not by the judge.
+- `relative freshness: stale` · basis: rule `freshness@v3` over the attribute recency · position: the rule fired, which is a fact. Whether the rule measures freshness well is a separate decision, with its own backing.
+
+**Nothing is inferred from anything else.** No credence is inferred from the value, the basis or the graduation level, and a value never stands in for its credence, just as RC1's substitution law keeps one dimension from standing in for another. Graduation (A2) is about how a value is produced. Position is about what has been done. Credence is about how strongly it is believed.
 
 ### A1. Records, identity, composites
 
-- **A record is the unit with one fate:** anything that can be refuted, superseded or ratified while its neighbors carry on. That is RC1's record, and the archived design's statement, and today's "atom": one thing under three names. **Record** is the word here.
-- **Identity is a maintained binding, not a filename** (RC1 11). A name is a label with a history; a rename is an event, and old names keep resolving. A record's manifestation (a file, a section, a span) is not its identity. The old-slug → fate mapping is a projection over rename events.
-- **A composite is a record in its own right** (RC1's *reify*). A segment, as ASF knows it, is the case Joseph described: sections that are separately laddered, possibly under different rules, but which make sense only together.
+- **A record is the unit with one fate:** anything that can be refuted, superseded or ratified while its neighbors carry on. It is RC1's record, the archived design's statement, and the kernel drafts' "atom": one thing under three names. **Record** is the word here.
+- **Identity is a maintained binding, not a filename** (RC1 11).
+  - A name is a label with a history. A rename is an event, and old names keep resolving.
+  - A record's manifestation (a file, a section, a span) is not its identity.
+  - The old-slug → fate mapping is a projection over rename events.
+  - **A changed meaning gets a new identifier** (the OBO rule, from the knowledge-graphs read). A rewording keeps the record; a redefinition is a new record, linked by `supersedes`.
+- **A composite is a record in its own right** (RC1's *reify*). A segment, as ASF knows it, is the case Joseph described: sections laddered separately, possibly under different rules, which make sense only together.
   - Its **basis** is its sections, plus the neighbors it declares.
-  - It has an aspect of its own, **coherence**: does this hold together, read as a whole? A whole-document review moves it, and that review binds to the exact versions of every section.
-  - A change to any section's content lapses the composite's coherence.
-  - **Ratifying a section can be guarded on its composite's coherence holding at current versions.** That is "one change forces a look at the whole, and its neighbors, before ratification", expressed as a lapse and a guard. The sections remain separate records.
-- **Composites nest, and the nesting is neither a strict tree nor strictly forward.** In ASF the levels are: a segment {statements, derivation, intro prose, …} → chapters and appendices → parts → volumes → the theory. Each level is a composite with its own coherence.
-  - **Dependencies run mostly backward, but not only.** A segment requires earlier ones. But an introduction depends on later segments, and a notation or cross-cutting group cuts across the hierarchy. So groupings may overlap.
-  - **A dependency carries a predicate:** on content alone, or on content with some aspect at a threshold ("rests on #x with P(at least re-derived) ≥ 0.9"), never on a bare label.
-  - **Upward lapse is a declared rule, not automatic.** A section's change lapses its segment's coherence. Whether that in turn lapses the chapter's coherence depends on a rule: for instance, only when the segment's headline claim changes, or its credence crosses a band. Without such rules, every edit would lapse the whole theory.
+  - It has an aspect of its own, **coherence**: does this hold together, read as a whole? A whole-document review moves it.
+  - **Checks bind to what they directly read** (B; from build systems, via the knowledge-graphs read). So a coherence review lapses when something *it read* changes. If it read a section's text, an edit to that text lapses it. If it read a section's standing, a change of standing does. This answers what was open question 1 in the same terms as every other check.
+  - **Ratifying a section can be guarded on its composite's coherence holding at current versions.** That is "one change forces a look at the whole, and its neighbors, before ratification", expressed as a lapse and a guard. The sections stay separate records.
+- **Three graphs, not one** (review 1 §2.8, with live_docs' two-graph split, A8):
+  - **The navigational hierarchy is a tree:** statements → segment → chapters and appendices → parts → volumes → the theory. Each level is a composite with its own coherence. Membership doesn't propagate truth.
+  - **The support web** (`supports`, premise dependencies) **is acyclic at statement grain.** A cycle found there is a grain defect or a mistyped edge, routed to that repair (D). Line B measured this on the five roots: a definition resting on a scope that rests on it is a cycle at segment grain and none at statement grain.
+  - **Narration and cross-cutting groups** (`narrates`; notation groups; arrangements) run in any direction. An introduction narrates later segments: its *freshness* depends on them, but its truth neither supports theirs nor rests on it.
+- **A dependency carries a predicate** on one of A0's quantities: on content alone; on position (`#x at position ≥ re-derived`); or on credence (`P(#x true) ≥ 0.9`). Never on a bare label.
+- **Upward lapse in the hierarchy is a declared rule.** It is not automatic. A segment's coherence lapsing lapses its chapter's coherence only where the chapter's review read it: say, only when the segment's headline claim changed, or its credence crossed a band. Without that, every edit would lapse the whole theory.
 - **Composition has three honest shapes, plus one exemption** (RC1 03 and 11):
   - **reify:** a composite becomes a record, as above;
   - **cluster:** typed parts under one identity, each with its own write rules (body, working notes, events, companions);
-  - **arrangement:** an ordering that adds no claims, such as an outline or the order of a segment's sections. It is authored, so it is a record, but it carries no warrant of its own;
+  - **arrangement:** an ordering that adds no claims, such as an outline or a segment's section order. It is authored, so it is a record, but it carries no warrant of its own;
   - **exempt, visibly:** archives, staging.
 
   The named pathology is the undeclared mixed composite: part claim, part decision, part history.
-- **The specimen that makes this concrete:** `def-agent-environment`'s Working Notes hold six different fates under one heading. Proposed teaching, proposed body text, open questions, reader confusions, figure ideas, and material belonging elsewhere. Each would be moved by a different mover (`SCRATCH-for-joseph.md` §3 has the table).
+- **The specimen that makes this concrete:** `def-agent-environment`'s Working Notes hold six different fates under one heading: proposed teaching, proposed body text, open questions, reader confusions, figure ideas, and material belonging elsewhere. Each would be moved by a different mover (`SCRATCH-for-joseph.md` §3 has the table).
 
 ### A2. Standing: what moves, and what sustains it
 
-**What a change does to standing** (revised after Joseph's corrections, 2026-11-04):
-- **A content change lowers standing automatically.** Every check bound to what changed lapses, so the record's position drops, and its credence is recomputed, until something re-establishes it. That one act opens both sides of adjudication at once:
-  - *is the new content right?*
-  - *does it still earn what it claims?*
+**What a change does to standing** (revised after Joseph's corrections):
+- **A content change lowers standing automatically.** Every check that *read* what changed lapses. The record's position drops and its credence is recomputed until something re-establishes them. That one act opens both sides of adjudication at once:
+  - is the new content right?
+  - does it still earn what it claims?
 - **Adjudication is usually what *finds* a mismatch, not what starts from one.** A check, a review or a coherence read discovers that claimed and established standing have come apart, or that they haven't.
-- **There is only ever one current epistemic label.** A record can't say "used to be exact, held with high credence" next to its present state; its history is a function of the log. So "no softened ghost" isn't a discipline agents must remember. v2 makes it impossible to get wrong.
+- **There is only ever one current epistemic label.** A record can't say "used to be exact, held with high credence" beside its present state; its history is a function of the log. So "no softened ghost" isn't a discipline agents must remember. v2 makes it impossible to get wrong.
 
-**One common case: a defect found in a claim. It runs in two phases, inside one episode.**
-1. **Honest intermediate.** The claim, or its credence, is lowered at once to what is now true. "No longer exact; conditional on X." Downstream records that rest on it are notified, but the episode *holds* their re-stabilization. Re-settling everything around a lowered value that may be raised again shortly wastes the most cycles where the most rests on it.
-2. **The strengthening attempt.** A spike works every angle for what *would* keep the earlier value true. It often finds more than that:
-   - a way to raise the ladder above where it was;
-   - or the same value, secured with less uncertainty.
+**One common case: a defect found in a claim.** It runs in two phases, inside one episode:
+1. **Honest intermediate.** The claim, or its credence, is lowered at once to what is now true ("no longer exact; conditional on X"). Downstream records that rest on it are notified, but the episode *holds* their re-stabilization. Re-settling everything around a lowered value that may be raised again shortly wastes the most cycles where the most rests on it.
+2. **The strengthening attempt.** A spike works every angle for what *would* keep the earlier value true. It often finds more:
+   - a way above where it was;
+   - or the same value with less uncertainty.
 
-   Those ripples are the welcome kind. When no strengthening exists, the spike can often mint a no-go that illuminates something central. That is a result too, and it ripples widely as part of the same changeset.
+   Those ripples are the welcome kind. When no strengthening exists, the spike can often mint a no-go that illuminates something central. That is a result too, and it ripples as part of the same changeset.
 
 Securing and revising are the two halves of **strengthen**. Lowering the claim is **soften**, and it comes last.
 
-**This is one scenario, not a taxonomy of adjudication.** Others include:
-- fidelity corrections;
-- coherence repairs;
-- notational changes;
-- reordering prerequisites to resolve a chapter's incoherence;
-- crossings, ratifications and importance assignments.
+**This is one scenario, not a taxonomy of adjudication.** Others include fidelity corrections, coherence repairs, notational changes, reordering prerequisites to resolve a chapter's incoherence, crossings, ratifications and importance assignments. The kinds of adjudication should come from cases like this one, each with its specimen, not from a list drawn up in advance.
 
-The kinds of adjudication aren't settled. They should come from cases like this one, each with its specimen, not from a list drawn up in advance.
-
-**Aspects are values on a record, sorted by what sustains them** (Joseph's sort, one step more abstract than RC1's sort by what falsifies):
-- **evidenced:** a truth claim with accumulated evidence, whose credence is derived from the positions its evidence reaches on RC1's `evidence/*` lines (derivation, in-vivo, wild-empirical, instance, testimony, carriage), each with its own ladder;
-- **decided:** at a branch point, on a basis, by accountable parties. RC1's `decision/*`: grounding, consultation, accountability, falsifiers;
-- **attested:** asserted and checkable, but deliberately not carried with a trail: agent ids, dates, the steward at the time. **This is where recursion stops**, by design. It is RC1 08's trusted base.
+**Aspects are values on a record, sorted by what sustains them.** This is Joseph's sort, one step more abstract than RC1's sort by what falsifies:
+- **evidenced:** a truth claim, with credence derived from the positions its evidence reaches on RC1's `evidence/*` lines (derivation, in-vivo, wild-empirical, instance, testimony, carriage);
+- **decided:** at a branch point, on a basis, by accountable parties. RC1's `decision/*`;
+- **attested:** the floor (A0).
 
 Many aspects mix these. A warrant is itself a truth claim, with a credence.
 
-**Credence is computed, by a declared weight-of-evidence projection** (proposed; not yet discussed in depth). A truth claim's credence is never typed. It is computed from its evidence events, each of which records:
+**Credence is computed by a declared weight-of-evidence projection.** Never typed.
+
+Each evidence event records:
 - its line;
 - its rung;
-- its outcome: confirmed, narrowed or broken;
-- whether its criterion was committed before the outcome was seen;
+- its outcome;
+- its criterion, and whether that was committed before the outcome was seen;
 - who did it, and what they had read.
 
-The natural form is weight of evidence in Good's and Turing's sense: log-likelihood ratios that add up.
+The form is weight of evidence in Good's and Turing's sense: log-likelihood ratios that add, *where evidence is independent*. How events combine:
+- **Independent evidence adds; dependent evidence counts once.** RC1's coherence default: agreement adds weight only to the degree descent is shown cut. Within one line of descent, only the strongest item counts. That is the *conservative bound* (the perfect-dependence limit, review 1 §1.4), the default when independence isn't shown, not a law of evidence.
+- **Confirmations accumulate; refutations cap.** A rebut caps the claim, which becomes a no-go. It is not a large negative weight, so confirmations can't pile up against a refutation. The rule is lexicographic, not one algebra.
+- **"Narrowed" is a new claim.** A narrowing changes the truth conditions. The result is a new version, or a new record under the OBO rule, with its own evidence: RC1 04's scope-bound.
+- **Some contributions count as zero.** A check whose criterion was set after the outcome is excluded, by the commitment law. Self-checks carry a likelihood ratio of about 1. The evidence for that is a contrast: 116 self-checks found nothing on text that independent checks found defective about 42% of the time.
 
-**They add only across evidence that is independent.** RC1's coherence default is the rule that enforces this. Agreement adds weight only to the degree that descent is shown to be cut. Within one line of descent, the strongest item counts and repeats add nothing. Several things then follow:
-- **Contributions with no evidential force count as zero.** A self-check found nothing in 116 of 116 (likelihood ratio about 1). A check whose criterion was set after the outcome is likewise excluded, by the commitment law.
-- **A refutation is not a large negative weight.** A rebut caps the claim, and it becomes a no-go.
-- **Strength does not travel up `supports` chains** (RC1 06). A dependent is bounded by its weakest necessary premise, and a weakened premise undercuts it.
+**Likelihood ratios are estimated from the trail, and kept apart from priors.** A claim's prior is a separate quantity; keeping the two apart is the point of the canon's `form-evidence-ledger` and of relata's shipped scheme. What a likelihood ratio needs, and what the trail must supply for it:
+- **A check's error rates,** not its finding rate. "A first independent check finds something about 42% of the time" (65 of 153, independent re-derivations on sprint text) is a finding rate.
+- **Error rates without ground truth need repeated, independent checks of the same version** (Dawid–Skene, 1979; review 1 §1.5). It is a latent-class model, identifiable only when some items carry **three or more conditionally independent checks on the same version**. With two checks on a binary truth there are 5 unknowns and only 3 observable agreement rates; with three, 7 and 7. The sprint checked successive versions, which are different items, and one independent check per landing gives it nothing to fit. **So the trail must include a calibration subpopulation:** a sample of versions that each get three independent checks, with the extra checks costed as calibration, not securing. Without it, likelihood ratios stay estimates.
+- **Checkers must err independently given the truth.** Primed checkers inflate estimated accuracy. `seeded-by` edges and recorded provenance reads are what let them be excluded or modeled.
+- **Use an ordinal variant, not the nominal original.** The 1979 model uses a full confusion matrix per checker, which a small trail can't fit on 4–6 rungs. An ordinal variant can (shared cutpoints, or one accuracy parameter with distance-weighted errors).
+- **A calibration update is an era.** Re-estimating a likelihood ratio changes every credence that used it, in either direction, with no act on those records. So each calibration is recorded as an era ("computed under calibration c₃"), and the change is an event, not drift (RC1's ERA object; review 1 §1.6).
 
-**The likelihood ratios start as estimates and are measured from the trail.** They are not priors: a claim's prior is a separate quantity, and keeping the two apart is the point of the ledger cited below. A likelihood ratio needs a check's error rates: how often it finds something when there is a defect, against how often it does when there isn't. The trail's rates are not that. A first independent check finds something about 42% of the time (65 of 153), but that's a finding rate. The established way to estimate error rates when the true answer is never observed is Dawid–Skene (1979). This was flagged by the knowledge-graphs research, `research/knowledge-graphs.md`; I haven't checked it myself. The concordance between claimed and established strength (A7) checks calibration over time. Because every contribution is a recorded act, this computation raises certainty only through acts, which is consistent with the monotone assumption.
+Several unread pieces of prior work bear directly on this; read them before designing the projection:
+- the canon row `form-evidence-ledger`;
+- relata's verification scheme;
+- `theory/influx/synthesis/relata-methods-for-verisectorium-2026-08-05.md`.
 
-**Unread prior work that bears directly on this:**
-- the canon row `form-evidence-ledger` ("status is a projection of an evidence ledger + event trail; priors separate from likelihoods; single decision rule, no points-tangle", carried over from relata);
-- relata's shipped verification scheme;
-- `theory/influx/synthesis/relata-methods-for-verisectorium-2026-08-05.md` (433 lines; the influx index calls its transfer map "the largest unabsorbed body").
+**Derived credence: what premises do to the claims that rest on them.**
+- **A claim needing several premises can be no more credible than all of them holding together.** This deliberately supersedes Joseph's earlier weakest-link phrasing ("the overall never exceeding the uncertainty of the weakest part of the chain", 2026-11-03), which is too generous.
+- *Specimen (Joseph, 2026-11-04):* a proposition needs five upstream findings, each with P(true) ≈ 0.9. All five hold with probability:
+  - 0.9⁵ ≈ 0.59 if they are independent;
+  - between 1 − 5 × 0.1 = 0.5 and 0.9 if their dependence is unknown (the Fréchet bounds);
+  - toward 0.9 if they are positively dependent.
 
-Read these before designing the projection.
-
-**Derived credence: what premises do to the claims that rest on them.** A claim that needs several premises can be no more credible than all of them holding together. "Bounded by the weakest necessary premise" is too generous.
-
-*Specimen (Joseph, 2026-11-04):* a proposition needs five upstream findings. Each sits at a high rung, with a credence that barely keeps it there: P(holds) ≈ 0.9 each. The probability that all five hold is:
-- **if their independence is recorded:** 0.9⁵ ≈ 0.59;
-- **if their dependence is unknown:** somewhere between 1 − 5 × 0.1 = 0.5 (the Bonferroni bound) and 0.9 (the weakest premise).
-
-Either way, the downstream proposition is capped a rung below its premises until they tighten. Which bound applies depends on whether independence is *recorded*. So RC1's coherence default isn't only a rule about corroboration: it decides how credence composes.
+  The downstream proposition sits below its premises until they tighten.
+- **Independence works in opposite directions here and in evidence** (review 1 §1.3). Shown independence lets corroborating evidence *add*. For premises, shown independence *lowers* the conjunction from the min toward the product.
+- **Premises in a theory are usually positively dependent:** they share definitions and constructions. So "independence recorded" will rarely be the honest record for a premise set. **The projection serves the interval when dependence is unknown,** not a point.
+- **Credence attenuates with depth.** 0.95²⁰ ≈ 0.36; 0.99²⁰ ≈ 0.82. ASF's roots reach about 245 segments (transitive `depends:`, segment grain, at the sprint tag). So either per-link credence for re-derived mathematics is 0.99 or better, or the far corners of the theory will compute low, honestly. RC1 06's "support chains attenuate" is this, literally.
+- **The derivation step is part of the composition.** P(conclusion) needs the premises *and* the record's own derivation to be valid. The operator combining own-line evidence with inherited premise credence is not yet designed (D).
 
 **After a content change:**
-- **The position drops deterministically,** because checks bound to the old text lapse.
-- **The credence about what a re-check would find is asymmetric, but not mostly downward.** The one measured confirm pass found about 3 real changes in 120 lapses. So most of the mass stays at the old rung, with a thin tail below. The tail should depend on the kind of change: rewording or redefinition.
-- **Updates are Bayesian:** each check outcome updates the distribution over rungs according to that checker's error rates. Dawid–Skene's confusion matrices work on ordered categories.
-- **A premise losing credence propagates as a recomputation** (notify, don't cascade). Only a refutation cascades hard.
+- **Position drops deterministically** for the checks that read the changed text.
+- **A redefinition is a new record:** no evidence carries over, and there is no forecast.
+- **A rewording has a forecast** of what a re-check would find. Its calibration is open. The old figure, "3 real changes in 120 lapses", measured vsect 0.1's *transitive* lapse rule: 117 of the 120 were checks that never read the changed text. Under direct-read binding those never lapse. Among checks that did read it, the measured rate is at least 3 of 23 (13%), and plausibly higher (review 1 §1.7). The forecast orders re-checks; it never stands in for position.
+- **Credence changes propagate by recomputation, not by events** ("notify, don't cascade"). That distinction is about what gets *recorded*, not about reach. A root's credence is a multiplier on everything below it, so a root falling from 0.95 to 0.80 can flip guards across the whole theory in one evaluation, with no event fired (review 1 §2.5). Band hysteresis is therefore load-bearing at the roots, not a nicety.
 
-**Importance is an aspect, and always *for* a target:** a purpose, a decision, a consumer. Its basis is computed reach (what rests on this, for that target) plus decided stakes (how much that target matters). A record has no importance in general, only importance-for.
+**Importance is an aspect, and always *for* a target:** a purpose, a decision, a consumer. Its basis is computed reach (what rests on this, for that target) plus decided stakes (how much that target matters). A record has no importance in general, only importance-for. **Use direct or weighted reach.** Transitive reach is about 245 for all five roots, so it can't rank them against each other.
 
-**RC1's other dimensions,** placed in this sort:
+**RC1's other dimensions, placed in this sort:**
 - **Freshness:** mostly rule-driven over attributes.
 - **Conviction:** evidenced; builds and tests.
-- **Efficacy:** evidenced; recorded firings. Possibly soft early on.
+- **Efficacy:** evidenced; recorded firings, possibly soft early on.
 - **Fidelity:** attested at capture; corroboration is evidenced.
 - **Comprehension:** starts soft, hardens through reader events.
-- **Disposition:** mostly decided. It is routing.
+- **Disposition:** mostly decided; it is routing.
 
-RC1 states its set is not complete. Importance and coherence are this plan's additions.
+RC1 says its set is incomplete. Importance and coherence are this plan's additions.
 
 **Attributes are deterministic measurements, not aspects.** They come from three places:
 - content: word count;
 - the trail: age, recency, change heat, who has touched it;
-- the graph: coupling, reach.
+- the graph: coupling, direct and weighted reach.
 
 Each has a declared formula and is computed as of a moment. It has no warrant beyond that, and it never goes stale; only the aspects that use it lapse. Changing a formula is a system decision.
 
-**Rules turn attributes into an aspect's bands.** For example, relative freshness = recency ÷ …, thresholded. A band crossing is a deterministic event that names the rule and its version: `{from: "fresh", to: "stale", by: <rule@version>}`. It ripples through `caused-by` into every aspect whose basis names this one. Novelty's credence, for instance, may name the freshness of its literature search. **This is where the flow model's "mechanical stations" belong:** they are rules in the definition, firing as events.
+**Rules turn attributes into an aspect's bands.** For example, relative freshness = recency ÷ …, thresholded.
+- A band crossing is a deterministic event that names the rule and its version: `{from: "fresh", to: "stale", by: <rule@version>}`.
+- It ripples through `caused-by` into every aspect whose basis names this one.
+- **This is where the flow model's "mechanical stations" belong:** they are rules in the definition, firing as events.
+- **Hysteresis state must itself be derivable from the trail,** or standing stops being a function of the trail as of a moment (review 1 §2.4).
 
-**Graduation: one ladder for every aspect.**
+**Graduation: one ladder for every aspect *value*.**
 
 | Level | What exists |
 |---|---|
 | 0. label | a value and who gave it |
 | 1. ruled | produced under a declared rubric; the rubric is a record |
 | 2. procedural | produced by a declared procedure whose runs are events bound to a basis; lapses when the basis changes |
-| 3. reified | the aspect becomes a record of its own kind, with content (for novelty: near neighbors, search dates, the deliberations), the original subject as prerequisite, and aspects of its own (freshness, completeness, credence) |
+| 3. reified | the aspect becomes a record of its own kind, with content (for novelty: near neighbors, search dates, the deliberations), the original subject as prerequisite, and aspects of its own |
 
-At level 3, the aspect's own aspects start again at level 0. That is the recursion. It stops in two places:
-- **Demand.** An aspect graduates only when its failures need their own repair: RC1's admission rule, reused.
-- **The attested floor.**
+Position and computed credence are procedural by construction. Only judged values graduate. At level 3, the new record's own aspects start again at level 0; that is the recursion. It stops in two places:
+- **demand:** an aspect graduates only when its failures need their own repair, RC1's admission rule reused;
+- **the attested floor.**
 
-Hardness is a property of each *value*, not of each aspect type. The same aspect can be a label on one record and procedural on another.
+Hardness belongs to each value, not to each aspect type.
 
 ### A3. Decisions come in four kinds
 
-Separated by what they are about. Conflating them has happened repeatedly, the kernel drafts included.
+They are separated by what they are about. Conflating them has happened repeatedly, the kernel drafts included.
 
 | Kind | About | Examples | Recorded as |
 |---|---|---|---|
 | **domain** | the subject itself | udon's syntax choices; vivarium's architecture; an ASF modeling choice | a record, with `decision/*` ladders; claims resting on it say so |
-| **interior** | one record's state | keeping a label after a rewording; sending two spans of an influx file to a sink; declining to lift | an **event** on that record, bound to a version, not a record |
+| **interior** | one record's state | keeping a label after a rewording; sending two spans of an influx file to a sink; declining to lift | an **event** on that record, bound to a version; not a record |
 | **work** | where effort goes | "concentrate the spikes on this scope for now" | a routing fact with a target and usually an expiry |
 | **system** | how the store works | admitting a kind; "slugs are free, publish a mapping" | an edit to the definition at stage 0; an admission later |
 
@@ -197,93 +225,107 @@ Separated by what they are about. Conflating them has happened repeatedly, the k
 - only what is worked on next: work;
 - how the store works: system.
 
-In ASF, one deliberation often produces several kinds at once. Record each as what it is, linked by `caused-by`.
+One deliberation often produces several kinds at once. Record each as what it is, linked by `caused-by`.
 
-**Interior acts are escalated by importance, not by type.** The same act (a confirmation, say) needs more independence at a root with 245 dependents than at a leaf. The act's importance is its record's importance *for* what rests on it.
+**Interior acts are escalated by importance, not by type.** A confirmation at a root needs more independence than at a leaf. The act's importance is its record's importance *for* what rests on it.
+
+**A decision records its assumptions as edges** to the records they rest on. It lapses, as under-secured, when one of them changes or when its importance-for-target rises above what it was made at. Lapsing asks for the decision to be secured again; it doesn't reverse it.
 
 ### A4. Movers, and where councils fit
 
-- **A transition is a mover:** it moves one named dimension of one kind along its ladder, through a named, signed channel. Refutation is a first-class result. A transition declares:
+- **A transition is a mover.** It moves one named dimension of one kind along its ladder, through a named, signed channel. Refutation is a first-class result. A transition declares:
   - the dimension it moves;
-  - its guard (it may read projections and attributes);
+  - its guard (which may read positions, credences, judged values and attributes, each named, per A0);
   - its evidence requirement;
   - what its close writes;
   - its decision-maker slot.
-- **Who fills slots is decided later.** Joseph's words: *"treat each vsect transition-edge as a queue that is drained by a 'decision-maker' and not specify a council or agent etc."*; *"especially not initially."*
-- **Kinds of mover, from cheapest up:**
-  - **rules:** deterministic band crossings and lapses, as in A2;
-  - **single minds:** securing acts (re-derive, run, read-check), revisions, crossings;
-  - **councils.**
-- **If most ladders are computed or settled by individual securing acts, councils are for what is irreducibly judgment:**
+- **Who fills slots is decided later.** Joseph: *"treat each vsect transition-edge as a queue that is drained by a 'decision-maker' and not specify a council or agent etc."*; *"especially not initially."*
+- **Kinds of mover, cheapest first:**
+  - rules: deterministic band crossings and lapses;
+  - single minds: securing acts, revisions, crossings;
+  - councils.
+- **Councils are for what is irreducibly judgment:**
   - decisions and ratification (`decision/*`);
   - a composite's coherence;
   - importance assignments, with their targets;
-  - tensions (two well-supported claims);
-  - reframing, when a breaker halts an episode;
+  - tensions;
+  - reframing when an episode halts;
   - batch dispositions;
-  - tribunals, which move evidence: their close writes evidence plus a process decision.
-- **A charter is derived from the transition it drains, not designed separately.** Joseph: *"the vsect type … will be developed hand-in-hand with what kind of council outcomes are meaningful for the record."* What a charter's latitude depends on:
-  - **which dimension is moved,** which decides what the close must write;
-  - **importance-for-target,** which decides the unity required: *"There is different level of unity required for different levels of importance"*. An "object" blocks a close where unanimity is required, including on an epistemic label. A bike-shed can proceed over "object" but not over "strongly object";
-  - **seats:**
-    - representative, where the body must be accountable;
-    - perspective (duck-typed);
-    - standing expert, re-forked, never substituted: a primary expert, adjacent experts, cross-cutting experts;
+  - tribunals. A tribunal moves evidence: its close writes evidence plus a process decision.
+- **A charter is derived from the transition it drains.** Joseph: *"the vsect type … will be developed hand-in-hand with what kind of council outcomes are meaningful for the record."* Its latitude depends on:
+  - **the dimension moved,** which fixes what the close must write;
+  - **importance-for-target,** which fixes the unity required. *"There is different level of unity required for different levels of importance."* An "object" blocks a close where unanimity is required, including on an epistemic label; a bike-shed can proceed over "object" but not over "strongly object";
+  - **seats:** representative, where the body must be accountable; perspective (duck-typed); standing expert (re-forked, never substituted: a primary expert, adjacent experts, cross-cutting experts);
   - **tiers:** full member, discussant, preparer, consulted expert;
   - **non-response:** a unanimity council never shrinks;
-  - **no confidence:** to a higher body;
-  - **a meta-feedback channel to the charter record;**
+  - **no confidence,** taken to a higher body;
+  - **a meta-feedback channel** to the charter record;
   - **self-councils,** whose output is the agent's own decision.
-- **The procedure** is `~/src/arch/msc/councils/generic-collab-council.md` (v2). Joseph's loop: presenting the topic without a solution, a sealed expected solution held by the leader, blind first responses, shuffled second responses, a unity report, then the finish form with sustaining levels. The walking skeleton's lessons apply to whatever runs it:
-  - a seat is a lease with one holder;
-  - per-member state lives with the holder;
-  - rounds wait on submissions, never on deliveries.
+- **The procedure** is `~/src/arch/msc/councils/generic-collab-council.md` (v2), Joseph's loop:
+  - the topic presented without a solution;
+  - a sealed expected solution held by the leader;
+  - blind first responses, then shuffled second responses;
+  - a unity report;
+  - the finish form, with sustaining levels.
+
+  The walking skeleton's lessons apply to whatever runs it: a seat is a lease with one holder; per-member state lives with the holder; rounds wait on submissions, never on deliveries.
 - **Unity on importance can come before unity on truth.** Importance is itself decidable, and revisable.
 
 ### A4b. Change obligations: rules that ask questions
 
-Most higher-order rules, and probably many lower-order ones at first, will act less like guards that pass or fail and more like a business-rules engine that **generates obligations** for a proposed change. They take three forms:
+Most higher-order rules, and probably many lower-order ones at first, will act less like pass/fail guards and more like a business-rules engine that **generates obligations** for a proposed change. Assurance cases call these *defeaters*: identified doubts to eliminate (A8). They come in three forms:
 - **Invariants to keep:** "this change must leave X unchanged."
 - **Places to look:**
   - "Have you checked adjacent segments for this?"
   - "Are you sure this hasn't also changed such-and-such?"
   - "Does this Part I change require changing the SVG metaphor in the introduction?"
-- **Ancillary evidence to gather before a decision.** For example, a preparer agent lists the non-adjacent segments that mention a term without depending on it, as input to deciding whether they need checking before the chapter is declared coherent. That list is a *description*-style reference (RC1 06 and 11), run at that moment.
+- **Ancillary evidence to gather before a decision.** For example, a preparer agent lists the non-adjacent segments that mention a term without depending on it. That list is a *description*-style reference (RC1 06, 11), evaluated at that moment.
 
 How obligations work:
 - They attach to the episode.
 - Each is discharged by a recorded act: a check, a preparer's report, or a decision that it doesn't apply.
 - The episode's commit guard, and any ratification of a composite's coherence, require them all discharged.
-- A rule that generates obligations is itself a decision in the definition (the system kind). It can graduate like an aspect: from a checklist line, to a rule with a matcher, to a procedure with its own record.
+- **There is also room for doubts nobody has identified yet.** Confidence is never one number.
+- **A warning from requirements tooling:** links flagged "suspect" tend to be cleared by habit (the knowledge-graphs read reports this from forums; unverified). So discharging an obligation should take an act that shows work, not a click.
+- **A rule that generates obligations is itself a decision in the definition** (system kind). It graduates like an aspect: from a checklist line, to a rule with a matcher, to a procedure with its own record.
 
 ### A5. Global stability: episodes, ripple, and the breaker
 
-- **A stable store is at a fixed point:** no rule would fire, and nothing demands work, as far as we know.
-- **A perturbation opens an episode on a branch.** Perturbations include new audit findings, a new paper, a decision point reached, a new module. The episode's scope starts at the perturbation's computed reach and grows as ripples land; the growth is itself a signal. The store, or the affected subgraph, is **unstable** while the episode is open.
-- **Inside the episode:**
-  - proposed changes ripple through the model;
-  - rule-driven changes settle;
-  - the rest lands in the queues for minds and councils: checks, proposals, batch decisions, deeper cycles such as a spike;
-  - discoveries outside the scope go to the general influx, **carrying a condition** ("applies only if this changeset commits"), so an abort can't leave them acted on as if it hadn't happened.
-- **The episode is the atomic changeset.** It ends in one of three ways:
-  - **commit:** every branch event re-validated against main; the commit guard is the coherence of what it touched;
+- **"Stable" is moment-indexed.** A store is stable as of a moment when no rule would fire then, the clocks excluded, and nothing demands work (review 1 §2.7). Rules that read age keep any store from a timeless fixed point.
+- **A perturbation opens an episode on a branch.** Perturbations include new audit findings, a new paper, a decision point reached, a new module.
+  - The episode's scope starts at the perturbation's **direct-read reach** and grows as ripples land; the growth is itself a signal.
+  - The affected subgraph is **unstable** while the episode is open.
+  - **At a root, the scope is nearly the whole theory,** so root episodes overlap and run one at a time. Concurrency among episodes exists only away from the roots. That is what a changeset is for, and steps 3–5 should expect it (review 1 §2.6).
+- **Inside the episode, in two passes** (the shape live_docs runs, A8):
+  1. **Verdicts first.** A read-only walk collects, for every reachable neighbor: inconsequential, cascade, undercut, incompatible, or needs context. These are, or generate, the episode's obligations (A4b).
+  2. **Then changes.** Rule-driven changes settle. The rest goes to the queues for minds and councils: checks, proposals, batch decisions, deeper cycles such as a spike. Discoveries outside the scope go to the general influx **carrying a condition** ("applies only if this changeset commits"), so an abort can't leave them acted on. Truth maintenance's assumption-labelled conclusions are the established form of this (A8, to verify).
+- **The episode is the atomic changeset.** It ends one of three ways:
+  - **commit:** every branch event is re-validated against main, every obligation is discharged, and the coherence of what it touched holds;
   - **abort:** nothing changes;
   - **halt.**
 
   This is RC1's open fork 6, EPISODE. The field trial, and live_docs' session-scoped trail with per-record history as a projection, are the evidence that the trail's primary grain is the episode. **SPECIMEN #3 decides it:** one edit to an ASF root segment, worked whole.
-- **A breaker counts generations per kind of finding,** from `caused-by`. Per kind, because raw counts fire on restatement churn while the mathematics holds. When generations stop shrinking it halts the episode and convenes a council over the whole picture. The council's outcomes:
+- **Convergence: yields fall and edit mass falls.** The measured yields are state-dependent. They fall by an order of magnitude with independence and with maturity: Part I's later rounds 2/17 → 0/16 → 0/8; pooled independent yield 0.57 on a first review falling to 0.18 by a fourth. So a constant-ρ branching process is the wrong model, and ρ < 1 is neither necessary nor sufficient. The criterion that matches the measurements: **findings per round fall, and edit mass per round falls.** Flat findings with growing text is the runaway loop. The sprint's segments grew 1.5–2.5×, and no round removed more than it added (review 1 §2.2).
+- **The judgment loop's gain is near 1, and the land-only experiment decides it.**
+  - As the sprint ran, about 1.3: 1.98 checks per version × 0.64 findings per check, *all* checks counted, × 1 version per finding.
+  - Under one independent check per landing, about **0.75–1.2**, not the 0.6–0.8 this plan earlier carried. The 0.64 is diluted by 222 self-checks that found 3; per independent check the yield is 0.75–1.18 (review 1 §2.1).
+  - What would move the gain: batching findings into one revision (fewer versions per finding), and maturity.
+
+  The flow model (`foundations/asf-flows.md`) is an analysis over the trail, not part of the definition.
+- **A breaker watches findings per kind, and edit mass, per generation.** It counts per kind, from `caused-by`, because raw counts fire on restatement churn while the mathematics holds. At counts of 2 or 3, "stopped shrinking" is close to noise, so the breaker **convenes a council; it never acts on its own.** The council's outcomes:
   - keep running, with a higher limit;
   - surgery: split the changeset;
   - reframe: a conflation of terms or a fused dimension, so split it;
   - a **tension record:** two well-supported states held, not oscillated between;
-  - or the definition itself is wrong ("Newton learning Relativity"). That opens a **system episode**: change the definition, then re-evaluate everything under it.
-- **Episodes whose scopes overlap** are merged, or one waits. Overlap is computed from scopes.
-- **The judgment loop is where ρ lives:** revise → check → finding → revise. Measured from the sprint: about 1.3 as run, about 0.6–0.8 with one independent check per landing. The land-only experiment measures it properly. The flow model (`foundations/asf-flows.md`) is an *analysis over the trail*, not part of the definition.
+  - the definition itself is wrong ("Newton learning Relativity"). That opens a **system episode**: change the definition, then re-evaluate everything under it.
+
+  Typed findings are a precondition, still owed: the sprint's 313 findings have no kind field.
+- **Episodes whose scopes overlap** are merged, or one waits.
 
 ### A6. Intake, membranes, and what leaves
 
 - **Nothing writes the population directly.** Joseph: *"AGENTS SHOULD NOT BE ABLE TO GO IN AND MANUALLY CHANGE CANON OR ATOMS. ONLY THROUGH VSECT!!!"* The canon's `form-influx-membrane` is the same law, written earlier.
-- **Sources are cut into chunks.** RC1 and the kernel drafts call a chunk a "unit". Each chunk is crossed exactly once, to one of:
+- **Sources are cut into chunks.** RC1 and the kernel drafts call these "units". Each chunk has **exactly one current crossing**, to one of:
   - a state change on a record;
   - already present;
   - duplicate;
@@ -292,76 +334,59 @@ How obligations work:
   - needs-review (honestly unsure);
   - delivered elsewhere.
 
-  A source retires when every chunk is terminal. That is the delete-test, computed.
+  **A crossing can be wrong.** A re-crossing that disagrees with an earlier one is evidence about the crosser, not the source (review 1 §3). A source retires when every chunk is terminal: the delete-test, computed.
 - **Exploration state is recorded from the first act:** whether each source has been read, by whom, at which version, and how far each chunk has got. Unread is a query. The sprint's influx maps lacked this, and that is why it stopped.
-- **Each legacy store gets a dialect declaration:** data saying what its files, frontmatter, tags and sections meant. ASF's `status:` is a hand-set word, so it arrives as testimony at the lowest rung. The intake is a mode of v2, needed for every older verisectorium (vivarium, relata, comproprium, terminology, the udon reference defs, AISI, limen).
+- **Each legacy store gets a dialect declaration:** data saying what its files, frontmatter, tags and sections meant. ASF's `status:` is a hand-set word, so it arrives as testimony at the lowest rung. Intake is a mode of v2, needed for every older verisectorium.
 - **Every store has designated influxes** (the realization model's triplet):
-  - **canon,** whose base material is "payload-sidecars with inferred items, one item per doc";
+  - **canon,** with base material: "payload-sidecars with inferred items, one item per doc";
   - **lexicon;**
-  - **SOP,** with the **meta-feedback channel** (self-governance realized) and the **upgrade channel** (`v2 reinit`);
+  - **SOP,** with the meta-feedback channel and the upgrade channel (`v2 reinit`);
   - plus a history layer.
 
-  In ASF's case the SOPs may live as records of the system definition. That is Joseph's suggestion.
-- **What leaves:** the canon's word is *efflux*. The name for deliveries into sibling stores is still open. Not "set aside", which is a sink word for a delivery.
+  In ASF's case the SOPs may live as records of the system definition (Joseph's suggestion).
+- **What leaves:** the canon's word is *efflux*. The name for deliveries into sibling stores is open, but it isn't "set aside", which is a sink word for a delivery.
 
-### A7. Fitness, concordance and cost: analyses over the trail
+### A7. Fitness, discrimination, calibration and value: analyses over the trail
 
 - **Fitness aspects.** Readability, teachability, conciseness, coherence, coupling, novelty, impact. These are values on records or composites, with a basis and a credence like any aspect, often fed by attributes. They graduate like any aspect.
-- **Kendall's τ: concordance between two orderings of the same records.** τ needs only orderings, which suits ladders (they're ordinal). Places it applies:
-  - **claimed against established strength:** calibration across different ladders without forcing a common scale;
+- **Kendall's τ measures discrimination, not calibration** (review 1 §1.8). τ compares two orderings of the same records. A claimant who orders everything correctly but is uniformly one rung overconfident gets τ = 1. Use τ-b, because ties dominate on short ladders, and declare where off-ladder terminals (refuted, not-proven) go. It fits:
+  - **claimed against established ordering:** do the claims rank records the way the evidence does?
   - **importance against the order work was done:** drain order;
   - **reading order against dependency order:** each discordant pair is a forward reference;
-  - **members' rankings:** Kendall's W, the many-rater form, carried in a council's unity report.
-- **A cost matrix per ladder.** The cost of moving from rung *i* to rung *j* (a re-derivation costs more than a confirmation), weighed against the importance-for-target of closing that gap. Priority is then importance-weighted gaps priced by that matrix. That's RC1 07's gap economics, made computable.
+  - **members' rankings, where a council produces rankings:** Kendall's W. Sustaining levels per option are a different object.
+- **Calibration needs its own measures.** Does P(true) ≥ 0.9 hold 90% of the time? That takes reliability diagrams or a proper-score decomposition over recorded credences against later outcomes. This is what calibrates judges' likelihood ratios (A0) and check types' likelihood ratios (A2).
+- **What to work on next: RC1 07's value of information,** not importance alone (review 1 §1.9). The worth of closing a gap is how likely the pending decision is wrong, times what that costs, times how much this measurement would change it. A per-ladder cost matrix (a re-derivation costs more than a confirmation) prices the measurement. A high-importance record with no decision waiting on it has little value of information. **The counterweight stays:** cheap truth is run, not triaged.
 
-Like the flow model, all of these are analyses over the trail. None is part of the definition.
+None of these is part of the definition.
 
-### A8. What established work already holds
+### A8. Where outside reads came from, and what is still unverified
 
-*From `research/knowledge-graphs.md` (a fresh agent, 2026-11-04). Each item is its finding as reported. Grades are its own: checked at the primary source, or at abstract grade. Verify before building on any of it; the truth-maintenance items first, since they rest on abstracts.*
+*Their content is now in the sections above. This section is provenance, not a second plan.*
 
-- **Truth maintenance is the closest ancestor** (Doyle 1979; de Kleer's ATMS 1986).
-  - Status is computed from recorded justifications, never set by hand, with the reasoner separate from what records its results.
-  - Contradictions become *nogoods*.
-  - Each conclusion is labeled with the assumption sets it holds under. That is the native form of "theorems conditioned on A and on B", and of A5's discoveries that apply "only if this changeset commits".
-  - **It exposes a gap: circular support.** Composites guarantee cycles, and this plan doesn't say whether a cycle can support itself. That is now open question 8.
-- **Fixpoints: order-invariance needs more than termination.** The monotone assumption guarantees the automated layer stops. It doesn't guarantee that it stops at the same answer whatever order rules fire in, which RC1 requires. The precise condition: every rule's output is a monotone function of its inputs, checkable at stage 1 by stratification. The same theory names the breaker's two shapes in advance: odd loops oscillate, even loops are tensions.
-- **Build systems: bind checks to what they directly read.** vsect 0.1 binds each check to its whole transitive basis. That is a "deep trace", the one design that can't stop propagation when a rebuilt input comes out unchanged ("early cutoff"); `vsect confirm` was that cutoff done by hand.
-  - Binding to direct reads only, with transitivity used for notification only (RC1 06's own rule), answers A1's upward-lapse question and bears on open question 1.
-  - *Proposed for v2's event model.*
-- **Truth discovery and data fusion.**
-  - Discounting sources that copy each other (Dong et al. 2009) is the coherence default in established form.
-  - Subjective logic adds independent evidence and averages dependent evidence.
-  - Dawid–Skene (1979) estimates a check's error rates when the true answer is never observed. That is what A2's likelihood ratios need.
-- **Assurance cases.** A4b's change obligations are what that field calls *defeaters*, identified doubts to be eliminated. Two lessons from it:
-  - confidence isn't one number;
-  - there must be a place for doubts nobody has identified yet.
+- **`research/knowledge-graphs.md`** (a fresh agent, 2026-11-04). Graded per finding by its author.
+  - **Truth maintenance** (Doyle 1979; de Kleer's ATMS 1986): status computed from recorded justifications; contradictions as *nogoods*; conclusions labelled by the assumption sets they hold under (A5's conditional discoveries). *Rests on abstracts, so verify at the primary first.*
+  - **Fixpoints:** termination isn't uniqueness. Rule outputs must be monotone functions of their inputs, checkable by stratification. Odd loops oscillate; even loops are tensions (D).
+  - **Build systems:** bind checks to direct reads, with early cutoff; transitivity is for notification only (RC1 06's own rule). Now in A1, A2 and B.
+  - **Fusion:** copy-discounting (Dong et al. 2009) and subjective logic, as the established forms of the coherence default; Dawid–Skene (A2, with the identifiability condition from review 1).
+  - **Assurance cases:** defeaters, and room for unidentified doubts (A4b).
+  - **Knowledge graphs proper:**
+    - one uniform statement shape for every aspect value from the start;
+    - "unknown value" and "no value" as positive statements;
+    - closed-world semantics for the trail, declared on export;
+    - PROV and nanopublications for interchange, not as the engine;
+    - the Stacks Project's permanent tags and the OBO rule (A1);
+    - two clocks, when something happened and when it was recorded (B).
+- **`theory/influx/verisect-and-ldocs.md`** (§§0–1 and 7–8 read). live_docs (Samuel Wecker) runs several pieces this plan only proposes:
+  - a session-scoped write-ahead log as the episode, with per-document history materialized from it, and a close blocked until every revision-class change carries a reason;
+  - a signed review after the fact, with proposed deltas: signer ≠ author; review decay on later edits; three missing event fields;
+  - the two-pass cascade (A5);
+  - navigation separate from dependency (A1);
+  - the restated-ownership repair: collapse a copied enumeration to a link to its owner, cutting restatement churn at the source;
+  - queues surfaced at session close.
 
-  Requirements tools have flagged links as "suspect" for decades, and in practice clearing them decays into ignoring them. That is a warning for obligations; the agent reports it from forums and hasn't verified it.
-- **From knowledge graphs proper:**
-  - **One uniform statement shape for every aspect value from the start,** so graduation fills slots instead of changing representation.
-  - **"Unknown value" and "no value" as positive statements** (Wikidata), which supports recorded decline events.
-  - **Closed-world semantics for the trail:** absence means unrun. This must be declared if anything is ever exported, because knowledge-graph tooling assumes the open world.
-  - **PROV and nanopublications for interchange,** not a triplestore as the engine.
-  - **Identity precedents:**
-    - the Stacks Project's permanent tags, kept even for removed results, with an explanation;
-    - the OBO rule that a changed meaning gets a new identifier.
-  - **Two clocks for "as of a moment":** when something happened and when it was recorded. Design this before late recording or corrections.
-- **live_docs (Samuel Wecker), a running system** (from `theory/influx/verisect-and-ldocs.md`, a 2026-08-29 comparison by a Fable session; I read its §§0–1 and 7–8). It runs pieces this plan only proposes:
-  - **The episode, running as a session.** Every change goes through one choke point that writes both a per-document history entry and a line in the open session's write-ahead log. Per-document history is materialized *from* that log, which is the direction A5 proposes. Closing a session **blocks** until every revision-class change carries a reason, and folds the log into one review file. A human then signs the review afterward, without blocking anything. The comparison's proposed deltas:
-    - record that the signer is not the session's author;
-    - decay a review when a document it covered is edited again;
-    - add the three missing event fields: criterion, commitment (before or after the outcome was seen), and era. Four of RC1's seven event fields are already present.
-  - **The cascade, in two passes:**
-    1. a read-only walk collects a verdict for every reachable neighbor: *inconsequential*, *cascade*, *incompatible*, or *context-request*;
-    2. one batch write pass applies them.
-
-    That is a concrete inner structure for an episode: verdicts first, as obligations (A4b), then one commit. The comparison proposes adding *undercut* as a fifth verdict, which lowers computed strength and rewrites no prose. A cascade reaching more than three documents from one edit is flagged as a single-responsibility smell.
-  - **Two graphs, kept apart.** An acyclic navigational hierarchy (`belongs_to`, whose interior nodes are signposts) is separate from a cyclic dependency web (`requires`, plus `relates` for see-also). Only `requires` and `belongs_to` cascade. This bears directly on A1's nesting: chapters, parts and volumes are the navigational hierarchy, and what a segment rests on is the dependency web. They are different graphs with different propagation rules.
-  - **The restated-ownership repair.** A copied enumeration is collapsed to a link to the one record that owns it, instead of being kept in sync. That cuts restatement churn at its source.
-  - **Queues get clocks at session close.** Unsigned reviews, drift flags and warnings each print their top items when a session closes, the one moment every agent already passes through.
-  - **The design split the comparison recommends:** a small invariant core (identity, edges, trail, membrane) with kinds and dimensions declared per store as data, read by rules and procedures. The engine stays simple. That matches Part B.
-- **What the research judged genuinely new here:**
+  **One live_docs rule doesn't transfer:** "more than three documents from one edit is a smell" would fire on every ASF root edit, where the fan-out *is* the mathematics.
+- **`research/plan-review-1.md`** (a fresh Fable agent, de novo, on `6b90d14`). Its findings are integrated throughout, cited by section. Two of them are the reviewer's, from training, and should be checked at a primary source before they shape the projection: Dawid–Skene's identifiability, and τ as rank concordance.
+- **What the outside reads judged genuinely new here:**
   - the substitution law, as something checkable;
   - the commitment law;
   - independence recorded, not assumed;
@@ -372,28 +397,38 @@ Like the flow model, all of these are analyses over the trail. None is part of t
 
 | Layer | Owns | Changed how, now |
 |---|---|---|
-| **verisectorium** (`~/src/verisectorium/`) | the general model: RC1, the theory canon, the template and seed records under one `TEMPLATE.outline.md` | by editing and verifying, the old way. v2 does not run on it yet |
-| **v2** (the engine and CLI) | invariants; the event log; the definition format; intake; projections and renderings; `init` / `reinit`; checks of the definition itself | by building it, slice by slice |
-| **a store's definition** (ASF's in aat-v3) | its kinds and their aspects, its transitions, its rules and attributes, its dialect declarations | hand-written files at stage 0 |
+| **verisectorium** (`~/src/verisectorium/`) | the general model: RC1, the theory canon, the template and seed records under one `TEMPLATE.outline.md` | by editing and verifying, the old way; v2 does not run on it yet |
+| **v2** (engine and CLI) | invariants; the event log; the definition format; intake; projections and renderings; `init` / `reinit`; checks of the definition itself | by building it, slice by slice |
+| **a store's definition** (ASF's, in aat-v3) | its kinds and their aspects, transitions, rules and attributes, dialect declarations | hand-written files at stage 0 |
 | **the store** (ASF's records) | records, events, trails | only through v2 |
 
 **What v2 keeps from the kernel drafts:**
 - the engine is the only writer of records, and every file under the store is a rendering checked against the log;
 - the log is append-only;
-- versions are content hashes; a check binds to its basis and lapses with the cause named;
+- **versions are hashes of the normalized form,** so a reflow or `md-press` unwrap doesn't mint a version;
+- **a check binds to what it directly read,** and lapses with the cause named. Transitive reach is used for notification only;
 - standing is computed, never typed;
-- every event carries an attested actor (agent key, parent, type, session; or a tool at a version, the version being its era);
+- every event carries an attested actor: agent key, parent, type, session; or a tool at a version, the version being its era;
+- **two clocks on every event:** when the act happened, and when it was recorded;
 - an act the definition can't express is refused and recorded as a demand;
-- every stock has an exit.
+- every stock has an exit;
+- the trail is closed-world: absence means unrun.
 
 **What v2 defers:** the definition held as records. That is stage 2.
 
 **Compiler stages:**
 - **0, now:** hand-written definitions in two layers. The general layer is applied by `v2 init` and `v2 reinit` from verisectorium's template; the store's layer is ASF's files.
-- **1:** v2 checks the definitions: every kind answers the founding questions; every transition names the dimension it moves; the substitution law holds; no rule cycle runs unsupervised.
+- **1:** v2 checks the definitions:
+  - every kind answers the founding questions;
+  - every transition names the dimension it moves;
+  - the substitution law holds;
+  - `supports` is acyclic at statement grain;
+  - rule outputs are monotone in their inputs (stratified), so evaluation is order-invariant.
 - **2:** the definitions become records, admitted through v2's own transitions. v2 may then run on verisectorium itself.
 
-**What survives a blow-away of the backing store: the event log,** replayed under the new definition with a migration step wherever the schema changed. Hand migrations during stage 0 are recorded as migrations.
+**What survives a blow-away of the backing store is the event log,** replayed under the new definition with a migration step wherever the schema changed. Hand migrations during stage 0 are recorded as migrations.
+
+**Where the store lives:** outside the repo, by OS convention, as relata does (Joseph's decision in the preparations README). The repo is an exception, only "if it doesn't overly complicate … atomically coherent changesets". SPECIMEN #3 tests that default; it doesn't decide from scratch.
 
 ## Part C: Steps
 
@@ -406,72 +441,74 @@ Like the flow model, all of these are analyses over the trail. None is part of t
    - the template's two enums;
    - the four layout-bound segments, re-cut (scratch §5).
 
-   Then write `TEMPLATE.outline.md`. (`theory/influx/verisect-and-ldocs.md` §7 is now read; its bearing is in A8.)
-2. **The smallest v2:** the definition format; the event log as primary; `init` / `reinit`; source and chunk with crossing outcomes and exploration state; one record kind with its aspects.
-3. **`v2 init` on aat-v3,** with the verisectorium core only (influx, SOP, def, canonical view). Then ASF's dialect declaration, on paper, for Line B's five root segments: `def-agent-environment`, `def-action-transition`, `def-observation-function`, `def-chronica`, `scope-adaptive-system`.
-4. **ASF's first hand-written definitions:** only what the five roots demand. Each gap becomes a recorded demand.
-5. **Bring the five roots in as sources, cut them, and cross them.** Then:
-   - **SPECIMEN #3** (one root edit as an episode), which settles the episode question and whether the store lives in the repo;
-   - **RC1 08's auditor walk:** a fresh mind, given only the slice's records and their standing, asked "what should be audited?"
+   Then write `TEMPLATE.outline.md`.
+2. **The influx inventory:** the whole source list from the sprint's maps (`asf-sprint-2026-10/influx-scout/`, `internal-surfaces/`), each source with its exploration state and who has and hasn't read it. This is separate from crossing anything.
+3. **The smallest v2:**
+   - the definition format;
+   - the event log as primary, with two clocks;
+   - `init` / `reinit`;
+   - source and chunk with crossing outcomes and exploration state;
+   - one record kind with its aspects;
+   - direct-read binding.
+4. **`v2 init` on aat-v3** with the verisectorium core only. Then ASF's dialect declaration, on paper, for Line B's five root segments: `def-agent-environment`, `def-action-transition`, `def-observation-function`, `def-chronica`, `scope-adaptive-system`.
+5. **ASF's first hand-written definitions:** only what the five roots demand. Each gap becomes a recorded demand.
+6. **Bring the five roots in as sources, cut them and cross them.** Then:
+   - **SPECIMEN #3** (one root edit as an episode, run serially since it is a root);
+   - **RC1 08's auditor walk;**
+   - **a first calibration subpopulation:** a few versions given three independent checks each.
 
    Then a second slice, chosen by what the first one strained.
 
-**The anchor rule, both directions:**
+**The anchor rule, in both directions:**
 - no ASF kind without a named specimen and a founding-question justification;
 - no change to RC1 or the canon without an ASF specimen that demanded it, or a mark saying it is unexercised.
 
 ## Part D: Assumptions and open questions
 
-**Assumptions, each with what would revisit it:**
-- **The monotone rule.** Rule-driven changes may only lower, reset or flag; only recorded acts by minds raise a value. Under it the automated layer always reaches a fixed point, and runaway is confined to the judgment loop.
-  - *Not an invariant* (Joseph): some deterministic quantities are in principled tension. Coupling and cohesion trade against each other, and finding their balance is a search for an equilibrium; it would be silly for a council to adjudicate each half of an oscillation.
-  - The likely replacement is a deterministic equilibrium search run to its own convergence criterion inside an episode, recorded as one act.
-  - *Revisit* when the first non-monotone rule is wanted on real material.
-- **Hysteresis on bands**, to stop values at a threshold from flapping. *Revisit* if it hides real movement.
-- **Councils as movers of judgment-shaped dimensions,** not as general decision-makers. *Revisit* if a transition needs a council for something that isn't judgment.
+**Assumptions, each with what would make us revisit it:**
+- **The monotone rule.** Rule-driven changes to *standing* (positions, credences, judged values) may only lower, reset or flag; only recorded acts by minds raise them. It doesn't cover importance, which rises by rule when a dependent is added.
+  - **What it buys is termination, not uniqueness.** Order-invariance, which RC1 requires, also needs rule outputs that are monotone functions of their inputs, checked by stratification at stage 1 (A8).
+  - **Not an invariant** (Joseph): some deterministic quantities are in principled tension. Coupling and cohesion trade against each other, and finding their balance is a search for an equilibrium; a council adjudicating each half of an oscillation would be silly. The likely replacement is a deterministic equilibrium search run to its own convergence criterion inside an episode, recorded as one act.
+  - **Revisit** when the first non-monotone rule is wanted on real material.
+- **Hysteresis on bands,** with its state derived from the trail. **Revisit** if it hides real movement.
+- **Councils move judgment-shaped dimensions.** They are not general decision-makers. **Revisit** if a transition needs a council for something that isn't judgment.
+- **`supports` is acyclic at statement grain** (stage-1 lint; a found cycle is a grain defect or a mistyped edge). The credence projection is still declared as a least fixpoint, as a safety net. **Revisit** if a legitimate support cycle turns up on real material.
 
 **Open questions:**
-1. Does a change in a section's *standing* alone lapse its composite's coherence, or only a change in its *content*? How does a composite declare its neighbors?
-2. Is the trail's primary grain the episode? (SPECIMEN #3.) Does the backing store live in the repo? (The same specimen.)
+1. How a composite declares its neighbors.
+2. Is the trail's primary grain the episode? (SPECIMEN #3.)
 3. Claim records: one per statement, or one per claim within it?
 4. ASF's `disc-*` and `impl-*` segments: teaching, recognitions, or arrangements?
 5. The name for deliveries into sibling stores.
-6. Whether "computed" ever needs to be a basis for aspects, or stays the attributes underneath them.
-7. **The lexicon.** The kernel drafts' lexicon is superseded. Its replacement should be built from RC1's settled words:
-   - record, dimension (with namespace), line, mover, channel, ladder, rung, trail, projection, era;
-   - binding, dangle, collide;
-   - membrane, base material, delete-test, coherence default, commitment law;
-   - plus this plan's aspect, attribute, band, graduation, episode, composite.
-8. **Circular support** (from A8): can a cycle of records support itself? ASF composites guarantee cycles. Truth maintenance has worked answers; the credence projection needs one.
-
-   It should be built as the template's lexicon store, not as a free-standing file.
+6. The operator combining a record's own derivation evidence with its premises' inherited credence (A2).
+7. **The lexicon.** The kernel drafts' lexicon is superseded. Its replacement should be built as the template's lexicon store, not a free-standing file, from:
+   - RC1's settled words: record, dimension (with namespace), line, mover, channel, ladder, rung, trail, projection, era, binding, dangle, collide, membrane, base material, delete-test, coherence default, commitment law;
+   - this plan's: aspect, attribute, band, graduation, episode, composite, position, credence, judged value, forecast.
+8. **The calibration budget:** how many versions get three independent checks, chosen how, and paid for as what.
 
 ---
 
 ## Appendix: discussed, but not in this plan
 
-*Things that came up across 2026-11-03 and 11-04 and are not carried above. Some are recorded elsewhere; some may only be floating in transcripts. Listed so they aren't silently lost.*
+*Things that came up on 2026-11-03 and 11-04 and aren't carried above. Some are recorded elsewhere; some may only be floating in transcripts. Listed so they aren't silently lost.*
 
 - **The steward's accountability and veto.** Joseph: *"I'll have ultimate veto power independently because in the eyes of the law and the world I shoulder full actual accountability and reputation for the outcomes."* How that relates to `decision/accountability` and to council closes is open.
-- **A council's composition is part of its record.** The diversity of perspectives and underlying models is recorded, "in case there are questions about its outcomes later at a higher level."
+- **A council's composition is part of its record:** the diversity of perspectives and underlying models, "in case there are questions about its outcomes later at a higher level."
 - **In-meeting acts:**
   - a research subcommittee that reports back without interrupting the meeting;
   - adding a member with a needed perspective;
   - near-identical motions counting as seconds;
-  - follow-up questions to members based on what others said.
+  - follow-up questions based on what others said.
 
-  See the councils spikes (`~/src/arch/msc/councils/spikes/`) and the collaborative council file.
-- **Decision theory, Joseph, 2026-11-03:**
+  See the councils spikes and the collaborative council file.
+- **Decision theory** (Joseph, 2026-11-03):
   - deciding under one regime, even arbitrarily, as the most effective way to gather evidence, with pilots as its routine form;
   - information, importance and decision space evolving together, and going wrong when conflated;
   - fiat by an accountable owner;
-  - theorems conditioned on A and on B, the whole never exceeding its weakest link.
+  - theorems conditioned on A and on B. The weakest-link part of this is superseded in A2.
 
   Verbatim in `foundations/research/dialog-for-kernel-2026-11-04.md`, window 1.
-- **What a changeset gathers.** It "pulls into its changeset all of the memories of other related/adjacent/historical things," drains several sources at once, and possibly has a specialist do the gathering. What must fit in one mind is the intent, the invariant and the judgment calls, with verified transforms and mechanical checks for the rest. Both are in `foundations/asf-flows.md` §6.
-- **Where the store lives.** The README records Joseph's decision: outside the repo, by OS convention, as relata does. He later allowed the repo "only if it doesn't overly complicate … atomically coherent changesets". Part B's replay rule and SPECIMEN #3 should start from that default.
-- **The influx inventory as its own first step:** the whole source list from the sprint's maps, with exploration state and read-by / not-read-by. That's separate from crossing the five roots.
-- **Decisions lapsing:** assumptions as edges, with a lapse when one changes or the decision's importance-for-target rises (kernel draft 3).
-- **The interface:** an `ant`-shaped request on stdin with a structured result (kernel draft 3; the vsect lead's plan-read addendum).
-- **Truth as the frame for councils:** unity of purpose; members differ by experience, context, reasoning and angle; divergence means adjudicating truth "from the perspective of the system they know most about." Also high-councils (`~/src/arch/msc/councils/high-councils/`).
-- **Reports as records:** v2's projections into the repo, "often recorded as curated collections of atoms", meaning a report can be an arrangement.
+- **What a changeset gathers:** "all of the memories of other related/adjacent/historical things", draining several sources at once, possibly gathered by a specialist. What must fit in one mind is the intent, the invariant and the judgment calls (`foundations/asf-flows.md` §6).
+- **The interface:** an `ant`-shaped request on stdin, with a structured result (kernel draft 3; the vsect lead's plan-read addendum).
+- **Truth as the frame for councils:** unity of purpose, with members differing by experience, context, reasoning and angle, and divergence meaning adjudicating truth "from the perspective of the system they know most about." Also high-councils.
+- **Reports as records:** v2's projections into the repo, "often recorded as curated collections of atoms". A report can be an arrangement.
