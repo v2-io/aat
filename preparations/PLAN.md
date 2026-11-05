@@ -400,12 +400,12 @@ Like the flow model, all of these are analyses over the trail. None is part of t
 4. ASF's `disc-*` and `impl-*` segments: teaching, recognitions, or arrangements?
 5. The name for deliveries into sibling stores.
 6. Whether "computed" ever needs to be a basis for aspects, or stays the attributes underneath them.
-8. **Circular support** (from A8): can a cycle of records support itself? ASF composites guarantee cycles. Truth maintenance has worked answers; the certainty projection needs one.
 7. **The lexicon.** The kernel drafts' lexicon is superseded. Its replacement should be built from RC1's settled words:
    - record, dimension (with namespace), line, mover, channel, ladder, rung, trail, projection, era;
    - binding, dangle, collide;
    - membrane, base material, delete-test, coherence default, commitment law;
    - plus this plan's aspect, attribute, band, graduation, episode, composite.
+8. **Circular support** (from A8): can a cycle of records support itself? ASF composites guarantee cycles. Truth maintenance has worked answers; the certainty projection needs one.
 
    It should be built as the template's lexicon store, not as a free-standing file.
 
