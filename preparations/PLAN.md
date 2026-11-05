@@ -21,7 +21,7 @@
 
 ### A0. The primitives everything is built from
 
-- **Truth claim.** An assertion whose standing is a **certainty**, earned from accumulated evidence (RC1's `evidence/*` lines) and lowered by refutation or lapse.
+- **Truth claim.** An assertion. Its evidence reaches *positions* on RC1's `evidence/*` ladders (what has been done to it), and its *credence*, the probability it is true, is derived from those positions. Refutation and lapse lower both.
 - **Decision.** A choice at a branch point whose standing is its **backing** (RC1's `decision/*`: grounds, consultation, accountability, falsifiers) and the importance it was made at, *for* a target.
 - **Attested fact.** Asserted and checkable, but carried without a trail: agent ids, dates. The floor where recursion stops.
 - **Attribute.** A deterministic measurement, with no standing at all: a formula and the moment it was computed.
@@ -32,14 +32,23 @@
 - a composite's coherence is a truth claim about the whole;
 - a rule is a decision whose application is computed.
 
-**Certainty is always recorded separately from the value it qualifies.** An aspect carries a value, a basis, and a certainty:
-- `novelty: high` · basis: decided, label by X · certainty: low. X gave it in passing, with no literature search behind it.
-- `novelty: high` · basis: decided, label by Y · certainty: moderate. Y gave it after a literature search. Same value, same graduation level, different certainty.
-- `relative freshness: darn fresh` · basis: rule `freshness@v3` over the attribute recency · certainty: high that the rule was applied correctly. Whether the rule itself is a good measure of freshness is a separate decision, with its own backing.
+**Position and credence are two different things, and both are recorded** (refined 2026-11-04, after Joseph's questions about what "certainty on a ladder" can mean):
+- **Position** is where a record stands on a ladder. For evidenced aspects it records *what has been done*: is there an independent re-derivation bound to this version, or not? It is computed from the trail, and given a faithful trail it is a fact, not a guess.
+- **Credence** is how strongly a proposition is believed. For a truth claim, that's the probability the claim is true, *derived* from the positions its evidence has reached (A2, weight of evidence). For a decided or soft aspect ("novelty: high", given as someone's judgment), the value is the judgment, and the credence is that judge's belief about where the truth lies on the scale.
 
-Certainty is its own recorded value. It is never inferred from the value, from the basis, or from how far the aspect has graduated. A label can be held with moderate certainty, and a procedural value can be held with low certainty if its procedure is untested.
+**A credence is a distribution over the scale, never a bare number.** Its form depends on the kind of scale:
+- **Unordered set** (categories with no order): a probability for each category. Concentration is all that matters; there is no near miss.
+- **Ordered ladder:** a probability for each rung, where being one rung off is less wrong than three. The statements that mean something are *cumulative*: "at least deps-verified, with probability 0.9". They are also what consumers need. A guard or a dependency predicate is written as **P(rung ≥ k) ≥ θ**, never as "label k, certainty high".
+- **The label shown is a summary** (the mode or median) of the distribution. Uncertainty spreads mass onto neighboring rungs.
+- **The number of rungs matters.** Maximum uncertainty is one bit on a two-rung scale and about 2.6 bits on six, so scalar "certainties" can't be compared across ladders of different sizes.
+- **Scales are bounded,** so at the top or bottom rung, mass can only spread one way. Cumulative statements handle that correctly. Averages are pulled toward the middle and shouldn't be used.
 
-A value never stands in for its certainty, just as RC1's substitution law keeps one dimension from standing in for another. Graduation (A2) is about *how* a value is produced. Certainty is about *how strongly* it is held. They move separately.
+**Examples**, with value, basis and credence written separately:
+- `novelty: high` · basis: decided, by X, in passing · credence: P(≥ high) ≈ 0.4.
+- `novelty: high` · basis: decided, by Y, after a literature search · credence: P(≥ high) ≈ 0.8. Same value, same graduation level, different credence.
+- `relative freshness: stale` · basis: rule `freshness@v3` over the attribute recency · credence that the rule was *applied* correctly: near 1. Whether the rule is a good measure of freshness is a separate decision, with its own backing.
+
+**Credence is never inferred from the value, the basis, or the graduation level,** and a value never stands in for its credence, just as RC1's substitution law keeps one dimension from standing in for another. Graduation (A2) is about *how* a value is produced. Position is about what has been done. Credence is about how strongly it is believed. All three move separately.
 
 ### A1. Records, identity, composites
 
@@ -52,8 +61,8 @@ A value never stands in for its certainty, just as RC1's substitution law keeps 
   - **Ratifying a section can be guarded on its composite's coherence holding at current versions.** That is "one change forces a look at the whole, and its neighbors, before ratification", expressed as a lapse and a guard. The sections remain separate records.
 - **Composites nest, and the nesting is neither a strict tree nor strictly forward.** In ASF the levels are: a segment {statements, derivation, intro prose, …} → chapters and appendices → parts → volumes → the theory. Each level is a composite with its own coherence.
   - **Dependencies run mostly backward, but not only.** A segment requires earlier ones. But an introduction depends on later segments, and a notation or cross-cutting group cuts across the hierarchy. So groupings may overlap.
-  - **A dependency carries a predicate:** on content alone, or on content with some aspect at a threshold ("rests on #x with certainty at least re-derived").
-  - **Upward lapse is a declared rule, not automatic.** A section's change lapses its segment's coherence. Whether that in turn lapses the chapter's coherence depends on a rule: for instance, only when the segment's headline claim changes, or its certainty crosses a band. Without such rules, every edit would lapse the whole theory.
+  - **A dependency carries a predicate:** on content alone, or on content with some aspect at a threshold ("rests on #x with P(at least re-derived) ≥ 0.9"), never on a bare label.
+  - **Upward lapse is a declared rule, not automatic.** A section's change lapses its segment's coherence. Whether that in turn lapses the chapter's coherence depends on a rule: for instance, only when the segment's headline claim changes, or its credence crosses a band. Without such rules, every edit would lapse the whole theory.
 - **Composition has three honest shapes, plus one exemption** (RC1 03 and 11):
   - **reify:** a composite becomes a record, as above;
   - **cluster:** typed parts under one identity, each with its own write rules (body, working notes, events, companions);
@@ -66,14 +75,14 @@ A value never stands in for its certainty, just as RC1's substitution law keeps 
 ### A2. Standing: what moves, and what sustains it
 
 **What a change does to standing** (revised after Joseph's corrections, 2026-11-04):
-- **A content change lowers certainty automatically.** Every check bound to what changed lapses, so the record's computed certainty drops until something re-establishes it. That one act opens both sides of adjudication at once:
+- **A content change lowers standing automatically.** Every check bound to what changed lapses, so the record's position drops, and its credence is recomputed, until something re-establishes it. That one act opens both sides of adjudication at once:
   - *is the new content right?*
   - *does it still earn what it claims?*
 - **Adjudication is usually what *finds* a mismatch, not what starts from one.** A check, a review or a coherence read discovers that claimed and established standing have come apart, or that they haven't.
-- **There is only ever one current epistemic label.** A record can't say "used to be exact, with high certainty" next to its present state; its history is a function of the log. So "no softened ghost" isn't a discipline agents must remember. v2 makes it impossible to get wrong.
+- **There is only ever one current epistemic label.** A record can't say "used to be exact, held with high credence" next to its present state; its history is a function of the log. So "no softened ghost" isn't a discipline agents must remember. v2 makes it impossible to get wrong.
 
 **One common case: a defect found in a claim. It runs in two phases, inside one episode.**
-1. **Honest intermediate.** The claim, or its certainty, is lowered at once to what is now true. "No longer exact; conditional on X." Downstream records that rest on it are notified, but the episode *holds* their re-stabilization. Re-settling everything around a lowered value that may be raised again shortly wastes the most cycles where the most rests on it.
+1. **Honest intermediate.** The claim, or its credence, is lowered at once to what is now true. "No longer exact; conditional on X." Downstream records that rest on it are notified, but the episode *holds* their re-stabilization. Re-settling everything around a lowered value that may be raised again shortly wastes the most cycles where the most rests on it.
 2. **The strengthening attempt.** A spike works every angle for what *would* keep the earlier value true. It often finds more than that:
    - a way to raise the ladder above where it was;
    - or the same value, secured with less uncertainty.
@@ -92,13 +101,13 @@ Securing and revising are the two halves of **strengthen**. Lowering the claim i
 The kinds of adjudication aren't settled. They should come from cases like this one, each with its specimen, not from a list drawn up in advance.
 
 **Aspects are values on a record, sorted by what sustains them** (Joseph's sort, one step more abstract than RC1's sort by what falsifies):
-- **evidenced:** a truth claim with accumulated evidence. This is certainty: RC1's `evidence/*` lines (derivation, in-vivo, wild-empirical, instance, testimony, carriage), each with its own ladder;
+- **evidenced:** a truth claim with accumulated evidence, whose credence is derived from the positions its evidence reaches on RC1's `evidence/*` lines (derivation, in-vivo, wild-empirical, instance, testimony, carriage), each with its own ladder;
 - **decided:** at a branch point, on a basis, by accountable parties. RC1's `decision/*`: grounding, consultation, accountability, falsifiers;
 - **attested:** asserted and checkable, but deliberately not carried with a trail: agent ids, dates, the steward at the time. **This is where recursion stops**, by design. It is RC1 08's trusted base.
 
-Many aspects mix these. A warrant is itself a truth claim with a certainty.
+Many aspects mix these. A warrant is itself a truth claim, with a credence.
 
-**Certainty is computed, by a declared weight-of-evidence projection** (proposed; not yet discussed in depth). A truth claim's certainty is never typed. It is computed from its evidence events, each of which records:
+**Credence is computed, by a declared weight-of-evidence projection** (proposed; not yet discussed in depth). A truth claim's credence is never typed. It is computed from its evidence events, each of which records:
 - its line;
 - its rung;
 - its outcome: confirmed, narrowed or broken;
@@ -121,6 +130,20 @@ The natural form is weight of evidence in Good's and Turing's sense: log-likelih
 
 Read these before designing the projection.
 
+**Derived credence: what premises do to the claims that rest on them.** A claim that needs several premises can be no more credible than all of them holding together. "Bounded by the weakest necessary premise" is too generous.
+
+*Specimen (Joseph, 2026-11-04):* a proposition needs five upstream findings. Each sits at a high rung, with a credence that barely keeps it there: P(holds) ≈ 0.9 each. The probability that all five hold is:
+- **if their independence is recorded:** 0.9⁵ ≈ 0.59;
+- **if their dependence is unknown:** somewhere between 1 − 5 × 0.1 = 0.5 (the Bonferroni bound) and 0.9 (the weakest premise).
+
+Either way, the downstream proposition is capped a rung below its premises until they tighten. Which bound applies depends on whether independence is *recorded*. So RC1's coherence default isn't only a rule about corroboration: it decides how credence composes.
+
+**After a content change:**
+- **The position drops deterministically,** because checks bound to the old text lapse.
+- **The credence about what a re-check would find is asymmetric, but not mostly downward.** The one measured confirm pass found about 3 real changes in 120 lapses. So most of the mass stays at the old rung, with a thin tail below. The tail should depend on the kind of change: rewording or redefinition.
+- **Updates are Bayesian:** each check outcome updates the distribution over rungs according to that checker's error rates. Dawid–Skene's confusion matrices work on ordered categories.
+- **A premise losing credence propagates as a recomputation** (notify, don't cascade). Only a refutation cascades hard.
+
 **Importance is an aspect, and always *for* a target:** a purpose, a decision, a consumer. Its basis is computed reach (what rests on this, for that target) plus decided stakes (how much that target matters). A record has no importance in general, only importance-for.
 
 **RC1's other dimensions,** placed in this sort:
@@ -140,7 +163,7 @@ RC1 states its set is not complete. Importance and coherence are this plan's add
 
 Each has a declared formula and is computed as of a moment. It has no warrant beyond that, and it never goes stale; only the aspects that use it lapse. Changing a formula is a system decision.
 
-**Rules turn attributes into an aspect's bands.** For example, relative freshness = recency ÷ …, thresholded. A band crossing is a deterministic event that names the rule and its version: `{from: "darn fresh", to: "lil'bit stale", by: <rule@version>}`. It ripples through `caused-by` into every aspect whose basis names this one. Novelty's certainty, for instance, may name the freshness of its literature search. **This is where the flow model's "mechanical stations" belong:** they are rules in the definition, firing as events.
+**Rules turn attributes into an aspect's bands.** For example, relative freshness = recency ÷ …, thresholded. A band crossing is a deterministic event that names the rule and its version: `{from: "fresh", to: "stale", by: <rule@version>}`. It ripples through `caused-by` into every aspect whose basis names this one. Novelty's credence, for instance, may name the freshness of its literature search. **This is where the flow model's "mechanical stations" belong:** they are rules in the definition, firing as events.
 
 **Graduation: one ladder for every aspect.**
 
@@ -149,7 +172,7 @@ Each has a declared formula and is computed as of a moment. It has no warrant be
 | 0. label | a value and who gave it |
 | 1. ruled | produced under a declared rubric; the rubric is a record |
 | 2. procedural | produced by a declared procedure whose runs are events bound to a basis; lapses when the basis changes |
-| 3. reified | the aspect becomes a record of its own kind, with content (for novelty: near neighbors, search dates, the deliberations), the original subject as prerequisite, and aspects of its own (freshness, completeness, certainty) |
+| 3. reified | the aspect becomes a record of its own kind, with content (for novelty: near neighbors, search dates, the deliberations), the original subject as prerequisite, and aspects of its own (freshness, completeness, credence) |
 
 At level 3, the aspect's own aspects start again at level 0. That is the recursion. It stops in two places:
 - **Demand.** An aspect graduates only when its failures need their own repair: RC1's admission rule, reused.
@@ -283,7 +306,7 @@ How obligations work:
 
 ### A7. Fitness, concordance and cost: analyses over the trail
 
-- **Fitness aspects.** Readability, teachability, conciseness, coherence, coupling, novelty, impact. These are values on records or composites, with a basis and a certainty like any aspect, often fed by attributes. They graduate like any aspect.
+- **Fitness aspects.** Readability, teachability, conciseness, coherence, coupling, novelty, impact. These are values on records or composites, with a basis and a credence like any aspect, often fed by attributes. They graduate like any aspect.
 - **Kendall's τ: concordance between two orderings of the same records.** τ needs only orderings, which suits ladders (they're ordinal). Places it applies:
   - **claimed against established strength:** calibration across different ladders without forcing a common scale;
   - **importance against the order work was done:** drain order;
@@ -405,7 +428,7 @@ Like the flow model, all of these are analyses over the trail. None is part of t
    - binding, dangle, collide;
    - membrane, base material, delete-test, coherence default, commitment law;
    - plus this plan's aspect, attribute, band, graduation, episode, composite.
-8. **Circular support** (from A8): can a cycle of records support itself? ASF composites guarantee cycles. Truth maintenance has worked answers; the certainty projection needs one.
+8. **Circular support** (from A8): can a cycle of records support itself? ASF composites guarantee cycles. Truth maintenance has worked answers; the credence projection needs one.
 
    It should be built as the template's lexicon store, not as a free-standing file.
 
