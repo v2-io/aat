@@ -1,0 +1,155 @@
+<title>The v2 Model, Step by Step</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;1,400&family=Inter:wght@300;400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Victor+Mono:ital,wght@0,400;1,400&display=swap">
+<style>
+/* Layout: one sheet. A masthead, a drawing stage that changes in place, a caption beneath it, and a row of controls.
+   House style: the v2 imprint (washi and slate grounds, ink, one point of shu, square corners, no shadows on a sheet). */
+:root{
+  --paper:#f8f4ec; --desk:#e9e3d8; --raised:#efe9de; --wash:#efe6d6;
+  --ink:#2d2a26; --ink-body:#4a4540; --ink-muted:#5d574f; --ink-faint:#8c8376; --ink-quiet:#b3a999;
+  --line-edge:#e0d8ca; --line-guide:#e5dccc; --line-strong:#241f1a;
+  --shu:#c03b28; --ai:#3b4e75; --kin:#8a6a36;
+  --stone:#eae8e1; --stone-bd:#bfbbb3; --stone-ink:#525046;
+  --sand:#efebdf; --sand-deep:#e9e4d1; --sand-bd:#c7bfa1; --sand-ink:#5b4f16;
+  --teal:#ebedea; --teal-deep:#e0e7e8; --teal-bd:#b5c7cd; --teal-ink:#1b5a68;
+  --iris:#f3eeef; --iris-deep:#f1eaf2; --iris-bd:#cdc3d7; --iris-ink:#5a4675;
+  --slate:#efeeee; --slate-deep:#e8e9ef; --slate-bd:#c0c6d6; --slate-ink:#3e5176;
+  --clay:#f2eae0; --clay-deep:#f0e0d5; --clay-bd:#d4b9a8; --clay-ink:#704221;
+  --sage:#ebede2; --sage-deep:#e0e6d7; --sage-bd:#b6c4ac; --sage-ink:#375a2d;
+  --rose:#f3e9e4; --rose-bd:#dab9ba; --rose-ink:#763b40;
+  --card-text:#2d2a26;
+  --title:"Crimson Text","Crimson Pro",Georgia,serif;
+  --sans:"Inter",-apple-system,"Helvetica Neue",sans-serif;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --mono:"Victor Mono","JuliaMono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#1f2020; --desk:#25292d; --raised:#252628; --wash:#2b2b2e;
+  --ink:#ece6db; --ink-body:#cbc4b8; --ink-muted:#aba499; --ink-faint:#706b63; --ink-quiet:#5e5b57;
+  --line-edge:#303230; --line-guide:#303134; --line-strong:#ece6db;
+  --shu:#d0583c; --ai:#92a0d4; --kin:#d4b07a; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#1f2020; --desk:#25292d; --raised:#252628; --wash:#2b2b2e;
+  --ink:#ece6db; --ink-body:#cbc4b8; --ink-muted:#aba499; --ink-faint:#706b63; --ink-quiet:#5e5b57;
+  --line-edge:#303230; --line-guide:#303134; --line-strong:#ece6db;
+  --shu:#d0583c; --ai:#92a0d4; --kin:#d4b07a; color-scheme:dark }
+
+body{background:var(--paper);color:var(--ink-body);font-family:var(--serif);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 40px;
+  font-variant-ligatures:none}
+.sheet{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.kickers{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink-muted)}
+h1{font-family:var(--title);font-weight:400;font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.005em;color:var(--ink);margin:6px 0 0;text-wrap:balance}
+.intro{font-size:19px;line-height:1.5;color:var(--ink-body);max-width:66ch;margin:10px 0 0}
+.rule{border:0;border-top:2px solid var(--line-strong);margin:14px 0 0}
+
+.chapters{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--ink-muted)}
+.chapters button{all:unset;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent}
+.chapters button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.chapters button:focus-visible,.controls button:focus-visible,.ticks button:focus-visible{outline:2px solid var(--ai);outline-offset:2px}
+
+.stage{position:relative;background:var(--raised);border:1px solid var(--line-edge)}
+.stage svg{display:block;width:100%;height:auto}
+.panel{padding:28px clamp(16px,4vw,44px) 32px}
+.panel h2{font-family:var(--sans);font-weight:300;font-size:26px;line-height:1.15;color:var(--ink);margin:0 0 12px}
+.panel p{max-width:66ch;margin:0 0 12px}
+.panel ul{max-width:70ch;margin:0;padding-left:1.6em}
+.panel li{margin:0 0 8px}
+.panel .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px 44px}
+.panel h3{font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.08em;color:var(--ink-muted);margin:0 0 8px}
+
+.caption{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;min-height:150px}
+.caption .where{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--ink-muted)}
+.caption h2{font-family:var(--sans);font-weight:300;font-size:28px;line-height:1.15;color:var(--ink);margin:0}
+.caption p{max-width:66ch;margin:0}
+.caption .terms{display:flex;flex-wrap:wrap;gap:6px}
+.caption .terms span{font-family:var(--mono);font-size:12px;background:var(--wash);color:var(--ink);padding:1px 7px;border-radius:3px}
+.caption .flag{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-muted)}
+.caption strong{font-weight:600;color:inherit}
+
+.topbar{display:flex;flex-direction:column;gap:10px;border-bottom:2px solid var(--line-strong);padding-bottom:12px}
+.bar-row{display:flex;align-items:baseline;gap:6px 30px;flex-wrap:wrap}
+.pagename{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink)}
+.controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.controls button{font-family:var(--sans);font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line-strong);border-radius:0;padding:7px 16px;cursor:pointer}
+.controls button:hover{background:var(--wash)}
+.controls button[disabled]{color:var(--ink-faint);border-color:var(--line-edge);cursor:default;background:var(--paper)}
+.controls .count{font-family:var(--mono);font-size:12px;color:var(--ink-muted);font-variant-numeric:tabular-nums}
+.controls .hint{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-faint);margin-left:auto}
+.ticks{display:flex;gap:3px;flex:1 1 220px;min-width:160px}
+.ticks button{all:unset;cursor:pointer;flex:1;height:14px;position:relative}
+.ticks button::after{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:var(--line-edge)}
+.ticks button.done::after{background:var(--ink-muted)}
+.ticks button.now::after{background:var(--shu);height:4px;top:5px}
+.ticks button.gap{margin-left:8px}
+
+/* the drawing */
+.el{opacity:0;transition:opacity .3s ease,transform .7s cubic-bezier(.3,.1,.2,1);pointer-events:none}
+.el.on{opacity:1}
+svg text{font-family:var(--sans);fill:var(--card-text)}
+.t-name{font-size:12.5px;font-weight:600}
+.t-body{font-size:11.5px}
+.t-small{font-size:10.5px}
+.t-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em}
+.t-note{font-family:var(--serif);font-style:italic;font-size:12.5px}
+.on-paper{fill:var(--ink-body)} .on-paper.t-label{fill:var(--ink-muted)} .on-paper.strong{fill:var(--ink)}
+.box{stroke-width:1;transition:fill .5s ease,stroke .5s ease,stroke-width .3s ease}
+.f-sand .box{fill:var(--sand-deep);stroke:var(--sand-bd)} .f-sand text{fill:var(--sand-ink)} .f-sand .t-name{fill:var(--card-text)}
+.f-stone .box{fill:var(--stone);stroke:var(--stone-bd)} .f-stone text{fill:var(--stone-ink)}
+.f-teal .box{fill:var(--teal-deep);stroke:var(--teal-bd);stroke-dasharray:4 3} .f-teal text{fill:var(--teal-ink)}
+.f-iris .box{fill:var(--iris-deep);stroke:var(--iris-bd)} .f-iris text{fill:var(--iris-ink)}
+.f-slate .box{fill:var(--slate-deep);stroke:var(--slate-bd)} .f-slate text{fill:var(--slate-ink)}
+.f-clay .box{fill:var(--clay-deep);stroke:var(--clay-bd)} .f-clay text{fill:var(--clay-ink)}
+.f-sage .box{fill:var(--sage-deep);stroke:var(--sage-bd)} .f-sage text{fill:var(--sage-ink)}
+.f-rose .box{fill:var(--rose);stroke:var(--rose-bd)} .f-rose text{fill:var(--rose-ink)}
+.f-paper .box{fill:var(--paper);stroke:var(--line-edge)} .f-paper text{fill:var(--ink-body)}
+.f-plain .box{fill:var(--stone);stroke:var(--stone-ink)} .f-plain text{fill:var(--stone-ink)}
+.rungbox{fill:var(--paper);stroke:var(--ink-quiet);stroke-width:1} .rungcur{fill:none;stroke:var(--line-strong);stroke-width:2}
+.hi > .box{stroke-width:2;stroke:var(--line-strong);stroke-dasharray:none}
+.changed > .box{fill:var(--wash)}
+.wire{fill:none;stroke:var(--ink-muted);stroke-width:1.3;transition:stroke .4s ease,opacity .4s ease}
+.wire.bind{stroke:var(--slate-ink);stroke-width:1.2}
+.broken .wire,.wire.broken{stroke:var(--ink-faint);stroke-dasharray:3 4}
+.broken > .box{fill:var(--paper);stroke:var(--ink-quiet);stroke-dasharray:3 4}
+.broken text{fill:var(--ink-faint)}
+.dim{opacity:.35 !important}
+.axis{stroke:var(--ink-muted);stroke-width:1} .axis.steady{stroke:var(--line-strong);stroke-width:2}
+.dot{fill:var(--paper);stroke:var(--line-strong);stroke-width:2} .dot.fill{fill:var(--line-strong)}
+.now{stroke:var(--ink);stroke-width:1.5}
+@media (prefers-reduced-motion: reduce){ .el{transition:none} .box{transition:none} }
+</style>
+
+<div class="sheet">
+  <div class="topbar">
+    <div class="bar-row">
+      <span class="pagename">THE V2 MODEL, STEP BY STEP</span>
+      <nav class="chapters" id="chapters" aria-label="Chapters"></nav>
+    </div>
+    <div class="controls">
+      <button id="prev" type="button">Back</button>
+      <button id="next" type="button">Next</button>
+      <span class="count" id="count"></span>
+      <div class="ticks" id="ticks" aria-label="Steps"></div>
+      <span class="hint">Arrow keys also step.</span>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <svg id="svg" viewBox="0 0 960 560" role="img" aria-label="A drawing of the v2 model that changes with each step. The caption below describes the current step.">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+      </defs>
+      <g id="scene-a"></g><g id="scene-b"></g><g id="scene-c"></g>
+    </svg>
+    <div class="panel" id="panel-intro" hidden></div>
+    <div class="panel" id="panel-open" hidden></div>
+  </div>
+
+  <section class="caption" aria-live="polite">
+    <div class="where" id="where"></div>
+    <h2 id="cap-title"></h2>
+    <p id="cap-text"></p>
+    <div class="terms" id="cap-terms"></div>
+    <div class="flag" id="cap-flag"></div>
+  </section>
+</div>

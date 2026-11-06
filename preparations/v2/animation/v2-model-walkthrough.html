@@ -1,0 +1,647 @@
+<title>The v2 Model, Step by Step</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;1,400&family=Inter:wght@300;400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Victor+Mono:ital,wght@0,400;1,400&display=swap">
+<style>
+/* Layout: one sheet. A masthead, a drawing stage that changes in place, a caption beneath it, and a row of controls.
+   House style: the v2 imprint (washi and slate grounds, ink, one point of shu, square corners, no shadows on a sheet). */
+:root{
+  --paper:#f8f4ec; --desk:#e9e3d8; --raised:#efe9de; --wash:#efe6d6;
+  --ink:#2d2a26; --ink-body:#4a4540; --ink-muted:#5d574f; --ink-faint:#8c8376; --ink-quiet:#b3a999;
+  --line-edge:#e0d8ca; --line-guide:#e5dccc; --line-strong:#241f1a;
+  --shu:#c03b28; --ai:#3b4e75; --kin:#8a6a36;
+  --stone:#eae8e1; --stone-bd:#bfbbb3; --stone-ink:#525046;
+  --sand:#efebdf; --sand-deep:#e9e4d1; --sand-bd:#c7bfa1; --sand-ink:#5b4f16;
+  --teal:#ebedea; --teal-deep:#e0e7e8; --teal-bd:#b5c7cd; --teal-ink:#1b5a68;
+  --iris:#f3eeef; --iris-deep:#f1eaf2; --iris-bd:#cdc3d7; --iris-ink:#5a4675;
+  --slate:#efeeee; --slate-deep:#e8e9ef; --slate-bd:#c0c6d6; --slate-ink:#3e5176;
+  --clay:#f2eae0; --clay-deep:#f0e0d5; --clay-bd:#d4b9a8; --clay-ink:#704221;
+  --sage:#ebede2; --sage-deep:#e0e6d7; --sage-bd:#b6c4ac; --sage-ink:#375a2d;
+  --rose:#f3e9e4; --rose-bd:#dab9ba; --rose-ink:#763b40;
+  --card-text:#2d2a26;
+  --title:"Crimson Text","Crimson Pro",Georgia,serif;
+  --sans:"Inter",-apple-system,"Helvetica Neue",sans-serif;
+  --serif:"Newsreader","Iowan Old Style",Georgia,serif;
+  --mono:"Victor Mono","JuliaMono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#1f2020; --desk:#25292d; --raised:#252628; --wash:#2b2b2e;
+  --ink:#ece6db; --ink-body:#cbc4b8; --ink-muted:#aba499; --ink-faint:#706b63; --ink-quiet:#5e5b57;
+  --line-edge:#303230; --line-guide:#303134; --line-strong:#ece6db;
+  --shu:#d0583c; --ai:#92a0d4; --kin:#d4b07a; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#1f2020; --desk:#25292d; --raised:#252628; --wash:#2b2b2e;
+  --ink:#ece6db; --ink-body:#cbc4b8; --ink-muted:#aba499; --ink-faint:#706b63; --ink-quiet:#5e5b57;
+  --line-edge:#303230; --line-guide:#303134; --line-strong:#ece6db;
+  --shu:#d0583c; --ai:#92a0d4; --kin:#d4b07a; color-scheme:dark }
+
+body{background:var(--paper);color:var(--ink-body);font-family:var(--serif);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 40px;
+  font-variant-ligatures:none}
+.sheet{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.kickers{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink-muted)}
+h1{font-family:var(--title);font-weight:400;font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.005em;color:var(--ink);margin:6px 0 0;text-wrap:balance}
+.intro{font-size:19px;line-height:1.5;color:var(--ink-body);max-width:66ch;margin:10px 0 0}
+.rule{border:0;border-top:2px solid var(--line-strong);margin:14px 0 0}
+
+.chapters{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--ink-muted)}
+.chapters button{all:unset;cursor:pointer;padding:4px 0;border-bottom:2px solid transparent}
+.chapters button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.chapters button:focus-visible,.controls button:focus-visible,.ticks button:focus-visible{outline:2px solid var(--ai);outline-offset:2px}
+
+.stage{position:relative;background:var(--raised);border:1px solid var(--line-edge)}
+.stage svg{display:block;width:100%;height:auto}
+.panel{padding:28px clamp(16px,4vw,44px) 32px}
+.panel h2{font-family:var(--sans);font-weight:300;font-size:26px;line-height:1.15;color:var(--ink);margin:0 0 12px}
+.panel p{max-width:66ch;margin:0 0 12px}
+.panel ul{max-width:70ch;margin:0;padding-left:1.6em}
+.panel li{margin:0 0 8px}
+.panel .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px 44px}
+.panel h3{font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.08em;color:var(--ink-muted);margin:0 0 8px}
+
+.caption{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;min-height:150px}
+.caption .where{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;color:var(--ink-muted)}
+.caption h2{font-family:var(--sans);font-weight:300;font-size:28px;line-height:1.15;color:var(--ink);margin:0}
+.caption p{max-width:66ch;margin:0}
+.caption .terms{display:flex;flex-wrap:wrap;gap:6px}
+.caption .terms span{font-family:var(--mono);font-size:12px;background:var(--wash);color:var(--ink);padding:1px 7px;border-radius:3px}
+.caption .flag{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-muted)}
+.caption strong{font-weight:600;color:inherit}
+
+.topbar{display:flex;flex-direction:column;gap:10px;border-bottom:2px solid var(--line-strong);padding-bottom:12px}
+.bar-row{display:flex;align-items:baseline;gap:6px 30px;flex-wrap:wrap}
+.pagename{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink)}
+.controls{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.controls button{font-family:var(--sans);font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--line-strong);border-radius:0;padding:7px 16px;cursor:pointer}
+.controls button:hover{background:var(--wash)}
+.controls button[disabled]{color:var(--ink-faint);border-color:var(--line-edge);cursor:default;background:var(--paper)}
+.controls .count{font-family:var(--mono);font-size:12px;color:var(--ink-muted);font-variant-numeric:tabular-nums}
+.controls .hint{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--ink-faint);margin-left:auto}
+.ticks{display:flex;gap:3px;flex:1 1 220px;min-width:160px}
+.ticks button{all:unset;cursor:pointer;flex:1;height:14px;position:relative}
+.ticks button::after{content:"";position:absolute;left:0;right:0;top:6px;height:2px;background:var(--line-edge)}
+.ticks button.done::after{background:var(--ink-muted)}
+.ticks button.now::after{background:var(--shu);height:4px;top:5px}
+.ticks button.gap{margin-left:8px}
+
+/* the drawing */
+.el{opacity:0;transition:opacity .3s ease,transform .7s cubic-bezier(.3,.1,.2,1);pointer-events:none}
+.el.on{opacity:1}
+svg text{font-family:var(--sans);fill:var(--card-text)}
+.t-name{font-size:12.5px;font-weight:600}
+.t-body{font-size:11.5px}
+.t-small{font-size:10.5px}
+.t-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em}
+.t-note{font-family:var(--serif);font-style:italic;font-size:12.5px}
+.on-paper{fill:var(--ink-body)} .on-paper.t-label{fill:var(--ink-muted)} .on-paper.strong{fill:var(--ink)}
+.box{stroke-width:1;transition:fill .5s ease,stroke .5s ease,stroke-width .3s ease}
+.f-sand .box{fill:var(--sand-deep);stroke:var(--sand-bd)} .f-sand text{fill:var(--sand-ink)} .f-sand .t-name{fill:var(--card-text)}
+.f-stone .box{fill:var(--stone);stroke:var(--stone-bd)} .f-stone text{fill:var(--stone-ink)}
+.f-teal .box{fill:var(--teal-deep);stroke:var(--teal-bd);stroke-dasharray:4 3} .f-teal text{fill:var(--teal-ink)}
+.f-iris .box{fill:var(--iris-deep);stroke:var(--iris-bd)} .f-iris text{fill:var(--iris-ink)}
+.f-slate .box{fill:var(--slate-deep);stroke:var(--slate-bd)} .f-slate text{fill:var(--slate-ink)}
+.f-clay .box{fill:var(--clay-deep);stroke:var(--clay-bd)} .f-clay text{fill:var(--clay-ink)}
+.f-sage .box{fill:var(--sage-deep);stroke:var(--sage-bd)} .f-sage text{fill:var(--sage-ink)}
+.f-rose .box{fill:var(--rose);stroke:var(--rose-bd)} .f-rose text{fill:var(--rose-ink)}
+.f-paper .box{fill:var(--paper);stroke:var(--line-edge)} .f-paper text{fill:var(--ink-body)}
+.f-plain .box{fill:var(--stone);stroke:var(--stone-ink)} .f-plain text{fill:var(--stone-ink)}
+.rungbox{fill:var(--paper);stroke:var(--ink-quiet);stroke-width:1} .rungcur{fill:none;stroke:var(--line-strong);stroke-width:2}
+.hi > .box{stroke-width:2;stroke:var(--line-strong);stroke-dasharray:none}
+.changed > .box{fill:var(--wash)}
+.wire{fill:none;stroke:var(--ink-muted);stroke-width:1.3;transition:stroke .4s ease,opacity .4s ease}
+.wire.bind{stroke:var(--slate-ink);stroke-width:1.2}
+.broken .wire,.wire.broken{stroke:var(--ink-faint);stroke-dasharray:3 4}
+.broken > .box{fill:var(--paper);stroke:var(--ink-quiet);stroke-dasharray:3 4}
+.broken text{fill:var(--ink-faint)}
+.dim{opacity:.35 !important}
+.axis{stroke:var(--ink-muted);stroke-width:1} .axis.steady{stroke:var(--line-strong);stroke-width:2}
+.dot{fill:var(--paper);stroke:var(--line-strong);stroke-width:2} .dot.fill{fill:var(--line-strong)}
+.now{stroke:var(--ink);stroke-width:1.5}
+@media (prefers-reduced-motion: reduce){ .el{transition:none} .box{transition:none} }
+</style>
+
+<div class="sheet">
+  <div class="topbar">
+    <div class="bar-row">
+      <span class="pagename">THE V2 MODEL, STEP BY STEP</span>
+      <nav class="chapters" id="chapters" aria-label="Chapters"></nav>
+    </div>
+    <div class="controls">
+      <button id="prev" type="button">Back</button>
+      <button id="next" type="button">Next</button>
+      <span class="count" id="count"></span>
+      <div class="ticks" id="ticks" aria-label="Steps"></div>
+      <span class="hint">Arrow keys also step.</span>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <svg id="svg" viewBox="0 0 960 560" role="img" aria-label="A drawing of the v2 model that changes with each step. The caption below describes the current step.">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+      </defs>
+      <g id="scene-a"></g><g id="scene-b"></g><g id="scene-c"></g>
+    </svg>
+    <div class="panel" id="panel-intro" hidden></div>
+    <div class="panel" id="panel-open" hidden></div>
+  </div>
+
+  <section class="caption" aria-live="polite">
+    <div class="where" id="where"></div>
+    <h2 id="cap-title"></h2>
+    <p id="cap-text"></p>
+    <div class="terms" id="cap-terms"></div>
+    <div class="flag" id="cap-flag"></div>
+  </section>
+</div>
+<script>
+// ── helpers: every drawn thing is a <g class="el" data-id> placed by a CSS transform ──
+const NS = 'http://www.w3.org/2000/svg';
+const R = {};            // id -> { g, scene, x, y }
+const T = {};            // text id -> <text>
+function mk(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function place(g, x, y) { g.style.transform = `translate(${x}px,${y}px)`; }
+function group(scene, id, x, y, cls, parentId) {
+  const parent = parentId ? R[parentId].g : document.getElementById('scene-' + scene);
+  const g = mk('g', { class: 'el ' + (cls || ''), 'data-id': id }, parent);
+  place(g, x, y);
+  R[id] = { g, scene, x, y, base: 'el ' + (cls || '') };
+  return g;
+}
+function txt(g, id, x, y, str, cls, anchor) {
+  const t = mk('text', { x, y, class: cls || 't-body' }, g);
+  if (anchor) t.setAttribute('text-anchor', anchor);
+  t.textContent = str;
+  if (id) T[id] = t;
+  return t;
+}
+// a box with lines of text: lines = [[textId|null, dy, string, class], ...]
+function card(scene, id, x, y, w, h, fam, lines, parentId) {
+  const g = group(scene, id, x, y, 'f-' + fam, parentId);
+  mk('rect', { class: 'box', width: w, height: h }, g);
+  (lines || []).forEach(l => txt(g, l[0] ? id + '.' + l[0] : null, 9, l[1], l[2], l[3] || 't-body'));
+  return g;
+}
+function chip(scene, id, x, y, w, str, fam, parentId) {
+  const g = group(scene, id, x, y, 'f-' + fam, parentId);
+  mk('rect', { class: 'box', width: w, height: 20 }, g);
+  txt(g, id + '.t', 7, 14, str, 't-small');
+  return g;
+}
+function wire(scene, id, d, cls, arrow) {
+  const g = group(scene, id, 0, 0, '');
+  const p = mk('path', { class: 'wire ' + (cls || ''), d }, g);
+  if (arrow !== false) p.setAttribute('marker-end', 'url(#arr)');
+  return g;
+}
+function note(scene, id, x, y, lines, cls, anchor) {
+  const g = group(scene, id, x, y, '');
+  [].concat(lines).forEach((s, i) => txt(g, i === 0 ? id + '.t' : id + '.t' + i, 0, i * 15, s, (cls || 't-note') + ' on-paper', anchor));
+  return g;
+}
+// ── Scene A: structure ──
+(function () {
+  const S = 'a';
+  // the segment frame and its name
+  const f = group(S, 'segT', 20, 40, 'f-stone');
+  mk('rect', { class: 'box', width: 500, height: 440 }, f);
+  txt(f, 'segT.l', 12, 16, 'SEGMENT · KIND: DERIVED-RESULT', 't-label');
+  txt(f, 'segT.n', 12, 31, 'persistence-threshold', 't-name');
+
+  // four veritoids
+  const V = [
+    ['vc', 'α > ρ/R bounds mismatch'],
+    ['vd', 'Proof, in steps'],
+    ['ve', 'Correction must outpace drift'],
+    ['vk', 'Wipe faster than the snow falls'],
+  ];
+  V.forEach(([id, content]) => card(S, id, 0, 0, 210, 70, 'sand', [
+    ['slot', 15, '', 't-label'], ['name', 33, content, 't-name'], ['kind', 49, '', 't-small'], ['written', 63, '', 't-small'],
+  ]));
+  // computed values travel with their veritoid
+  chip(S, 'vc.v1', 225, 2, 232, 'position · by derivation: re-derived', 'teal', 'vc');
+  chip(S, 'vc.v2', 225, 26, 232, 'credence · 0.93 that it is true', 'teal', 'vc');
+  chip(S, 've.v1', 225, 26, 232, 'judged value · follows: probably yes', 'teal', 've');
+  // a bound is written; an attribute is computed but is not an answer on a dimension
+  chip(S, 'vc.b', 225, 50, 232, 'bound · may assert: an original claim', 'sand', 'vc');
+  chip(S, 'vc.a', 225, 74, 232, 'attribute · 9 words · changed 3 days ago', 'plain', 'vc');
+  // the dimensions a claim's kind allows, each with its scale
+  (function () {
+    const d = group(S, 'dimT', 80, 200, 'f-paper');
+    mk('rect', { class: 'box', width: 440, height: 84 }, d);
+    txt(d, null, 9, 15, 'DIMENSIONS THE KIND \u201cCLAIM\u201d ALLOWS, EACH WITH ITS SCALE', 't-label');
+    txt(d, null, 9, 39, 'true by derivation?', 't-small'); txt(d, null, 9, 66, 'how likely true?', 't-small');
+    let x = 122; [['sketch', 46], ['drafted', 50], ['premises checked', 100], ['re-derived', 66]].forEach(([r, w]) => {
+      mk('rect', { class: 'rungbox', x, y: 25, width: w, height: 20 }, d); txt(d, null, x + 6, 39, r, 't-small'); x += w + 4; });
+    txt(d, null, 402, 39, 'ladder', 't-note'); txt(d, null, 122, 66, 'a number from 0 to 1', 't-small'); txt(d, null, 402, 66, 'number', 't-note');
+    const c = group(S, 'dimT.cur', 0, 0, '', 'dimT'); mk('rect', { class: 'rungcur', x: 330, y: 25, width: 66, height: 20 }, c);
+  })();
+  // the derivation, split into steps
+  const sp = group(S, 'vd.split', 0, 0, '', 'vd');
+  [0, 1, 2].forEach(i => {
+    mk('rect', { class: 'box', x: 9 + i * 66, y: 24, width: 60, height: 22 }, sp);
+    txt(sp, null, 16 + i * 66, 39, 'step ' + (i + 1), 't-small');
+    mk('circle', { cx: 60 + i * 66, cy: 35, r: 3.5, fill: 'var(--teal-ink)' }, sp);
+  });
+
+  // legend for written and computed
+  chip(S, 'legW', 640, 196, 280, 'written by an author', 'sand');
+  chip(S, 'legC', 640, 222, 280, 'computed: a value, an answer on a dimension', 'teal');
+  chip(S, 'legA', 640, 248, 280, 'computed: an attribute, a plain measurement', 'plain');
+
+  // inner dependencies
+  wire(S, 'dep1', 'M50,370 C24,352 24,305 48,288');
+  wire(S, 'dep2', 'M50,285 C6,240 6,150 48,118');
+  note(S, 'depL', 30, 215, 'rests on', 't-note').firstChild.setAttribute('transform', 'rotate(-90)');
+
+  // the segment's own values
+  chip(S, 'sv1', 40, 430, 150, 'truth = the claim’s', 'teal');
+  chip(S, 'sv2', 198, 430, 168, 'freshness = the stalest', 'teal');
+  chip(S, 'sv3', 374, 430, 136, 'coherence: holds', 'teal');
+  note(S, 'svL', 40, 422, ['ALIASED', ''], 't-label'); note(S, 'svL2', 198, 422, 'DERIVED', 't-label'); note(S, 'svL3', 374, 422, 'OWN', 't-label');
+
+  // a second segment and the reference
+  const u = group(S, 'segU', 640, 150, 'f-stone');
+  mk('rect', { class: 'box', width: 300, height: 150 }, u);
+  txt(u, null, 12, 16, 'SEGMENT · KIND: DERIVED-RESULT', 't-label');
+  txt(u, null, 12, 31, 'per-dimension-bound', 't-name');
+  card(S, 'vu', 660, 195, 210, 70, 'sand', [
+    ['slot', 15, 'FORMAL-CLAIM · ONE', 't-label'], ['name', 33, 'The weak dimension binds', 't-name'], ['kind', 49, 'kind: claim', 't-small'],
+  ]);
+  wire(S, 'ref', 'M660,230 C600,230 600,115 512,115');
+  note(S, 'refL', 640, 124, ['predicated-on \u00b7 needs: re-derived or better', ''], 't-note');
+  note(S, 'latent', 640, 322, ['Latent level: this claim can be no better', 'supported than the one it rests on.'], 't-note');
+
+  // a projection
+  const p = group(S, 'proj', 20, 494, 'f-iris');
+  mk('rect', { class: 'box', width: 920, height: 54 }, p);
+  txt(p, null, 12, 16, 'PROJECTION · KIND: CHAPTER', 't-label');
+  txt(p, null, 12, 34, 'Persistence and structural limits', 't-name');
+  chip(S, 'pm1', 300, 512, 180, '1 → persistence-threshold', 'iris');
+  chip(S, 'pm2', 488, 512, 180, '2 → per-dimension-bound', 'iris');
+  chip(S, 'pmc', 740, 512, 190, 'coherence of the chapter', 'teal');
+
+  // a rendering
+  const r = group(S, 'rend', 700, 350, 'f-paper');
+  mk('rect', { class: 'box', width: 96, height: 112 }, r);
+  [18, 30, 42, 60, 72, 84].forEach((y, i) => mk('line', { x1: 10, x2: i % 3 === 2 ? 60 : 86, y1: y, y2: y, stroke: 'var(--ink-quiet)', 'stroke-width': 2 }, r));
+  note(S, 'rendL', 806, 392, ['persistence-threshold.md', 'a rendering, as of one state'], 't-note');
+  wire(S, 'rendW', 'M520,410 L696,410');
+})();
+const STEPS = [];
+const scattered = { vc: [80, 90], vd: [560, 70], ve: [120, 320], vk: [640, 420] };
+const column    = { vc: [50, 80], vd: [50, 165], ve: [50, 250], vk: [50, 335] };
+
+STEPS.push(
+{ scene: 'intro', ch: 'Start', title: 'A store, and its definition',
+  text: 'This walks through the model one idea at a time. Each step adds something to the drawing and names the terms it brings in. Where a point is a proposal that Joseph has not confirmed, or is still open, the step says so in italics.',
+  terms: ['verisectorium', 'store', 'definition'] },
+
+{ scene: 'a', ch: 'Structure', title: 'Content',
+  text: 'A store holds pieces of content. Here are four, from one result in the theory: a formal claim, its proof, a plain description, and an explanation for an eight-year-old.',
+  terms: ['content'],
+  d: { show: ['vc', 'vd', 've', 'vk'], pos: scattered } },
+
+{ scene: 'a', ch: 'Structure', title: 'Kinds',
+  text: 'Every piece of content is of a declared <strong>veritoid kind</strong>. A kind says what form the content takes and which questions may be asked of it. The same kind can serve in many places: the description and the simple explanation are both explanations.',
+  terms: ['veritoid-kind'],
+  d: { txt: { 'vc.kind': 'kind: claim', 'vd.kind': 'kind: proof-step', 've.kind': 'kind: explanation', 'vk.kind': 'kind: explanation' }, hi: ['vc', 'vd', 've', 'vk'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'Dimensions and their scales',
+  text: 'A <strong>dimension</strong> is one question that can be asked of content and answered independently of every other question. A kind declares which dimensions it allows. Each dimension has a <strong>scale</strong>: the answers it can take. A scale may be a number, an unordered set, or a <strong>ladder</strong>, whose ordered steps are its <strong>rungs</strong>. Two dimensions of a claim are drawn here. Nothing has been answered yet.',
+  terms: ['dimension', 'scale', 'ladder', 'rung'],
+  d: { show: ['dimT'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'Values, in three forms',
+  text: 'A <strong>value</strong> is the answer one piece of content has on one dimension. Content together with its values is a <strong>veritoid</strong>. A value takes one of three forms. A <strong>position</strong> says what has actually been done, here the rung reached on the derivation ladder. A <strong>credence</strong> is the probability that a truth claim is true. A <strong>judged value</strong> is a label only judgment can give, held as a spread and not a point. How sure we are is always kept beside the value, never folded into it.',
+  terms: ['value', 'veritoid', 'position', 'credence', 'judged-value'],
+  d: { show: ['vc.v1', 'vc.v2', 've.v1', 'dimT.cur'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'Written and computed',
+  text: 'Everything about a veritoid is either <strong>written</strong> by an author or <strong>computed</strong> by the store. Its content is written. So are two things an author states beside it: its <strong>ground</strong>, which says what could support it and so which dimensions are open, and its <strong>claimed level</strong>, which is what it asserts about its own support. Every value is computed from what has been recorded as done. Nobody types a value. The store’s work is to compare what is claimed with what has been earned.',
+  terms: ['written', 'computed', 'ground', 'claimed-level'],
+  flag: 'Where the claimed level lives is open: beside the content, inside it, or as a declared limit.',
+  d: { show: ['legW', 'legC'], txt: { 'vc.written': 'ground: derivable · claims: theorem' }, hi: ['vc', 'legW', 'legC'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'Bounds and attributes',
+  text: 'Two more things attach to a veritoid, and neither is a dimension. A <strong>bound</strong> is written: a limit that is stated and then consulted, such as what this content may assert on its own authority. It is not earned by degrees and has no value. An <strong>attribute</strong> is computed, but it is not an answer to a question: it is a plain measurement with no judgment in it, such as a word count or an age. It has no “how sure”. A rule may turn attributes into a value, and when it does, that is recorded.',
+  terms: ['bound', 'attribute'],
+  d: { show: ['vc.b', 'vc.a', 'legA'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'A segment and its slots',
+  text: 'A veritoid almost never makes sense alone. Veritoids are assembled into a <strong>segment</strong>: a named, ordered whole. Its <strong>segment kind</strong> declares its <strong>slots</strong>: which kind of veritoid fills each, whether it is required, and how many it holds. The segment is what has a <strong>name</strong>, what is written as one whole, and what is reviewed as a whole.',
+  terms: ['segment', 'segment-kind', 'slot', 'name'],
+  flag: 'Two levels of content, and only two, is the reading of Joseph’s description used here. He has not confirmed it.',
+  d: { show: ['segT'], pos: column, hide: ['legW', 'legC', 'legA', 'dimT'],
+       txt: { 'vc.slot': 'FORMAL-CLAIM · ONE', 'vd.slot': 'DERIVATION · ANY NUMBER', 've.slot': 'DESCRIPTION · ONE', 'vk.slot': 'ELI8 · AT MOST ONE' } } },
+
+{ scene: 'a', ch: 'Structure', title: 'Inner dependencies',
+  text: 'Inside a segment the veritoids rest on one another. The simple explanation rests on the description, and the description rests on the formal claim. The segment’s kind declares these. They are why the whole segment has to be looked at together when one veritoid in it moves.',
+  terms: ['inner-dependency'],
+  d: { show: ['dep1', 'dep2', 'depL'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'The segment’s own values',
+  text: 'A segment has values too, and its kind says how each is got. An <strong>aliased</strong> value is one veritoid’s: this result is as true as its formal claim. A <strong>derived</strong> value is computed from several: it is as fresh as its stalest part. An <strong>own</strong> value is asked of the whole: does it hold together when read as one thing? That one is coherence.',
+  terms: ['aliased', 'derived', 'own', 'coherence'],
+  d: { show: ['sv1', 'sv2', 'sv3', 'svL', 'svL2', 'svL3'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'Recutting',
+  text: 'To <strong>recut</strong> is to change how content is divided without changing what it says. The drawing shows a <strong>split</strong>: a check found that the proof’s steps stand or fall separately, so one veritoid became three in the same slot, each with its own values. The other four are not drawn. <strong>Merge</strong> turns several veritoids that say one thing into one. <strong>Promote</strong> moves veritoids out into a segment of their own. <strong>Fold back</strong> is the reverse. <strong>Retire</strong> takes something out of present truth. None of these may silently break anything that points in.',
+  terms: ['recut', 'split', 'merge', 'promote', 'fold-back', 'retire'],
+  flag: 'Open: whether a veritoid has an identity of its own that survives being moved. Every recut waits on that.',
+  d: { show: ['vd.split'], txt: { 'vd.name': '', 'vd.kind': '', 'vd.written': 'each step has its own values' }, hi: ['vd'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'References and the dependency graph',
+  text: 'A veritoid points at other veritoids by a <strong>reference</strong>. The chief one is <strong>predicated-on</strong>: this claim needs that one. Each pointer is of a declared <strong>reference kind</strong>, and a kind exists only because something treats it differently from the others. It points at the specific veritoid relied on, not at a whole segment, and it can say the level it needs. Even when it does not, there is a <strong>latent level</strong>: nothing can be better supported than what it rests on. All such pointers together are the <strong>dependency graph</strong>, which has no cycles.',
+  terms: ['reference', 'reference-kind', 'predicated-on', 'dependency-graph', 'latent-level'],
+  flag: 'That a pointer is written, and only “does it still hold” is computed, is a proposal.',
+  d: { show: ['segU', 'vu', 'ref', 'refL', 'latent'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'Projections',
+  text: 'A <strong>projection</strong> is a segment whose slots hold pointers to other segments, in a chosen order: a chapter, a part, a volume. It is a different structure from the dependency graph. It has a coherence of its own, and its kind says what a review of it reads of each member, so that a reworded proof step far below does not make the whole chapter need re-reading. The <strong>canonical projection</strong> says: this is the work, in this order. A segment it does not reach, and that nothing depends on or is depended on by, is an <strong>orphan</strong>. Orphans are allowed, and not drawn here.',
+  terms: ['projection', 'canonical-projection', 'orphan'],
+  flag: 'The word is confirmed by Joseph. That a projection is a kind of segment is a proposal.',
+  d: { show: ['proj', 'pm1', 'pm2', 'pmc'], hide: ['latent'] } },
+
+{ scene: 'a', ch: 'Structure', title: 'Renderings',
+  text: 'A file, a page, or the view put in front of someone about to write is a rendering: text produced from the store, as of one state. It is never the thing itself. So a segment can be as small as the truth requires while what is shown is as wide as the work requires.',
+  terms: ['rendering'],
+  d: { show: ['rend', 'rendL', 'rendW'] } },
+);
+// ── Scene B: time and change (the worked example of the model document, 4.2) ──
+const TX = [180, 268, 357, 445, 534, 622, 711, 800];           // work-time ticks
+const TIMES = ['08:30', '09:25', '11:00', '11:30', '12:00', '13:00', '13:30', '14:00'];
+(function () {
+  const S = 'b';
+  const f = group(S, 'bT', 30, 40, 'f-stone');
+  mk('rect', { class: 'box', width: 570, height: 170 }, f);
+  txt(f, null, 12, 16, 'SEGMENT', 't-label'); txt(f, null, 12, 31, 'persistence-threshold  (T)', 't-name');
+  [['bk', 50, 'ELI8', 'k1'], ['be', 190, 'DESCRIPTION', 'e1'], ['bd', 330, 'DERIVATION', 'd1'], ['bc', 470, 'FORMAL CLAIM', 'c1']]
+    .forEach(([id, x, slot, v]) => card(S, id, x, 80, 125, 60, 'sand', [[null, 15, slot, 't-label'], ['v', 38, v, 't-name'], ['s', 53, '', 't-small']]));
+  chip(S, 'bcv', 470, 150, 125, 're-derived', 'teal');
+
+  const u = group(S, 'bU', 680, 40, 'f-stone');
+  mk('rect', { class: 'box', width: 250, height: 170 }, u);
+  txt(u, null, 12, 16, 'SEGMENT', 't-label'); txt(u, null, 12, 31, 'per-dimension-bound  (U)', 't-name');
+  card(S, 'bu', 742, 80, 125, 60, 'sand', [[null, 15, 'FORMAL CLAIM', 't-label'], ['v', 38, 'u1', 't-name'], ['s', 53, '', 't-small']]);
+  chip(S, 'buv', 742, 150, 125, 're-derived', 'teal');
+  wire(S, 'bref', 'M742,110 L600,110');
+  note(S, 'brefL', 640, 30, 'U\u2019s claim is predicated on T\u2019s, and needs it re-derived', 't-note', 'middle');
+
+  // acts
+  const a = group(S, 'actT', 330, 255, 'f-slate');
+  mk('path', { class: 'wire bind', d: 'M62,0 L62,-113' }, a); mk('path', { class: 'wire bind', d: 'M202,0 L202,-83' }, a);
+  mk('rect', { class: 'box', width: 265, height: 24 }, a); txt(a, 'actT.t', 9, 16, 'B re-derived c1 by way of d1', 't-small');
+  const w = group(S, 'actW', 50, 255, 'f-slate');
+  mk('path', { class: 'wire bind', d: 'M130,0 L130,-43' }, w);
+  mk('rect', { class: 'box', width: 265, height: 24 }, w); txt(w, 'actW.t', 9, 16, 'whole-read of T: it coheres', 't-small');
+  const fd = group(S, 'actF', 330, 292, 'f-rose');
+  mk('rect', { class: 'box', width: 265, height: 24 }, fd); txt(fd, 'actF.t', 9, 16, 'finding: the claim needs a hypothesis H', 't-small');
+  const au = group(S, 'actU', 680, 408, 'f-slate');
+  mk('rect', { class: 'box', width: 250, height: 24 }, au); txt(au, 'actU.t', 9, 16, 'B re-derived u2', 't-small');
+  note(S, 'logN', 50, 310, ['Acts are recorded in the log. Each binds to exactly', 'what it read, for as long as that is unchanged.'], 't-note');
+
+  // the frontier
+  const fr = group(S, 'fr', 680, 235, 'f-clay');
+  mk('rect', { class: 'box', width: 250, height: 160 }, fr);
+  txt(fr, null, 12, 18, 'OWED · THE FRONTIER', 't-label');
+  [1, 2, 3, 4].forEach(i => txt(fr, 'fr.l' + i, 12, 22 + i * 24, '', 't-body'));
+
+  // two kinds of time
+  const tl = group(S, 'tl', 0, 0, '');
+  mk('line', { class: 'axis steady', x1: 60, x2: 900, y1: 470, y2: 470 }, tl);
+  txt(tl, null, 60, 448, 'STEADY TIME', 't-label on-paper');
+  mk('circle', { class: 'dot fill', cx: 80, cy: 470, r: 6 }, tl); txt(tl, null, 80, 495, 'S0', 't-name on-paper strong', 'middle');
+  const wt = group(S, 'wt', 0, 0, '');
+  txt(wt, null, 60, 536, 'WORK TIME', 't-label on-paper');
+  TX.forEach((x, i) => { mk('line', { class: 'axis', x1: x, x2: x, y1: 463, y2: 477 }, wt); txt(wt, null, x, 495, TIMES[i], 't-small on-paper', 'middle'); });
+  note(S, 'wsn', 490, 536, 'between two steady states there is only a working state, which is never “the theory”', 't-note', 'middle');
+  const s1 = group(S, 's1', 0, 0, '');
+  mk('circle', { class: 'dot fill', cx: 880, cy: 470, r: 6 }, s1); txt(s1, null, 880, 495, 'S1', 't-name on-paper strong', 'middle');
+  const now = group(S, 'now', 80, 0, '');
+  mk('line', { class: 'now', x1: 0, x2: 0, y1: 440, y2: 462 }, now); mk('path', { d: 'M-5,440 L5,440 L0,448 z', fill: 'var(--ink)' }, now);
+})();
+
+const FR = (a, b, c, d) => ({ 'fr.l1': a || '', 'fr.l2': b || '', 'fr.l3': c || '', 'fr.l4': d || '' });
+STEPS.push(
+{ scene: 'b', ch: 'Time and change', title: 'Two kinds of time',
+  text: 'Everything that happens is recorded in the log, and a state is the store as of a point in it. A <strong>steady state</strong> is one the store has rested in. The store moves from one steady state to the next at a single instant, logically: that sequence is <strong>steady time</strong>. The hours in which minds put such a move together are <strong>work time</strong>. In between, the store has only a <strong>working state</strong>: the last steady state plus what has been staged. Here is the store at rest, at S0: segment T, and a claim in segment U that is predicated on T\u2019s.',
+  terms: ['log', 'state', 'steady-state', 'working-state', 'steady-time', 'work-time'],
+  d: { show: ['bT', 'bk', 'be', 'bd', 'bc', 'bcv', 'bU', 'bu', 'buv', 'bref', 'brefL', 'tl', 'now', 'wt', 'wsn'] } },
+
+{ scene: 'b', ch: 'Time and change', title: 'Acts bind to what they read',
+  text: 'An <strong>act</strong> is one recorded thing that an <strong>actor</strong>, an identity the harness attests, did: a check, a review, a decision. It never changes what is written. It <strong>binds</strong> to exactly what it read, for as long as that is unchanged. Agent B re-derived the claim by way of the derivation, so that act read both, and the claim’s value “re-derived” rests on it. Someone read T as a whole and found it coheres. Whether an act counts at all is a matter of <strong>standing</strong>: may this actor do this?',
+  terms: ['act', 'actor', 'bind', 'standing'],
+  d: { show: ['actT', 'actW', 'logN'] } },
+
+{ scene: 'b', ch: 'Time and change', title: '08:30 — a finding',
+  text: 'An auditor finds that T’s claim is false as stated: it needs an extra hypothesis H. The finding is an act, and it is the <strong>perturbation</strong>, the thing that first disturbs a steady store. From here there is a <strong>frontier</strong>: everything still owed before the store is consistent again.',
+  terms: ['perturbation', 'frontier'],
+  flag: 'Open, and Joseph’s: may readers of the steady state see this finding before its consequences are worked through?',
+  d: { show: ['actF', 'fr'], hide: ['logN'], pos: { now: [TX[0], 0] }, txt: Object.assign({ 'bcv.t': 'known broken' }, FR('T’s claim is known broken')), cls: { bcv: 'broken' } } },
+
+{ scene: 'b', ch: 'Time and change', title: '09:25 — one segment changeset',
+  text: 'Agent A writes a whole new state of T at once: the claim with H, the derivation reworked, the simple explanation rewritten, and the description left as it was with an <strong>affirmation</strong>: the author\u2019s recorded statement that it is still right. That is a <strong>segment changeset</strong>. Nothing in it comes before anything else. What is written is reconciled by the author, at one instant. Values are not the author’s to set: every act that read the old text stops binding, so the claim falls to “drafted”, and the work to earn it back goes on the frontier.',
+  terms: ['segment-changeset', 'affirmation'],
+  flag: 'The rule “every dependent is changed or affirmed”, and the split between what is written and values, are proposals built on Joseph’s rule.',
+  d: { pos: { now: [TX[1], 0] }, hide: ['actF'],
+       txt: Object.assign({ 'bc.v': 'c2', 'bd.v': 'd2', 'bk.v': 'k2', 'be.s': 'affirmed by A', 'bcv.t': 'drafted', 'actT.t': 'B re-derived c1 by way of d1 — no longer binds', 'actW.t': 'whole-read of T — no longer binds' },
+            FR('re-derive c2', 'whole-read of T', 'U: its premise was narrowed. Did U use it?', 'U needs re-derived; T’s claim is drafted')),
+       cls: { bc: 'changed', bd: 'changed', bk: 'changed', be: 'changed', bcv: '', actT: 'broken', actW: 'broken' } } },
+
+{ scene: 'b', ch: 'Time and change', title: '11:00 — a check binds again',
+  text: 'B re-derives the new claim by way of the new derivation. This act reads c2 and d2 and binds to them. The claim is “re-derived” again, and two things leave the frontier.',
+  terms: [],
+  d: { pos: { now: [TX[2], 0] },
+       txt: Object.assign({ 'bcv.t': 're-derived', 'actT.t': 'B re-derived c2 by way of d2' }, FR('whole-read of T', 'U: its premise was narrowed. Did U use it?')),
+       cls: { bc: '', bd: '', bk: '', be: '', actT: '' } } },
+
+{ scene: 'b', ch: 'Time and change', title: '11:30 — a second changeset',
+  text: 'A finds and fixes an error in a step of the derivation. That is a second changeset on T. B’s check of half an hour ago read d2, so it no longer binds, and the claim is “drafted” once more. This happened in work time. It will leave no trace on the steady line.',
+  terms: [],
+  d: { pos: { now: [TX[3], 0] },
+       txt: Object.assign({ 'bd.v': 'd3', 'bcv.t': 'drafted', 'actT.t': 'B re-derived c2 by way of d2 — no longer binds' }, FR('re-derive c2', 'whole-read of T', 'U: its premise was narrowed. Did U use it?', 'U needs re-derived; T’s claim is drafted')),
+       cls: { bd: 'changed', actT: 'broken' } } },
+
+{ scene: 'b', ch: 'Time and change', title: '12:00 — re-derived again',
+  text: 'B re-derives by way of d3. The earlier check stays in the log and binds to nothing. It is not neutral, though: B passed a derivation that had an error in it, and that is exactly what the store needs in order to know how much B’s checks are worth.',
+  terms: [],
+  d: { pos: { now: [TX[4], 0] },
+       txt: Object.assign({ 'bcv.t': 're-derived', 'actT.t': 'B re-derived c2 by way of d3' }, FR('whole-read of T', 'U: its premise was narrowed. Did U use it?')),
+       cls: { bd: '', actT: '' } } },
+
+{ scene: 'b', ch: 'Time and change', title: '13:00 — the narrowing reaches U',
+  text: 'A premise can change in three ways. It can be <strong>refuted</strong>, and what used it loses that support. It can <strong>drop in level</strong>, and what rests on it can claim less. Or it can be <strong>narrowed</strong>, as here, which puts a question to every dependent: did you rely on what is gone? U did. Agent C writes a changeset on U: its claim now assumes H too, and its pointer is declared again against c2.',
+  terms: ['refuted', 'dropped-in-level', 'narrowed'],
+  flag: 'Treating a narrowed premise as a third case is a proposal. The August model filed it with the soft case.',
+  d: { pos: { now: [TX[5], 0] },
+       txt: Object.assign({ 'bu.v': 'u2', 'buv.t': 'drafted', 'bu.s': 'now assumes H' }, FR('whole-read of T', 're-derive u2', 'whole-read of U')),
+       cls: { bu: 'changed' } } },
+
+{ scene: 'b', ch: 'Time and change', title: '14:00 — the next steady state',
+  text: 'B re-derives u2. T and U are each read whole by someone other than their authors. Nothing is owed. Everything since 08:30 is one <strong>atomic changeset</strong>, and only now does the store move, at one instant, to S1. On the steady line T’s derivation went from d1 to d3: d2 was never part of any steady state. And there was never a theory in which T had H and U did not.',
+  terms: ['atomic-changeset'],
+  flag: 'Open, and Joseph’s: several changesets in progress at once, and whether two that were each completed combine into something steady.',
+  d: { show: ['s1', 'actU'], pos: { now: [880, 0] },
+       txt: Object.assign({ 'buv.t': 're-derived', 'actW.t': 'whole-read of T: it coheres', 'actU.t': 'B re-derived u2 · U read whole' }, FR('nothing owed')),
+       cls: { bu: '', actW: '' } } },
+);
+// ── Scene C: intake and work ──
+(function () {
+  const S = 'c';
+  card(S, 'src', 30, 60, 180, 96, 'sage', [[null, 15, 'SOURCE', 't-label'], [null, 34, 'audit-2026-10.md', 't-name'], [null, 52, 'read by: A, whole', 't-small'], [null, 68, 'cut completely: yes', 't-small'], [null, 84, 'retired when all five are settled', 't-small']]);
+  const OUT = ['changed an existing veritoid', 'became a new veritoid', 'already present', 'passed to an inbox (not final)', 'delivered to another store'];
+  OUT.forEach((o, i) => {
+    const y = 60 + i * 46;
+    card(S, 'ck' + i, 260, y, 96, 30, 'sage', [[null, 19, 'chunk ' + (i + 1), 't-small']]);
+    wire(S, 'cw' + i, `M356,${y + 15} L436,${y + 15}`);
+    chip(S, 'co' + i, 440, y + 5, 230, o, 'paper');
+  });
+  wire(S, 'cs', 'M210,108 L256,108', '', false);
+  note(S, 'cl', 362, 48, 'crossing', 't-note');
+  const t = group(S, 'cT', 730, 60, 'f-stone');
+  mk('rect', { class: 'box', width: 200, height: 110 }, t);
+  txt(t, null, 12, 16, 'SEGMENT', 't-label'); txt(t, null, 12, 31, 'persistence-threshold', 't-name'); txt(t, null, 12, 52, 'what it says: its veritoids', 't-small');
+  const ib = group(S, 'cI', 730, 186, 'f-sage');
+  mk('rect', { class: 'box', width: 200, height: 62, 'stroke-dasharray': '4 3' }, ib);
+  txt(ib, null, 12, 16, 'ITS INBOX', 't-label'); txt(ib, null, 12, 34, 'chunk 4, waiting', 't-name'); txt(ib, null, 12, 51, 'not part of what the segment says', 't-small');
+  wire(S, 'ci', 'M670,213 L726,213');
+
+  note(S, 'mq', 60, 340, 'QUEUE', 't-label'); note(S, 'mm', 360, 340, 'MOVE', 't-label'); note(S, 'mk', 700, 340, 'MECHANISMS', 't-label');
+  ['claim c2 of T', 'claim u2 of U', 'step 3 of another proof'].forEach((q, i) => chip(S, 'q' + i, 60, 352 + i * 28, 200, q, 'sand'));
+  card(S, 'mv', 360, 352, 250, 76, 'slate', [[null, 18, 'derivation: drafted → re-derived', 't-name'], [null, 38, 'first: the content is written and staged', 't-small'], [null, 54, 'standing: not the author of what is read', 't-small'], [null, 69, 'records: what was read, the criterion', 't-small']]);
+  ['a rule', 'a single agent', 'a council'].forEach((m, i) => chip(S, 'm' + i, 700, 352 + i * 28, 200, m, 'paper'));
+  wire(S, 'mw1', 'M260,390 L356,390'); wire(S, 'mw2', 'M696,390 L614,390');
+  note(S, 'mn', 60, 462, ['A move is a declared way for a value to change through an act. Each has a queue of things waiting.', 'A queue can be worked by more than one mechanism. The model says nothing about how a council works inside.'], 't-note');
+})();
+
+const C1 = ['src', 'cs', 'cl', 'cT', 'cI', 'ci'].concat([0, 1, 2, 3, 4].flatMap(i => ['ck' + i, 'cw' + i, 'co' + i]));
+STEPS.push(
+{ scene: 'c', ch: 'Intake and work', title: 'Sources, chunks, crossings, inboxes',
+  text: 'Material from outside is a <strong>source</strong>. It is cut, completely, into <strong>chunks</strong>, and each chunk gets a <strong>crossing</strong>: the recorded decision about where it went. The store knows who has read each source and how far its chunks have got, so “unread” is something you can ask for. Every segment has an <strong>inbox</strong> where chunks that bear on it wait. It is not part of what the segment says, so filling or emptying it never makes the segment look changed. What is handed on to another store is a <strong>delivery</strong>.',
+  terms: ['source', 'chunk', 'crossing', 'inbox', 'delivery'],
+  flag: 'The sprint dealt with about two thousand Working Notes items and retired no sources, because the notes lived inside the text they were about.',
+  d: { show: C1, hi: ['src', 'cI'] } },
+
+{ scene: 'c', ch: 'Intake and work', title: 'Moves, queues, mechanisms',
+  text: 'A <strong>move</strong> is a declared way for a value to change through an act. Each move has a queue. What works the queue is left open on purpose: a rule, one agent, or a council. Joseph’s diagnosis of the October sprint’s loop was a fresh mind landing a checker’s findings and writing new text that then needed checking. The remedy that points to is that findings go back to the author. Independence belongs on the checking side only.',
+  terms: ['move', 'queue', 'mechanism'],
+  flag: 'The model supports that remedy and does not yet enforce it.',
+  d: { show: ['mq', 'mm', 'mk', 'q0', 'q1', 'q2', 'mv', 'm0', 'm1', 'm2', 'mw1', 'mw2', 'mn'], hi: ['mv'] } },
+
+{ scene: 'open', ch: 'What is open', title: 'What is open, and what is only proposed',
+  text: 'The model is a working one. These are the places where it is undecided, and the places where it rests on a step nobody has confirmed.',
+  terms: [] },
+);
+document.getElementById('panel-intro').innerHTML = `
+  <h2>What this is a model of</h2>
+  <p>A <strong>verisectorium</strong> is a body of written work that is never finished, that many minds work on while each arrives knowing nothing about it, and in which every piece says honestly how well it is supported.</p>
+  <p>A <strong>store</strong> is one verisectorium’s contents as the engine holds them. Nothing in it is changed by hand. A store is governed by its <strong>definition</strong>: the declared kinds of thing it may hold, the questions that may be asked of each, and the ways an answer may change.</p>
+  <p>The steps that follow build the store up from one piece of content, then show it change over a morning’s work, then show how material gets in. Use Next, the arrow keys, or Play.</p>`;
+document.getElementById('panel-open').innerHTML = `
+  <div class="cols">
+    <div><h3>OPEN</h3><ul>
+      <li>Whether a veritoid has an identity of its own that survives being split, merged or moved.</li>
+      <li>Whether a known defect may show on a steady state before it is worked through.</li>
+      <li>Several changesets in progress at once, and whether two completed ones combine into something steady.</li>
+      <li>How much credence a small rewording should cost, and the arithmetic of support along predicated-on.</li>
+      <li>What makes two checkers of the same model family independent.</li>
+      <li>How “it was Joseph” is attested.</li>
+      <li>Whether keeping the same author through a round of checking should be enforced.</li>
+    </ul></div>
+    <div><h3>PROPOSED, NOT YET CONFIRMED</h3><ul>
+      <li>Two levels of content, and only two: veritoids and segments.</li>
+      <li>The write rule: every dependent veritoid is changed or affirmed in the same changeset.</li>
+      <li>What is written is reconciled at once; values are earned back one act at a time.</li>
+      <li>A pointer is written; only whether it holds is computed.</li>
+      <li>A projection is a kind of segment.</li>
+      <li>A narrowed premise is a third case, beside refuted and dropped in level.</li>
+      <li>A name stays with its thing when the meaning changes.</li>
+      <li>An inbox is outside what its segment says.</li>
+    </ul></div>
+  </div>`;
+// ── controller ──
+const DEFAULT_TEXT = {};
+for (const id in T) DEFAULT_TEXT[id] = T[id].textContent;
+const svg = document.getElementById('svg');
+const panels = { intro: document.getElementById('panel-intro'), open: document.getElementById('panel-open') };
+let cur = 0;
+
+function stateAt(n) {
+  const scene = STEPS[n].scene;
+  let first = n; while (first > 0 && STEPS[first - 1].scene === scene) first--;
+  const st = { show: new Set(), pos: {}, cls: {}, txt: {} };
+  for (let i = first; i <= n; i++) {
+    const d = STEPS[i].d || {};
+    (d.show || []).forEach(id => st.show.add(id));
+    (d.hide || []).forEach(id => st.show.delete(id));
+    Object.assign(st.pos, d.pos || {}); Object.assign(st.cls, d.cls || {}); Object.assign(st.txt, d.txt || {});
+  }
+  const d = STEPS[n].d || {};
+  st.hi = new Set(d.hi || d.show || []);
+  return st;
+}
+
+function render(n) {
+  cur = Math.max(0, Math.min(STEPS.length - 1, n));
+  const step = STEPS[cur], scene = step.scene, isPanel = scene in panels;
+  svg.hidden = isPanel;
+  for (const k in panels) panels[k].hidden = k !== scene;
+  if (!isPanel) {
+    const st = stateAt(cur);
+    for (const id in R) {
+      const r = R[id];
+      const on = r.scene === scene && st.show.has(id);
+      const p = st.pos[id] || [r.x, r.y];
+      place(r.g, p[0], p[1]);
+      r.g.setAttribute('class', r.base + (on ? ' on' : '') + (st.cls[id] ? ' ' + st.cls[id] : '') + (on && st.hi.has(id) ? ' hi' : ''));
+    }
+    for (const id in T) T[id].textContent = id in st.txt ? st.txt[id] : DEFAULT_TEXT[id];
+  }
+  const inCh = STEPS.filter(s => s.ch === step.ch), k = inCh.indexOf(step) + 1;
+  document.getElementById('where').textContent = step.ch.toUpperCase() + (inCh.length > 1 ? ' · ' + k + ' OF ' + inCh.length : '');
+  document.getElementById('cap-title').textContent = step.title;
+  document.getElementById('cap-text').innerHTML = step.text;
+  document.getElementById('cap-terms').innerHTML = (step.terms || []).map(t => `<span>${t}</span>`).join('');
+  document.getElementById('cap-flag').textContent = step.flag || '';
+  document.getElementById('count').textContent = (cur + 1) + ' / ' + STEPS.length;
+  document.getElementById('prev').disabled = cur === 0;
+  document.getElementById('next').disabled = cur === STEPS.length - 1;
+  document.querySelectorAll('#ticks button').forEach((b, i) => { b.className = (i < cur ? 'done' : i === cur ? 'now' : '') + (b.dataset.gap ? ' gap' : ''); b.setAttribute('aria-current', i === cur ? 'step' : 'false'); });
+  document.querySelectorAll('#chapters button').forEach(b => b.setAttribute('aria-current', b.dataset.ch === step.ch ? 'true' : 'false'));
+  try { history.replaceState(null, '', '#step-' + (cur + 1)); } catch (e) {}
+}
+
+
+(function build() {
+  const ticks = document.getElementById('ticks'), chapters = document.getElementById('chapters');
+  let last = null;
+  STEPS.forEach((s, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.title = s.title; b.setAttribute('aria-label', 'Step ' + (i + 1) + ': ' + s.title);
+    if (last !== null && s.ch !== last) b.dataset.gap = '1';
+    b.addEventListener('click', () => { render(i); });
+    ticks.appendChild(b);
+    if (s.ch !== last) {
+      const c = document.createElement('button');
+      c.type = 'button'; c.textContent = s.ch.toUpperCase(); c.dataset.ch = s.ch;
+      c.addEventListener('click', () => { render(i); });
+      chapters.appendChild(c);
+    }
+    last = s.ch;
+  });
+  document.getElementById('prev').addEventListener('click', () => { render(cur - 1); });
+  document.getElementById('next').addEventListener('click', () => { render(cur + 1); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') { render(cur + 1); e.preventDefault(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { render(cur - 1); e.preventDefault(); }
+  });
+  const m = /^#step-(\d+)$/.exec(location.hash);
+  render(m ? parseInt(m[1], 10) - 1 : 0);
+  window.addEventListener('hashchange', () => { const h = /^#step-(\d+)$/.exec(location.hash); if (h && parseInt(h[1], 10) - 1 !== cur) render(parseInt(h[1], 10) - 1); });
+})();
+</script>

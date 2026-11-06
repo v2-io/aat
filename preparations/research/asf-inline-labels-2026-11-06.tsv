@@ -1,0 +1,802 @@
+01-aat-core	def-action-transition	body	Definition (action-transition)
+01-aat-core	def-action-transition	body	Definition (fresh-transition)
+01-aat-core	def-action-transition	body	Definition (transition opacity)
+01-aat-core	def-action-transition	wn	Definition (transition opacity)
+01-aat-core	def-action-transition	wn	Postulate (slug)
+01-aat-core	def-action-transition	wn	Postulate (transition-opacity)
+01-aat-core	def-action-transition	wn	Scope
+01-aat-core	def-adaptive-tempo	body	Definition (adaptive-tempo)
+01-aat-core	def-adaptive-tempo	body	Definition (tensor-adaptive-tempo)
+01-aat-core	def-adaptive-tempo	body	Empirical Claim
+01-aat-core	def-agent-environment	body	Definition (agent-environment-coupling)
+01-aat-core	def-agent-environment	body	Definition (information-loss-boundary)
+01-aat-core	def-agent-spectrum	body	Definition (agent-spectrum)
+01-aat-core	def-causal-information-yield	body	Definition (causal-information-yield)
+01-aat-core	def-chronica	body	Definition (chronica)
+01-aat-core	def-control-regret	body	Definition (control-regret)
+01-aat-core	def-mismatch-signal	body	Definition (mismatch-signal)
+01-aat-core	def-mismatch-signal	body	Definition (estimation-error)
+01-aat-core	def-mismatch-signal	body	Definition (score-mismatch)
+01-aat-core	def-model-class-fitness	body	Definition (model-class-fitness)
+01-aat-core	def-model-sufficiency	body	Definition (model-sufficiency)
+01-aat-core	def-mood	body	Definition
+01-aat-core	def-mood	body	Definition
+01-aat-core	def-observation-function	body	Definition (observation-function)
+01-aat-core	def-observation-function	body	Definition (observation-kernel)
+01-aat-core	def-observation-function	body	Definition (fresh-noise)
+01-aat-core	def-observation-function	body	Definition (epistemic opacity)
+01-aat-core	def-pearl-causal-hierarchy	body	Definition (pearl-causal-hierarchy, recapitulating Pearl 2009 and Bareinboim et al. 2022)
+01-aat-core	def-satisfaction-gap	body	Definition (objective-attainability)
+01-aat-core	def-satisfaction-gap	body	Definition (satisfaction-gap)
+01-aat-core	def-satisfaction-gap	body	Hypothesis (aspiration-dominance)
+01-aat-core	def-shared-intent	body	Definition (shared-intent)
+01-aat-core	def-strategic-calibration	body	Definition (strategic-calibration)
+01-aat-core	def-strategic-tempo	body	Definition (strategic-tempo)
+01-aat-core	def-strategic-tempo	body	Derived (Conditional on independent edges)
+01-aat-core	def-strategic-tempo	body	Definition (OR-node rate allocation)
+01-aat-core	def-strategic-tempo	body	Derived (from persistence-condition applied per edge)
+01-aat-core	def-strategic-tempo	body	Discussion
+01-aat-core	def-strategy-dag	body	Definition (strategy-dag)
+01-aat-core	def-strategy-dag	body	Discussion (correlation-hierarchy)
+01-aat-core	def-strategy-dag	body	Derived (from causal-structure + finite planning horizon)
+01-aat-core	def-strategy-dimension	body	Definition (strategy-dimension)
+01-aat-core	def-unity-dimensions	body	Definition (definition-unity-dimensions)
+01-aat-core	def-unity-dimensions	body	Scope note
+01-aat-core	def-unity-dimensions	body	Discussion
+01-aat-core	def-unity-dimensions	body	Definition
+01-aat-core	def-unity-dimensions	body	Discussion
+01-aat-core	def-value-object	body	Definition (value-object)
+01-aat-core	def-value-object	body	Derived (convention-monotonicity)
+01-aat-core	def-value-object	body	Discussion (policy-objective-extension)
+01-aat-core	der-action-selection	body	Derived (action-selection, from agent-model completeness)
+01-aat-core	der-action-selection	wn	Definition
+01-aat-core	der-adversarial-destabilization	body	Derived (adversarial-destabilization, from sector-persistence-template)
+01-aat-core	der-adversarial-destabilization	body	Assumption (Coupling Model D)
+01-aat-core	der-adversarial-destabilization	body	Assumption (Coupling Model S)
+01-aat-core	der-adversarial-destabilization	body	Discussion — Mechanism Schematic
+01-aat-core	der-agent-opacity	body	Definition (agent-opacity-Hb)
+01-aat-core	der-agent-opacity	body	Derived (Hb-variance-decomposition; exact in linear-Gaussian sub-scope $\alpha$)
+01-aat-core	der-agent-opacity	body	Derived (sign-flip-from-signed-coupling)
+01-aat-core	der-agent-opacity	body	Formulation (emitter-regimes, dual to #der-interaction-channel-classification)
+01-aat-core	der-agent-opacity	body	Formulation (adversarial-edge-targeting arg-max; factor-wise grounded, multiplicative composition a modeling choice)
+01-aat-core	der-agent-opacity	body	Derived (tempo-amplification-by-opacity)
+01-aat-core	der-architecture-noidentifiability	body	Definition (architecture-noidentifiability-setting)
+01-aat-core	der-architecture-noidentifiability	body	Derived (architecture-noidentifiability-Kalman, from Kalman-Ho canonical-form non-uniqueness applied to AAT-agent realizations), exact in the linear-Gaussian sub-scope
+01-aat-core	der-architecture-noidentifiability	body	Derived (architecture-noidentifiability-general, from causal hierarchy theorem applied at agent-as-SCM layer), robust qualitative
+01-aat-core	der-architecture-noidentifiability	body	Derived (mechanism-reduction-to-instance-2, from Fisher-information factorization through similarity-invariants)
+01-aat-core	der-architecture-noidentifiability	body	Derived (escape-routes, from no-go scope conditions)
+01-aat-core	der-architecture-noidentifiability	body	Derived (fano-degeneracy-at-zero-information), exact
+01-aat-core	der-architecture-noidentifiability	body	Derived (third-mode-of-interventional-access)
+01-aat-core	der-belief-strategy-attractor	body	Formulation (strategy-source-coupled-aggregation)
+01-aat-core	der-belief-strategy-attractor	body	Definition (orient-cascade-Sigma-update)
+01-aat-core	der-belief-strategy-attractor	body	Derived (closed-loop-coupling, from #form-strategy-source-coupled-aggregation + #der-orient-cascade)
+01-aat-core	der-belief-strategy-attractor	body	Derived (fixed-point-conditions)
+01-aat-core	der-belief-strategy-attractor	body	Derived (linearized-stability), exact under linearization
+01-aat-core	der-belief-strategy-attractor	body	Result (pathological-attractor-condition), conditional
+01-aat-core	der-belief-strategy-attractor	body	Derived (O-source-no-attractor), conditional on orient-cascade exogeneity
+01-aat-core	der-belief-strategy-attractor	body	Derived (source-asymmetry-attractor), robust qualitative (exact under linearization with multiplicative $K$)
+01-aat-core	der-causal-hierarchy-requirement	body	Derived (causal-hierarchy-requirement, from value-object + pearl-causal-hierarchy)
+01-aat-core	der-causal-hierarchy-requirement	body	Scope Narrowing (learning-agent scope)
+01-aat-core	der-causal-insufficiency-detection	body	Derived (no-go-on-policy, from causal hierarchy theorem + observational equivalence under sequential short-circuit), conditional on (S1)–(S5) below
+01-aat-core	der-causal-insufficiency-detection	body	Derived (boundary-routes, from no-go scope conditions)
+01-aat-core	der-causal-insufficiency-detection	body	Derived (from loop-interventional-access + independence test, conditional on SA3 exploration providing joint observability)
+01-aat-core	der-causal-insufficiency-detection	body	Derived (residual-degeneracy, as instance of no-go theorem)
+01-aat-core	der-causal-insufficiency-detection	body	Heuristic
+01-aat-core	der-causal-insufficiency-detection	body	Derived (from the covariance signal + the L1 construction principle in #def-strategy-dag for positive covariance; explicit conditioning for negative)
+01-aat-core	der-causal-insufficiency-detection	body	Discussion (diagnostic-ciy)
+01-aat-core	der-chain-confidence-decay	body	Derived (chain-confidence-decay, mathematical identity)
+01-aat-core	der-class-coercion-in-composition	body	Conditions (wrapper-design)
+01-aat-core	der-class-coercion-in-composition	body	Derived (wrapper-as-composite, from (D-A2)+(D-A3)+(D-A4))
+01-aat-core	der-class-coercion-via-wrapping	body	Definition (wrapper-update-maps)
+01-aat-core	der-class-coercion-via-wrapping	body	Conditions (component-admissibility)
+01-aat-core	der-class-coercion-via-wrapping	body	Derived (directed-separation-at-wrapper-exact, from C1+C2+C3)
+01-aat-core	der-class-coercion-via-wrapping	body	Derived (directed-separation-at-wrapper-approximate, from C1+C2+leakage-bound)
+01-aat-core	der-class-coercion-via-wrapping	body	Derived (W1-selection-leakage-bound, from C1+C2′, data-processing inequality)
+01-aat-core	der-deliberation-cost	body	Assumption (deliberation-drift)
+01-aat-core	der-deliberation-cost	body	Derived (Conditional on deliberation-drift assumption)
+01-aat-core	der-deliberation-cost	body	Derived (Conditional on diminishing-returns + deliberation-drift)
+01-aat-core	der-deliberation-cost	body	Derived (one update step, linear update)
+01-aat-core	der-directed-separation	body	Derived (directed-separation, from complete-agent-state + scope condition)
+01-aat-core	der-directed-separation	body	Scope Condition (directed-separation-scope)
+01-aat-core	der-directed-separation	body	Scope Condition (directed-separation-architecture)
+01-aat-core	der-directed-separation	body	Definition (processing-coupling)
+01-aat-core	der-directed-separation	body	Hypothesis
+01-aat-core	der-gain-sector-bridge	body	Derived (gain-sector-bridge, from update-gain + directional fidelity)
+01-aat-core	der-gain-sector-bridge	body	Derived (sector-convexity equivalence, two-point form)
+01-aat-core	der-interaction-channel-classification	body	Definition (regime-boundaries)
+01-aat-core	der-interaction-channel-classification	body	Derived (regime-typed-rho-eff, from regime-boundaries + sector-persistence-template)
+01-aat-core	der-interaction-channel-classification	body	Derivation (Kalman-over-Kalman, from regime-boundaries + update-gain)
+01-aat-core	der-interaction-channel-classification	body	Derived (emitter-side-recovery)
+01-aat-core	der-loop-interventional-access	body	Derived (loop-interventional-access, from causal-structure + recursive-update)
+01-aat-core	der-mood-timescale	body	Assumption
+01-aat-core	der-mood-timescale	body	Derived (steady-state MSE)
+01-aat-core	der-mood-timescale	body	Derived (optimum)
+01-aat-core	der-mood-timescale	body	Derived (scaling law)
+01-aat-core	der-multi-timescale-stability	body	Formulation (stacked two-timescale system)
+01-aat-core	der-multi-timescale-stability	body	Assumption (stacking premises S0–S4)
+01-aat-core	der-multi-timescale-stability	body	Derived (two-timescale stacked persistence)
+01-aat-core	der-multi-timescale-stability	body	Derived (warm-start refinement — the cost of acting on transients)
+01-aat-core	der-multi-timescale-stability	body	Derived (sector condition supplies the unique-root prerequisite)
+01-aat-core	der-multi-timescale-stability	body	Derived (N-level stacking, nearest-neighbor coupling)
+01-aat-core	der-multi-timescale-stability	body	Formulation (Model S extension — conditional, not yet derived)
+01-aat-core	der-observability-dominance	body	Derived (observability-dominance, from update-gain + strategy-dag)
+01-aat-core	der-orient-cascade	body	Derived (orient-cascade, from information dependency between mismatch types)
+01-aat-core	der-recursive-update	body	Derived (recursive-update, from temporal postulate and $M_t$ completeness)
+01-aat-core	der-resource-bounded-destabilization	body	Derived (resource-regime-split, from form-resource-budget + sector-persistence-template)
+01-aat-core	der-resource-bounded-destabilization	body	Derived (Conditional on A-cost, A-gate; hard regime $r_{\mathcal{B}}=0$)
+01-aat-core	der-team-persistence	body	Definition (distributed-tempo)
+01-aat-core	der-team-persistence	body	Formulation (disturbance-decomposition)
+01-aat-core	der-team-persistence	body	Definition (effective-disturbance)
+01-aat-core	der-team-persistence	body	Derived (team-persistence, from sector-condition-stability, persistence-condition)
+01-aat-core	der-team-persistence	body	Discussion — Coordination Threshold
+01-aat-core	der-team-persistence	body	Discussion.
+01-aat-core	der-team-persistence	body	Discussion.
+01-aat-core	der-tempo-composition	body	Derived (Joint-Bounded Tempo, Conditional on the Fisher-local regime)
+01-aat-core	der-tempo-composition	body	Definition (Coordination Overhead)
+01-aat-core	der-tempo-composition	body	Derived (Signed additive-baseline deviation, from #deriv-tempo-additivity applied across agents)
+01-aat-core	der-tempo-composition	body	Derived (Super-additive witness, exact)
+01-aat-core	der-tempo-composition	body	Derived (coordination-overhead-bound, from composition-closure bridge lemma)
+01-aat-core	der-tempo-composition	body	Derived (coordination-overhead-tempo-form)
+01-aat-core	der-temporal-nesting	body	Derived (temporal-nesting)
+01-aat-core	deriv-adaptive-gain-dynamics	body	Formulation (meta-gain-conditions, extend A2' to adaptive-gain setting)
+01-aat-core	deriv-adaptive-gain-dynamics	body	Derived (augmented-state-persistence, from sector-persistence-template applied twice with coupling)
+01-aat-core	deriv-adaptive-gain-dynamics	body	Formulation (sub-scope-refinement)
+01-aat-core	deriv-adaptive-gain-dynamics	body	Derivation (case-adaptive-kalman-alpha2)
+01-aat-core	deriv-adaptive-gain-dynamics	body	Derivation (case-rmsprop-alpha2-conditional)
+01-aat-core	deriv-adaptive-gain-dynamics	body	Sketch (case-imm-alpha2-plus-dwelltime)
+01-aat-core	deriv-adaptive-gain-dynamics	body	Classification (case-maml-mixed)
+01-aat-core	deriv-bilateral-trade-impossibility	body	Definition (ex-post-efficient)
+01-aat-core	deriv-bilateral-trade-impossibility	body	Definition (bayesian-ic, BIC)
+01-aat-core	deriv-bilateral-trade-impossibility	body	Definition (individual-rationality, IR)
+01-aat-core	deriv-bilateral-trade-impossibility	body	Definition (budget-balance)
+01-aat-core	deriv-bilateral-trade-impossibility	body	Postulate (myerson-satterthwaite-1983, imported), exact
+01-aat-core	deriv-bilateral-trade-impossibility	body	Derived (aat-bilateral-trade-translation, from `#scope-composite-agent`), conditional on the buyer-seller-as-two-sub-agent reading, partial
+01-aat-core	deriv-causal-ib-exploration	body	Derivation (survival-exploration)
+01-aat-core	deriv-causal-ib-lmi	body	Definition (multidim-mismatch)
+01-aat-core	deriv-causal-ib-lmi	body	Definition (matrix-ciy)
+01-aat-core	deriv-causal-ib-lmi	body	Derived (lmi-survival)
+01-aat-core	deriv-causal-ib-lmi	body	Derived (tensor-lagrangian)
+01-aat-core	deriv-causal-ib-lmi	body	Derived (blank-wall-resolution)
+01-aat-core	deriv-causal-ib-lmi	body	Derived (scalar-recovery)
+01-aat-core	deriv-causal-ib-lmi	body	Derived (matrix-confidence-tragedy)
+01-aat-core	deriv-convention-monotonicity	body	Derived (convention-monotonicity-right-rung, Conditional on (M) membership of the stitched replanner in $\Pi$, and (PC) prefix-closure of $\Pi$ or (SO) state-wise optimality of $\pi^\ast$; on the first-action reading of $A_O^{\text{B}}$)
+01-aat-core	deriv-convention-monotonicity	body	Derived (Conditional on order-consistency of the replanning objective)
+01-aat-core	deriv-critical-mass-composition	body	Formulation (coupling-model-C1, from #der-team-persistence + #der-adversarial-destabilization)
+01-aat-core	deriv-critical-mass-composition	body	Formulation (coordination-cost-C2)
+01-aat-core	deriv-critical-mass-composition	body	Derived (critical-mass-symmetric, from #result-sector-persistence-template + C1 + C2)
+01-aat-core	deriv-critical-mass-composition	body	Derived (weakest-link-subsumption)
+01-aat-core	deriv-critical-mass-composition	body	Derived (unity-multiplicative-modulator, conditional on LQR-compatible action structure)
+01-aat-core	deriv-critical-mass-composition	body	Scope (scope-gate-from-composition-scope-condition)
+01-aat-core	deriv-critical-mass-composition	body	Sketch (asymmetric-limit-symbiogenesis, from weighted Lyapunov)
+01-aat-core	deriv-decomposition-uniqueness	body	Definition (separated-decomposition)
+01-aat-core	deriv-decomposition-uniqueness	body	Definition (decomposition-isomorphism)
+01-aat-core	deriv-decomposition-uniqueness	body	Derived (separation-underdetermination)
+01-aat-core	deriv-decomposition-uniqueness	body	Definition (goal-intervention-family)
+01-aat-core	deriv-decomposition-uniqueness	body	Definition (admissibility-hypotheses)
+01-aat-core	deriv-decomposition-uniqueness	body	Derived (decomposition-canonicity, from directed separation + full intervention access)
+01-aat-core	deriv-decomposition-uniqueness	body	Derived (goal-fiber-gauge)
+01-aat-core	deriv-decomposition-uniqueness	body	Derived (restricted-intervention-access)
+01-aat-core	deriv-decomposition-uniqueness	body	Discussion
+01-aat-core	deriv-discrete-sector-condition	body	Definition (Discrete Dynamics)
+01-aat-core	deriv-discrete-sector-condition	body	Assumption DA2' (discrete-sector-condition)
+01-aat-core	deriv-discrete-sector-condition	body	Derived (contraction, from DA2')
+01-aat-core	deriv-discrete-sector-condition	body	Derived (DA.1, discrete bounded mismatch)
+01-aat-core	deriv-discrete-sector-condition	body	Derived (DA.2, discrete adaptive reserve)
+01-aat-core	deriv-discrete-sector-condition	body	Derived (DA.1S, discrete stochastic bounded mismatch)
+01-aat-core	deriv-discrete-sector-condition	body	Derived (Conditional on Lipschitz regularity)
+01-aat-core	deriv-edge-credence-dynamics	body	Definition (Beta-Bernoulli edge dynamics)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Conditional on Beta-Bernoulli model)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (stochastic ultimate bound, single edge)
+01-aat-core	deriv-edge-credence-dynamics	body	Definition (Discounted Beta-Bernoulli update)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Conditional on Beta-Bernoulli model + exponential forgetting)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Conditional on Beta-Bernoulli model, observable intermediate)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (depth-$d$ chain sector parameter)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Conditional on Beta-Bernoulli model, unobservable intermediate)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (SA1 violation magnitude)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Conditional on Beta-Bernoulli model, $\varepsilon$-greedy OR-node)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Proof Step)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (optimal exploration rate)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived ($k$-arm OR-node sector parameter)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (admissible exploration interval for persistence)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (single-edge persistence threshold)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (two-edge persistence threshold, observable)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (OR-node persistence threshold)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Conditional on Beta-Bernoulli model, L1 augmented DAG, observable common cause $C$, $\varepsilon$-greedy action selection)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (Conditional on Beta-Bernoulli model, observable common cause $C$, componentwise conditional-branch update, facilitator monotonicity)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (cramer-rao-floor, from Fisher information of mixture model + Cramér-Rao bound)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (value-residual sector condition, linear case)
+01-aat-core	deriv-edge-credence-dynamics	body	Derived (from per-component sector condition + Jacobian non-negativity)
+01-aat-core	deriv-edge-credence-dynamics	body	Scope (coupled-case-applicability)
+01-aat-core	deriv-edge-credence-dynamics	body	Formulation (gradient-attribution)
+01-aat-core	deriv-edge-update-natural-parameter	body	Assumption (evidential-additivity axiom)
+01-aat-core	deriv-edge-update-natural-parameter	body	Derived (evidential-additivity uniqueness of log-odds, conditional on the axiom above)
+01-aat-core	deriv-edge-update-natural-parameter	body	Derived (Proof Step: Bayesian form of the update)
+01-aat-core	deriv-edge-update-natural-parameter	body	Derived (Proof Step: uniqueness by Cauchy functional equation)
+01-aat-core	deriv-edge-update-natural-parameter	body	Derived (Proof Step: determining the constants)
+01-aat-core	deriv-edge-update-natural-parameter	body	Discussion (three-layer additive decomposition)
+01-aat-core	deriv-edge-update-natural-parameter	body	Discussion (operational consequence)
+01-aat-core	deriv-edge-update-natural-parameter	body	Scope (evidential-additivity scope)
+01-aat-core	deriv-evidence-allocation-ceiling	body	Formulation (allocation setting)
+01-aat-core	deriv-evidence-allocation-ceiling	body	Derived (Conditional on fixed allocation + estimator class $\mathcal C$ + Model D)
+01-aat-core	deriv-evidence-allocation-ceiling	body	Derived (Conditional on Proposition EA.1)
+01-aat-core	deriv-evidence-allocation-ceiling	body	Formulation (where the discount is applied)
+01-aat-core	deriv-fisher-local-update-gain	body	Definition (Fisher-local regime, conditions (R1)–(R3))
+01-aat-core	deriv-fisher-local-update-gain	body	Derived (posterior-mean-shift)
+01-aat-core	deriv-fisher-local-update-gain	body	Definition (natural gradient at the current point)
+01-aat-core	deriv-fisher-local-update-gain	body	Derived (gain-decomposition)
+01-aat-core	deriv-fisher-local-update-gain	body	Derived (admissibility-of-degenerate-curvature)
+01-aat-core	deriv-fisher-local-update-gain	body	Derived (global-exactness-special-cases)
+01-aat-core	deriv-fisher-whitened-update-rule	body	Derived (angle-bound-finite-correlation)
+01-aat-core	deriv-fisher-whitened-update-rule	body	Definition (Fisher-whitened-update)
+01-aat-core	deriv-fisher-whitened-update-rule	body	Derived (Fisher-whitening-from-B1-parameterization-invariance)
+01-aat-core	deriv-fisher-whitened-update-rule	body	Derived (sub-scope-alpha-3)
+01-aat-core	deriv-fisher-whitened-update-rule	body	Derived (Fisher-whitening-as-special-meta-gain)
+01-aat-core	deriv-fisher-whitened-update-rule	body	Hypothesis (L2-latent-floor)
+01-aat-core	deriv-gain-sector	body	Derived (scalar-Kalman-sector, from Kalman update)
+01-aat-core	deriv-gain-sector	body	Derived (steady-state scalar sector parameter)
+01-aat-core	deriv-gain-sector	body	Derived (matrix-Kalman-sector, from Kalman covariance reduction)
+01-aat-core	deriv-gain-sector	body	Derived (diagonal-Kalman-sector)
+01-aat-core	deriv-gain-sector	body	Derived (bridge-theorem, from update-gain + B1)
+01-aat-core	deriv-gain-sector	body	Derived (sector-convexity-equivalence, two-point form)
+01-aat-core	deriv-graph-structure	body	Derived (from #post-causal-structure)
+01-aat-core	deriv-graph-structure	body	Derived (from Cox's theorem)
+01-aat-core	deriv-graph-structure	body	Derived (from #der-chain-confidence-decay + bounded computation)
+01-aat-core	deriv-graph-structure	body	Derived (from #der-chain-confidence-decay + monitoring requirement)
+01-aat-core	deriv-graph-structure	body	Derived (Conditional on causal sufficiency of $\Sigma_t$)
+01-aat-core	deriv-graph-structure	body	Derived (from #post-causal-structure + finite planning horizon)
+01-aat-core	deriv-graph-structure	body	Derived (Conditional on the noisy-AND/OR structural equations and causal sufficiency)
+01-aat-core	deriv-l1-update-bias	body	Derived (L1-bias-formula-OR-root)
+01-aat-core	deriv-l1-update-bias	body	Derived (biased-fixed-point-exists)
+01-aat-core	deriv-l1-update-bias	body	Derived (observable-C-zero-bias)
+01-aat-core	deriv-l1-update-bias	body	Derived (bias-floor-under-forgetting)
+01-aat-core	deriv-l1-update-bias	body	Derived (dual-forgetting-requirement)
+01-aat-core	deriv-l1-update-bias	body	Empirical claim (monte-carlo-confirmation)
+01-aat-core	deriv-matrix-persistence-condition	body	Definition (matrix-Model-S-mismatch-dynamics)
+01-aat-core	deriv-matrix-persistence-condition	body	Derived (stationary-covariance, exact under Hurwitz $\mathcal{T}$ and $\Sigma_w \succ 0$)
+01-aat-core	deriv-matrix-persistence-condition	body	Derived (matrix-persistence-loewner-Model-S)
+01-aat-core	deriv-mechanism-counterfactual-separation	body	Derived (Result 1 — strictness witness)
+01-aat-core	deriv-mechanism-counterfactual-separation	body	Derived (Result 2 — reducibility of PO-specified replacements)
+01-aat-core	deriv-mechanism-counterfactual-separation	body	Derived (Result 3 — internalization re-represents, does not collapse)
+01-aat-core	deriv-mechanism-counterfactual-separation	body	Derived (Result 4 — genericity: every anchor-mobile SCM separates from its own relabeling)
+01-aat-core	deriv-mechanism-counterfactual-separation	body	Discussion (the boundary, and why Results 1, 2, and 4 are consistent)
+01-aat-core	deriv-mismatch-budget-attribution	body	Assumption (GA-1, fresh noise — inherited from #result-mismatch-decomposition)
+01-aat-core	deriv-mismatch-budget-attribution	body	Assumption (P, chronica-measurable policy)
+01-aat-core	deriv-mismatch-budget-attribution	body	Derived (policy-as-measure), exact under GA-1 and (P), for a declared world generated by its kernels ( #def-action-transition, #def-observation-function)
+01-aat-core	deriv-mismatch-budget-attribution	body	Derived (first-order-log-additivity), exact given the rate-lift convention of #internal-external-decomposition
+01-aat-core	deriv-mismatch-budget-attribution	body	Derived (log-loss-decomposition), exact under GA-1 and chronica-measurability of the model
+01-aat-core	deriv-mismatch-budget-attribution	body	Derived (class-ceiling-pythagorean), exact conditional on the predictive class being an exponential family with an attainable moment match
+01-aat-core	deriv-mismatch-budget-attribution	body	Discussion-grade as an anchor — the leading-order scaling is stated, the constants are not derived here.
+01-aat-core	deriv-observation-ambiguity-bias-bound	body	Derived (w2-transport-track, conditional on H2)
+01-aat-core	deriv-observation-ambiguity-bias-bound	body	Derived, conditional on (H2)
+01-aat-core	deriv-observation-ambiguity-bias-bound	body	Derived (fisher-rao-track, conditional on H1; the sharp local constant additionally on H4)
+01-aat-core	deriv-observation-ambiguity-bias-bound	body	Derived, conditional on (H1); the second form additionally on (H4)
+01-aat-core	deriv-observation-ambiguity-bias-bound	body	Proved (no-universal-C-euclidean, counterexample-grade)
+01-aat-core	deriv-observation-ambiguity-bias-bound	body	Illustrative, exact under stated assumptions
+01-aat-core	deriv-observation-noise-placement	body	Definition (Setup)
+01-aat-core	deriv-observation-noise-placement	body	Derived (defender-channel noise)
+01-aat-core	deriv-observation-noise-placement	body	Derived (attacker-channel noise)
+01-aat-core	deriv-observation-noise-placement	body	Derived (shared base noise)
+01-aat-core	deriv-observation-noise-placement	body	Derived (attacker persistence cap)
+01-aat-core	deriv-observation-noise-placement	body	Derived (reproduction), with simulation
+01-aat-core	deriv-persistence-cost	body	Derived (persistence-information-rate, from the sequential rate-distortion function)
+01-aat-core	deriv-persistence-cost	body	Derived (Kalman-tight, Duncan 1970; Mitter & Newton 2005)
+01-aat-core	deriv-persistence-cost	body	Derived (channel-capacity-floor, from main theorem + Shannon capacity)
+01-aat-core	deriv-persistence-cost	body	Observation (gain-magnitude-tautological)
+01-aat-core	deriv-persistence-cost	body	Observation (control-effort-filter-specific)
+01-aat-core	deriv-persistence-cost	body	Observation (Lyapunov-dissipation-conservation)
+01-aat-core	deriv-regime-marginal-indistinguishability	body	Derived (cross-regime-witness, from Cournot equilibrium structure + shared-target marginal-matching)
+01-aat-core	deriv-regime-marginal-indistinguishability	body	Derived (cross-regime-witness, from matching-pennies aggregation + shared-target marginal-matching)
+01-aat-core	deriv-regime-marginal-indistinguishability	body	Discussion
+01-aat-core	deriv-reward-channel-learning-no-go	body	Derived (cht-at-reward-channel, from Pearl-Bareinboim 2022 CHT applied to the reward-provision protocol), exact
+01-aat-core	deriv-reward-channel-learning-no-go	body	Derived (eu-max-instability, Conditional on (R1)–(R5))
+01-aat-core	deriv-reward-channel-learning-no-go	body	Derived (single-interface-narrowness, from `#form-objective-functional` + Lemma 2 above + `#deriv-self-actuation-grounding`)
+01-aat-core	deriv-sector-condition	body	Definition (Dynamics Setup)
+01-aat-core	deriv-sector-condition	body	Derived (Model D with bounded channel noise, linear correction)
+01-aat-core	deriv-sector-condition	body	Derived (Model S with channel noise, linear correction)
+01-aat-core	deriv-sector-condition	body	Definition (Lyapunov Candidate)
+01-aat-core	deriv-sector-condition	body	Derived (Proof Step)
+01-aat-core	deriv-sector-condition	body	Derived (Proof Step)
+01-aat-core	deriv-sector-condition	body	Derived (Proof Step)
+01-aat-core	deriv-sector-condition	body	Derived (adaptive-reserve)
+01-aat-core	deriv-sector-condition	body	Derived (stochastic-bounded-mismatch, Itô–Lyapunov on the region, Khasminskii 2012 ch. 5)
+01-aat-core	deriv-sector-condition	body	Derived (Proof Step)
+01-aat-core	deriv-sector-condition	body	Derived (stochastic-steady-state)
+01-aat-core	deriv-sector-condition	body	Derived
+01-aat-core	deriv-sector-condition	body	Derived; classical.
+01-aat-core	deriv-sector-condition	body	Derived (asymptotic expansion of the series at $\kappa_R = n/2$)
+01-aat-core	deriv-sector-condition	body	Derived (exit-time comparison; Itô–Dynkin and a same-noise radial comparison)
+01-aat-core	deriv-sector-condition	body	Derived (linear correction, Model S, white channel noise)
+01-aat-core	deriv-sector-condition	body	Derived (linear correction, Model S, white channel noise)
+01-aat-core	deriv-self-actuation-grounding	body	Derived (Conditional on scalar-objective scope, no-primitive-reflective-oracle, and the #der-directed-separation substrate stage)
+01-aat-core	deriv-social-welfare-aggregation-impossibility	body	Definition (unrestricted-domain, U)
+01-aat-core	deriv-social-welfare-aggregation-impossibility	body	Definition (pareto-efficient, P)
+01-aat-core	deriv-social-welfare-aggregation-impossibility	body	Definition (independence-of-irrelevant-alternatives, IIA)
+01-aat-core	deriv-social-welfare-aggregation-impossibility	body	Definition (non-dictatorial, ND)
+01-aat-core	deriv-social-welfare-aggregation-impossibility	body	Postulate (arrow-1951-1963, imported), exact
+01-aat-core	deriv-social-welfare-aggregation-impossibility	body	Derived (aat-social-welfare-translation, from `#scope-composite-agent` + `#form-objective-functional`), conditional on the composite-aggregation-mechanism reading
+01-aat-core	deriv-stochastic-non-exit	body	Derived
+01-aat-core	deriv-strategic-composition	body	Formulation (strategic-composition-framing)
+01-aat-core	deriv-strategic-composition	body	Derived (A2'-analog-potential, from Monderer-Shapley 1996)
+01-aat-core	deriv-strategic-composition	body	Derived (A2'-analog-monotone, from Rosen 1965)
+01-aat-core	deriv-strategic-composition	body	Derived (equilibrium-existence-via-VI, from Facchinei-Pang 2003)
+01-aat-core	deriv-strategic-composition	body	Derived (regret-minimization-convergence-to-CCE, from Hart-Mas-Colell 2000)
+01-aat-core	deriv-strategic-composition	body	Derived (zero-sum-scalar-instantiation)
+01-aat-core	deriv-strategic-composition	body	Derived (Cournot-as-potential, from Monderer-Shapley 1996 §3)
+01-aat-core	deriv-strategic-composition	body	Proposed Scope (composition-scope-condition, route C-iv)
+01-aat-core	deriv-strategic-composition	body	Scope honesty — strategic-composition-failures
+01-aat-core	deriv-strategy-cost-regret-bound	body	Definition (strategy-induced-regret)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Derived (tv-regret-bound, from bounded $V$ + deterministic $\pi^\ast$)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Derived (bh-identity-deterministic, under deterministic $\pi^\ast$)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Derived (exact-regret-reverse-kl, under deterministic $\pi^\ast$)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Derived (matched-lower-bound, under deterministic $\pi^\ast$ + isolated optimum)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Derived (kl-direction-forced, from deterministic $\pi^\ast$)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Discussion (admissible-regret-divergences)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Derived (reverse-kl-uniqueness, Conditional on chain-rule axiom)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Derived (bregman-fenchel-dual-pair, exact; standard Legendre-Fenchel)
+01-aat-core	deriv-strategy-cost-regret-bound	body	Discussion (information-theoretic-mdp-lineage), positioning rather than derivation
+01-aat-core	deriv-strategy-cost-regret-bound	body	Discussion ($\beta_\Sigma$-local-vs-global)
+01-aat-core	deriv-strategy-proofness-impossibility	body	Definition (dsic, strategy-proofness / dominant-strategy incentive compatibility)
+01-aat-core	deriv-strategy-proofness-impossibility	body	Definition (non-dictatorial)
+01-aat-core	deriv-strategy-proofness-impossibility	body	Definition (surjective)
+01-aat-core	deriv-strategy-proofness-impossibility	body	Postulate (gibbard-satterthwaite-1973-75, imported), exact
+01-aat-core	deriv-strategy-proofness-impossibility	body	Derived (aat-mechanism-translation, from `#scope-composite-agent` + `#deriv-strategic-composition`), conditional on the composite-revelation-mechanism reading
+01-aat-core	deriv-tempo-additivity	body	Definition (effective tempo, Fisher-local regime)
+01-aat-core	deriv-tempo-additivity	body	Derived (additivity-under-independence)
+01-aat-core	deriv-tempo-additivity	body	Derived (asynchrony refinement)
+01-aat-core	deriv-tempo-additivity	body	Derived (signed-deviation)
+01-aat-core	deriv-tempo-additivity	body	Derived (common-source-redundancy-penalty)
+01-aat-core	deriv-tempo-additivity	body	Derived (saturation-under-persistent-bias)
+01-aat-core	deriv-tempo-additivity	body	Derived (no-sign-blind-penalty)
+01-aat-core	deriv-tempo-additivity	body	Derived (no-canonical-channel-local-decomposition — imported)
+01-aat-core	deriv-tempo-additivity	body	Discussion
+01-aat-core	deriv-update-detection-latency	body	Derived (detection-latency-R1, from edge-update-natural-parameter + deriv-edge-credence-dynamics)
+01-aat-core	deriv-update-detection-latency	body	Observation (rate-forced-by-aczel)
+01-aat-core	deriv-update-detection-latency	body	Corollary (forgetting-as-latency-bound, sharpens #schema-strategy-persistence)
+01-aat-core	deriv-variational-sector-condition	body	Derived (eps-fidelity-B1, from Pinsker + Cauchy-Schwarz)
+01-aat-core	deriv-variational-sector-condition	body	Formulation (regime-decomposition-variational)
+01-aat-core	deriv-variational-sector-condition	body	Derived (per-variational-case)
+01-aat-core	deriv-variational-sector-condition	body	Derived (sub-scope-alpha-prime-partition)
+01-aat-core	deriv-variational-sector-condition	body	Scope honesty — variational-alpha-prime-limits
+01-aat-core	detail-linear-ode-approximation	body	Definition (vector dynamics)
+01-aat-core	detail-linear-ode-approximation	body	Hypothesis (linear-vector-ode)
+01-aat-core	detail-linear-ode-approximation	body	Derived (scalar-ode, from linear-vector-ode with $n = 1$)
+01-aat-core	detail-linear-ode-approximation	body	Derived (norm-inequality, from Cauchy-Schwarz)
+01-aat-core	detail-linear-ode-approximation	body	Derived (model-d-steady-state, from norm inequality)
+01-aat-core	detail-linear-ode-approximation	body	Derived (model-s-steady-state, from Ito-Lyapunov with linear correction)
+01-aat-core	detail-linear-ode-approximation	body	Derived (transient-model-d)
+01-aat-core	detail-linear-ode-approximation	body	Derived (transient-model-s)
+01-aat-core	detail-linear-ode-approximation	body	Derived (linear-sector-parameters)
+01-aat-core	detail-linear-ode-approximation	body	Hypothesis (Linear Coupling Model)
+01-aat-core	detail-linear-ode-approximation	body	Derived (linear-adversarial-steady-state, from Model D steady state + coupling model)
+01-aat-core	detail-linear-ode-approximation	body	Derived (squared-tempo-law, from linear steady states)
+01-aat-core	detail-operationalization	body	Operational Definition
+01-aat-core	detail-operationalization	body	Operational Definition
+01-aat-core	detail-operationalization	body	Operational Definition
+01-aat-core	detail-operationalization	body	Operational Definition
+01-aat-core	detail-operationalization	body	Operational Criterion
+01-aat-core	detail-operationalization	body	Operational Definition
+01-aat-core	disc-adversarial-coupling-pressure	body	Discussion
+01-aat-core	disc-adversarial-coupling-pressure	body	Derived (Conditional on directional adversary objective; from #def-satisfaction-gap, #def-control-regret + adversarial-pressure mechanisms above)
+01-aat-core	disc-adversarial-coupling-pressure	body	Derived (Conditional on adversary controls $O_t$-targeted signal injection; from #der-orient-cascade)
+01-aat-core	disc-adversarial-coupling-pressure	body	Discussion
+01-aat-core	disc-adversarial-coupling-pressure	body	Discussion
+01-aat-core	disc-anti-collapse	body	Discussion
+01-aat-core	disc-approximation-tiering	body	Discussion (approximation-tiering)
+01-aat-core	disc-ciy-unified-objective	body	Discussion (unified-policy-objective — heuristic)
+01-aat-core	disc-composition-consistency	body	Commitment (composition-consistency)
+01-aat-core	disc-composition-consistency	body	Structural consequence (derivation hierarchy)
+01-aat-core	disc-composition-consistency	body	Derived (Conditional on Tier 1M + admissible composition topology, from #result-contraction-template (CC-parallel) / (CC-cascade) / (CC-feedback))
+01-aat-core	disc-composition-consistency	body	Heuristic (timescale separation — residual scope: Tier 2 / Tier 3)
+01-aat-core	disc-composition-consistency	wn	Commitment (composition-consistency)
+01-aat-core	disc-composition-consistency	wn	Postulate ...
+01-aat-core	disc-composition-consistency	wn	Derived
+01-aat-core	disc-compression-operations	body	Discussion (ib-shape)
+01-aat-core	disc-compression-operations	body	Formulation (strategy-compression-source)
+01-aat-core	disc-compression-operations	body	Derived (p1-ib-dual, from composition-closure + rate-distortion duality)
+01-aat-core	disc-compression-operations	body	Derived (linear-Gaussian-symmetric means-sum optimality)
+01-aat-core	disc-compression-operations	body	Hypothesis (heterogeneous-gain falsification handle)
+01-aat-core	disc-constructive-impossibility-posture	body	Discussion
+01-aat-core	disc-continuity-stance	body	Discussion
+01-aat-core	disc-credit-assignment-boundary	body	Discussion (credit-assignment-problem)
+01-aat-core	disc-credit-assignment-boundary	body	Formulation (gradient-signal-function)
+01-aat-core	disc-credit-assignment-boundary	body	Discussion (tractable-credit-assignment)
+01-aat-core	disc-credit-assignment-boundary	body	Discussion (intractable-credit-assignment)
+01-aat-core	disc-credit-assignment-boundary	body	Discussion (credit-assignment-design-requirement)
+01-aat-core	disc-exploit-explore-deliberate	body	Definition (three-activity-decomposition)
+01-aat-core	disc-exploit-explore-deliberate	body	Derived (Conditional on GA-4, deliberation-drift assumption from #der-deliberation-cost)
+01-aat-core	disc-exploit-explore-deliberate	body	Discussion (allocation-structure)
+01-aat-core	disc-exploit-explore-deliberate	body	Discussion (deliberation-ceiling)
+01-aat-core	disc-exploit-explore-deliberate	body	Discussion (ai-connection)
+01-aat-core	disc-exploit-explore-deliberate	body	Discussion (qualitative-regimes)
+01-aat-core	disc-implementation-impossibility	body	Discussion
+01-aat-core	disc-independence-audit	body	Discussion (independence-audit)
+01-aat-core	disc-law-discovery-ceiling	body	Derived (at #deriv-mechanism-counterfactual-separation); agentic restatement
+01-aat-core	disc-law-discovery-ceiling	body	Discussion — candidate floor instance
+01-aat-core	disc-law-discovery-ceiling	body	Derived consequence + Discussion
+01-aat-core	disc-law-discovery-ceiling	body	Formulation
+01-aat-core	disc-law-discovery-ceiling	body	Formulation
+01-aat-core	disc-law-discovery-ceiling	body	Discussion
+01-aat-core	disc-law-discovery-ceiling	body	Discussion
+01-aat-core	disc-law-discovery-ceiling	body	Discussion — readings of the exact result into other fields' practice; each is a recommendation, not a derived result in that field's own formalism
+01-aat-core	disc-modularity-state-dynamics	body	Discussion
+01-aat-core	disc-modularity-state-dynamics	body	Discussion
+01-aat-core	disc-partial-coupling-pathways	body	Formulation (partial-coupling-pipeline)
+01-aat-core	disc-partial-coupling-pathways	body	Definition (class-2-sub-type)
+01-aat-core	disc-partial-coupling-pathways	body	Definition (coupling-form)
+01-aat-core	disc-partial-coupling-pathways	body	Derived (content-process-wrappability, conditional on probing model)
+01-aat-core	disc-partial-coupling-pathways	body	Derived (cascade-propagation)
+01-aat-core	disc-partial-coupling-pathways	body	Derived (stage-localization-of-repair, conditional on pipeline access)
+01-aat-core	disc-sandbox-evaluation-ceiling	body	Derived (conditional on the sandbox/deployment selection diagram)
+01-aat-core	disc-stability-certificate	body	Definition (stability-certificate)
+01-aat-core	disc-stability-certificate	body	Result (cited: #result-certificate-existence)
+01-aat-core	disc-stability-certificate	body	Discussion
+01-aat-core	disc-stability-certificate	body	Discussion
+01-aat-core	disc-strategic-self-coupling	body	Discussion
+01-aat-core	disc-strategic-self-coupling	body	Discussion
+01-aat-core	disc-strategic-self-coupling	body	Discussion
+01-aat-core	disc-strategic-self-coupling	body	Discussion
+01-aat-core	disc-strategic-self-coupling	body	Discussion
+01-aat-core	disc-strategic-self-coupling	body	Discussion
+01-aat-core	disc-strategic-self-coupling	body	Discussion
+01-aat-core	disc-strategic-self-coupling	body	Discussion
+01-aat-core	disc-structural-imagination	body	Formulation (structure-modifying action; sketch)
+01-aat-core	disc-structural-imagination	body	Discussion — inferential status; separation derived at #deriv-mechanism-counterfactual-separation
+01-aat-core	disc-structural-imagination	body	Hypothesis (tagged workspace)
+01-aat-core	disc-structural-imagination	body	Hypothesis (aspiration; formal statement at #def-satisfaction-gap)
+01-aat-core	disc-w1-structural-bound-boundary	body	Discussion (w1-structural-bound-no-go)
+01-aat-core	emp-update-gain	body	Empirical Claim (uncertainty-ratio-principle)
+01-aat-core	emp-update-gain	body	Formulation
+01-aat-core	example-bandit	body	Formulation
+01-aat-core	example-bandit	body	Discussion — Bandit CIY, Gaussian Case
+01-aat-core	example-kalman	body	Worked Quantity
+01-aat-core	example-kalman	body	Worked Objective
+01-aat-core	example-kalman	body	Discussion
+01-aat-core	example-strategy	body	Formulation
+01-aat-core	example-strategy	body	Definition (bandit-objective)
+01-aat-core	form-agent-model	body	Formulation (agent-model)
+01-aat-core	form-complete-agent-state	body	Formulation (complete-agent-state)
+01-aat-core	form-composition-closure	body	Definition (Composition Closure)
+01-aat-core	form-composition-closure	body	Formulation (macro-dynamics-admissibility)
+01-aat-core	form-composition-closure	body	Definition (projection-admissibility, proposed from spike)
+01-aat-core	form-composition-closure	body	Derived (bridge-lemma, from sector-persistence-template + A4 + contraction assumption)
+01-aat-core	form-composition-closure	body	Derived, status: exact.
+01-aat-core	form-composition-closure	body	Derived, status: exact.
+01-aat-core	form-composition-closure	body	Derived (bridge-lemma-contraction), conditional on (C1) incremental sector-Lipschitz, (C2) linear prediction, (C3) bounded gain.
+01-aat-core	form-consolidation-dynamics	body	Formulation (consolidation-regime, specializes #der-recursive-update)
+01-aat-core	form-consolidation-dynamics	body	Scope (timescale-separation)
+01-aat-core	form-consolidation-dynamics	body	Derived (consolidation-necessity, conditional)
+01-aat-core	form-consolidation-dynamics	body	Derived (stability-plasticity-window, conditional)
+01-aat-core	form-consolidation-dynamics	body	Derived (structural-adaptation-requires-consolidation, conditional)
+01-aat-core	form-event-driven-dynamics	body	Formulation (event-driven-dynamics)
+01-aat-core	form-event-driven-dynamics	body	Definition (event-information-content)
+01-aat-core	form-event-driven-dynamics	body	Definition (channel-uncertainty)
+01-aat-core	form-information-bottleneck	body	Formulation (IB-objective)
+01-aat-core	form-objective-functional	body	Definition (objective-functional)
+01-aat-core	form-resource-budget	body	Definition (resource-budget)
+01-aat-core	form-resource-budget	body	Assumption (A-cost: cost rises with mismatch)
+01-aat-core	form-resource-budget	body	Assumption (A-gate: tempo is resource-gated)
+01-aat-core	form-sector-condition	body	Assumption A1
+01-aat-core	form-sector-condition	body	Formulation A2' (sector-condition) — derived in sub-scope $\alpha$, assumed in sub-scope $\beta$ (see Grounding below)
+01-aat-core	form-sector-condition	body	Assumption A3
+01-aat-core	form-sector-condition	body	Formulation A2' (sector-condition)
+01-aat-core	form-sector-condition	body	Derived, status: exact scope-exit statement
+01-aat-core	form-sector-condition	body	Derived, status: exact scope-exit statement.
+01-aat-core	form-strategy-complexity-cost	body	Formulation (strategy-description-length)
+01-aat-core	form-strategy-complexity-cost	body	Formulation (strategy-IB-objective; KL-direction strengthened by regret bound — see Epistemic Status)
+01-aat-core	form-strategy-complexity-cost	body	Derived (Conditional on Beta-Bernoulli, per-edge persistence)
+01-aat-core	form-strategy-complexity-cost	body	Formulation (enriched-strategy-condition)
+01-aat-core	form-strategy-complexity-cost	body	Discussion (complexity-compression)
+01-aat-core	form-structural-change-as-parametric-limit	body	Formulation (structural-change-as-parametric-limit)
+01-aat-core	hyp-auftragstaktik-principle	body	Hypothesis (auftragstaktik-principle)
+01-aat-core	hyp-communication-gain	body	Formulation (multi-agent-update)
+01-aat-core	hyp-communication-gain	body	Derived (simultaneous terms; conditional on the Gaussian location regime of #deriv-fisher-local-update-gain, with errors independent across terms)
+01-aat-core	hyp-communication-gain	body	Hypothesis (communication-gain)
+01-aat-core	hyp-communication-gain	body	Discussion
+01-aat-core	hyp-communication-gain	body	Discussion
+01-aat-core	hyp-directed-separation-under-composition	body	Hypothesis (directed-separation-under-composition, extending directed-separation to composites)
+01-aat-core	hyp-directed-separation-under-composition	body	Hypothesis (Case 1)
+01-aat-core	hyp-directed-separation-under-composition	body	Hypothesis (Case 2)
+01-aat-core	hyp-edge-update-via-gain	body	Hypothesis (edge-update-via-gain)
+01-aat-core	hyp-mismatch-dynamics	body	Hypothesis (mismatch-dynamics)
+01-aat-core	hyp-mismatch-dynamics	body	Derived (from linear hypothesis, deterministic)
+01-aat-core	hyp-mismatch-dynamics	body	Derived (from Itô-Lyapunov analysis — see Prop A.1S in #deriv-sector-condition)
+01-aat-core	hyp-mismatch-dynamics	wn	Derived (Model D)
+01-aat-core	hyp-mismatch-dynamics	wn	Derived (Model S)
+01-aat-core	hyp-solicitable-escape	body	Definition (route-targeting)
+01-aat-core	hyp-solicitable-escape	body	Hypothesis (solicitable-escape)
+01-aat-core	hyp-solicitable-escape	body	Scope (innovation-estimated observability)
+01-aat-core	hyp-solicitable-escape	body	Derived (conditional on a resource bound)
+01-aat-core	hyp-symbiogenic-composition	body	Hypothesis (symbiogenic-composition)
+01-aat-core	hyp-truth-serving-loophole	body	Hypothesis (truth-serving-loophole)
+01-aat-core	hyp-truth-serving-loophole	body	Hypothesis (goal-declared-discipline)
+01-aat-core	hyp-truth-serving-loophole	body	Hypothesis (mode-4-goal-declaration)
+01-aat-core	hyp-truth-serving-loophole	body	Discussion
+01-aat-core	impl-orient-cascade	body	Hypothesis
+01-aat-core	impl-persistence-and-limits	body	Exact; the reading of the three misquotations is this segment's own framing.
+01-aat-core	impl-persistence-and-limits	body	Exact for the dichotomy; the hand-off is the corollary's own.
+01-aat-core	impl-persistence-and-limits	body	Exact for the quantity; the design reading is discussion-grade.
+01-aat-core	impl-persistence-and-limits	body	Conditional; exact in the linear-Gaussian case.
+01-aat-core	impl-persistence-and-limits	body	Hypothesis
+01-aat-core	impl-persistence-and-limits	body	Min-operation: conditional in the diagonal case; the matrix information floor: conjecture.
+01-aat-core	impl-persistence-and-limits	body	Discussion-grade.
+01-aat-core	impl-persistence-and-limits	body	Exact under (S0)–(S4) for the two-timescale form, (S5) added for the $N$-level form; the pathology reading is the source's own.
+01-aat-core	impl-strategy-structure	body	Derived (two-gap-sum), exact — $A_O$ cancels
+01-aat-core	impl-strategy-structure	body	Discussion
+01-aat-core	impl-strategy-structure	body	Discussion
+01-aat-core	internal-external-decomposition	body	Derived
+01-aat-core	internal-external-decomposition	body	Derived (exact, inherited from #result-mismatch-decomposition GA-1)
+01-aat-core	internal-external-decomposition	body	Formulation — stated fluid-limit convention, introduced here; not a pre-existing canon identity. The structural conclusion below is convention-robust: any $\nu \gt 0$ preserves additivity, since positive scaling of a sum is a sum.
+01-aat-core	internal-external-decomposition	body	Derived (conditional on the stated rate-lift convention)
+01-aat-core	internal-external-decomposition	body	Derived — constitutive impossibility; exact under the constitutive definition of mismatch
+01-aat-core	norm-explicit-strategy-condition	body	Normative (explicit-strategy-condition)
+01-aat-core	obs-authored-world-laboratory	body	Empirical Claim (system properties, by construction; build-state caveat in Epistemic Status)
+01-aat-core	obs-gated-tempo-advantage	body	Observation (obs-gated-tempo-advantage, from track-b Variant E)
+01-aat-core	post-causal-structure	body	Postulate (causal-structure)
+01-aat-core	result-adversarial-exponent-regimes	body	Derived (adversarial-exponent-regimes, from Model D/S steady states + coupling model; validated by simulation)
+01-aat-core	result-adversarial-tempo-advantage	body	Derived (adversarial-tempo-advantage, from sector-persistence-template + adversarial-destabilization coupling model)
+01-aat-core	result-adversarial-tempo-advantage	body	Result (adversarial-tempo-advantage, Model D)
+01-aat-core	result-adversarial-tempo-advantage	body	Derived (stochastic-tempo-advantage, from sector-persistence-template Model S + coupling)
+01-aat-core	result-adversarial-tempo-advantage	body	Derived (scope condition)
+01-aat-core	result-certificate-existence	body	Definition (stability-certificate)
+01-aat-core	result-certificate-existence	body	Result (certificate-existence), exact at the linearized level
+01-aat-core	result-certificate-existence	body	Derived (ordering of conditions; exact)
+01-aat-core	result-certificate-existence	body	Derived (R0-loss-distinctness; exact at the linearized level for the pure case, exact-via-Conley for the mixed case)
+01-aat-core	result-certificate-existence	body	Result (certificate-existence), exact at the linearized level
+01-aat-core	result-certificate-existence	wn	Derived
+01-aat-core	result-contraction-template	body	Template preconditions (contraction-template)
+01-aat-core	result-contraction-template	body	Result (contraction-template-D), conditional on (M0), (CT1)–(CT3-D)
+01-aat-core	result-contraction-template	body	Result (contraction-template-S), conditional on (M0), (CT1)–(CT3-S), Itô-compatible metric
+01-aat-core	result-contraction-template	body	Result (compositional-contraction), conditional on Slotine 2003 Thm 1–3 + per-sub-agent (CT1)–(CT3)
+01-aat-core	result-contraction-template	body	Derived (CM2-M), from (CC-feedback) + `#deriv-critical-mass-composition` signed-coupling structure
+01-aat-core	result-mismatch-decomposition	body	Derived (result-mismatch-decomposition)
+01-aat-core	result-per-dimension-persistence	body	Result (per-dimension-persistence)
+01-aat-core	result-persistence-condition	body	Derived (structural-persistence, from sector-persistence-template)
+01-aat-core	result-persistence-condition	body	Derived (linear correction, Model S, white channel noise; #deriv-sector-condition Setup)
+01-aat-core	result-persistence-condition	body	Definition (task-adequacy)
+01-aat-core	result-persistence-condition	body	Derived (operational-persistence, conjunction of structural persistence + task adequacy)
+01-aat-core	result-persistence-condition	body	Derived (lag/noise trade-off, linear correction, Model S with white channel noise; #deriv-sector-condition Setup)
+01-aat-core	result-persistence-condition	body	Derived (per-dimension-persistence, per-dimension Lyapunov under Model D / AR(1) stationary distribution under Model S — see #result-per-dimension-persistence)
+01-aat-core	result-persistence-condition	body	Derived (linear correction, Model S, white channel noise)
+01-aat-core	result-persistence-condition	body	Derived (lag/noise trade-off, linear correction, Model S with white channel noise)
+01-aat-core	result-persistence-condition	body	Definition (task-adequacy)
+01-aat-core	result-persistence-condition	body	Discussion
+01-aat-core	result-sector-condition-stability	body	Formulation
+01-aat-core	result-sector-condition-stability	body	Assumption (sector-condition)
+01-aat-core	result-sector-condition-stability	body	Derived (from sector-persistence-template)
+01-aat-core	result-sector-condition-stability	body	Derived (from sector-persistence-template)
+01-aat-core	result-sector-persistence-template	body	Template preconditions (sector-persistence-template)
+01-aat-core	result-sector-persistence-template	body	Template result (from sector-condition-derivation Props A.1, A.1S, A.2)
+01-aat-core	result-sector-persistence-template	body	Template result
+01-aat-core	result-structural-adaptation-necessity	body	Derived (structural-adaptation-necessity)
+01-aat-core	result-unity-closure-mapping	body	Formulation (unity-rate-distortion)
+01-aat-core	result-unity-closure-mapping	body	Derived (obs-closure-linear-Gaussian, from unity-dimensions, composition-closure)
+01-aat-core	result-unity-closure-mapping	body	Derived (action-closure-independent-policies, from unity-dimensions, composition-closure)
+01-aat-core	result-unity-closure-mapping	body	Derived (state-closure-linear-Gaussian-trivial, from composition-closure)
+01-aat-core	result-unity-closure-mapping	body	Derived (two-axis-structure, from composition-closure, linear-Gaussian case)
+01-aat-core	schema-strategy-persistence	body	Proposed Schema (strategy-persistence-schema, from sector-persistence-template)
+01-aat-core	schema-strategy-persistence	body	Formulation (forgetting-prerequisite)
+01-aat-core	scope-adaptive-system	body	Definition (environment-law; typed-epistemic-target)
+01-aat-core	scope-adaptive-system	body	Scope (scope-adaptive-system)
+01-aat-core	scope-adaptive-system	body	Derived (adaptive-scope-membership), exact
+01-aat-core	scope-adaptive-system	body	Derived (adaptive-scope-housing), exact
+01-aat-core	scope-agency	body	Scope (scope-agency)
+01-aat-core	scope-agent-identity	body	Scope (scope-agent-identity, from chronica + model-sufficiency)
+01-aat-core	scope-and-or	body	Scope Narrowing (and-or-scope)
+01-aat-core	scope-ciy-observational-proxy	body	Definition (ciy-proxy)
+01-aat-core	scope-ciy-observational-proxy	body	Scope Condition (ciy-admissibility)
+01-aat-core	scope-composite-agent	body	Scope (scope-composite-agent)
+01-aat-core	scope-composite-agent	body	Scope (scope-composite-agent, disjunctive)
+01-aat-core	scope-edge-update-causal-validity	body	Scope Condition (edge-update-causal-validity)
+01-aat-core	scope-edge-update-causal-validity	body	Hypothesis (identifiability-coefficient)
+01-aat-core	scope-multi-agent	body	Scope (multi-agent-scope)
+01-aat-core	scope-multi-agent	body	Definition (observation-decomposition)
+01-aat-core	scope-multi-agent	body	Definition (multi-agent-routing-structure)
+01-aat-core	scope-multi-agent	body	Definition (goal-blind-routing)
+01-aat-core	sketch-structural-adaptation-genericity	body	Discussion
+01-aat-core	sketch-structural-adaptation-genericity	body	Discussion
+02-tst-core	def-atomic-changeset	body	Definition (atomic-changeset)
+02-tst-core	def-comprehension-time	body	Definition (comprehension-time)
+02-tst-core	def-discontinuity-distance	body	Definition (def-discontinuity-distance)
+02-tst-core	def-feature	body	Definition (feature-definition)
+02-tst-core	def-implementation-time	body	Definition (implementation-time)
+02-tst-core	def-implementation-time	body	Empirical Claim.
+02-tst-core	def-system-availability	body	Definition (system-availability)
+02-tst-core	def-system-coherence	body	Definition (system-coherence)
+02-tst-core	def-system-coupling	body	Definition (system-coupling)
+02-tst-core	der-change-expectation-baseline	body	Derived (change-expectation-baseline, from scale ignorance)
+02-tst-core	der-change-expectation-baseline	body	Derived (Conditional on uniform feature rate)
+02-tst-core	der-change-expectation-baseline	body	Derived (conditional on a constant birth rate)
+02-tst-core	der-change-expectation-baseline	body	Derived (change-expectation-baseline, hazard-mixture form)
+02-tst-core	der-change-expectation-baseline	body	Derived (change-expectation-baseline)
+02-tst-core	der-change-expectation-baseline	body	Discussion
+02-tst-core	der-change-expectation-baseline	wn	Derived
+02-tst-core	der-change-investment	body	Derived (change-investment, from dual-optimization)
+02-tst-core	der-change-investment	body	Discussion — empirically plausible, not derived.
+02-tst-core	der-change-investment	body	Discussion — the optionality principle is structurally related to AAT's strategy representation ( #def-strategy-dag): preserving optionality corresponds to maintaining multiple viable paths in the strategy DAG rather than committing to a single chain. This connection has not been formalized.
+02-tst-core	der-change-investment	body	Derived (change-investment, from dual-optimization applied per-module)
+02-tst-core	der-change-investment	body	Discussion — the compound effect is structurally motivated but not formally derived. Empirical validation could track a "code quality" proxy (e.g., the coherence/coupling ratio from #meas-coherence-coupling) over time in codebases with different early-stage investment patterns, testing whether the bifurcation into virtuous/vicious cycles is observable.
+02-tst-core	der-change-proximity-principle	body	Derived (change-proximity-principle, from comprehension-time + def-discontinuity-distance)
+02-tst-core	der-change-proximity-principle	body	Hypothesis.
+02-tst-core	der-code-quality-as-observation-infrastructure	body	Derived (code-quality-tempo-chain, from update-gain + adaptive-tempo)
+02-tst-core	der-code-quality-as-observation-infrastructure	body	Derived (code-quality-persistence, from persistence-condition + code-quality-tempo-chain)
+02-tst-core	der-code-quality-as-observation-infrastructure	body	Derived (code-quality-investment, from change-investment + code-quality-tempo-chain)
+02-tst-core	der-code-quality-as-observation-infrastructure	body	Hypothesis (code-quality-feedback-loops)
+02-tst-core	der-dual-optimization	body	Derived (dual-optimization, from temporal-optimality + scope-evolving-software)
+02-tst-core	der-dual-optimization	body	Derived (Conditional on turnover rate)
+02-tst-core	der-dual-optimization	body	Discussion — qualitative observation.
+02-tst-core	der-dual-optimization	body	Discussion — empirical approach: comprehension time could be estimated from the gap between task assignment and first commit (as defined in #def-comprehension-time). Comparing this gap across codebases with different comprehensibility characteristics would quantify the hidden cost. The nearest existing measurement, in #hyp-exponential-cognitive-load, relates elapsed time between commits to the files and directories a commit touches; it measures total time per commit, not the comprehension share of it.
+02-tst-core	der-principled-decision-integration	body	Derived (principled-decision-integration, from temporal-optimality)
+02-tst-core	der-principled-decision-integration	body	Discussion.
+02-tst-core	der-principled-decision-integration	body	Discussion — this process is a heuristic approximation of the formal objective. Experienced developers do this intuitively. The framework's contribution is making the intuition explicit and auditable — when a decision feels wrong, the framework identifies which factor was misjudged.
+02-tst-core	der-principled-decision-integration	body	Discussion — an observation about where temporal optimization leads.
+02-tst-core	der-principled-decision-integration	body	Discussion — this convergence is structurally argued, not empirically demonstrated in full. The individual links (turnover multiplier → comprehension dominance → alignment matters → domain language is optimal) each have their own epistemic status documented in the respective segments. The chain as a whole is plausible but not independently validated. An empirical test: measure total development time on codebases ranked by "human-centeredness" (e.g., domain vocabulary coverage, naming clarity, narrative flow) and check whether the temporal ranking matches.
+02-tst-core	emp-changeset-size-principle	body	Empirical Claim (changeset-size-principle)
+02-tst-core	emp-changeset-size-principle	body	Hypothesis (comprehension-follows-changeset)
+02-tst-core	emp-changeset-size-principle	body	Discussion — the principle's practical force lies in predicting changeset size from architecture.
+02-tst-core	emp-changeset-size-principle	body	Discussion — these patterns are well-established in software engineering practice. The contribution of the changeset-size principle is not identifying them but explaining *why* they matter: they determine the proportionality constant between features and implementation time. Whether a pattern is "good" reduces to whether it shrinks future changesets for probable features.
+02-tst-core	emp-changeset-size-principle	body	Empirical Claim — heuristic tier; elapsed time between commits as the time measure.
+02-tst-core	hyp-causal-discovery-from-git	body	Hypothesis (git-as-intervention)
+02-tst-core	hyp-causal-discovery-from-git	body	Hypothesis (causal-coupling-from-git)
+02-tst-core	hyp-causal-discovery-from-git	body	Discussion (git-confounding)
+02-tst-core	hyp-causal-discovery-from-git	body	Hypothesis (residual-causal-signal)
+02-tst-core	hyp-conceptual-alignment	body	Hypothesis (conceptual-alignment)
+02-tst-core	hyp-conceptual-alignment	body	Derived (realignment-as-feature, from change-investment + conceptual-alignment)
+02-tst-core	hyp-conceptual-alignment	body	Discussion — operationalizable but unmeasured.
+02-tst-core	hyp-conceptual-alignment	body	Formulation.
+02-tst-core	hyp-conceptual-alignment	body	Discussion — architectural consequence of alignment hypothesis.
+02-tst-core	hyp-conceptual-alignment	body	Discussion — practical ordering derived from alignment + change-investment.
+02-tst-core	hyp-conceptual-alignment	body	Discussion.
+02-tst-core	hyp-conceptual-alignment	body	Discussion — practical consequence.
+02-tst-core	hyp-exponential-cognitive-load	body	Hypothesis (exponential-cognitive-load)
+02-tst-core	hyp-exponential-cognitive-load	body	Discussion — taxonomy, not derived.
+02-tst-core	hyp-exponential-cognitive-load	body	Empirical Claim — heuristic tier; elapsed time between commits as the time measure.
+02-tst-core	hyp-exponential-cognitive-load	body	Discussion — architecturally consequential.
+02-tst-core	hyp-exponential-cognitive-load	body	Discussion — pattern catalog, empirically grounded.
+02-tst-core	hyp-exponential-cognitive-load	body	Discussion — the anti-pattern diagnosis question is a direct application of #der-change-investment to discontinuity creation. But "proportional to its comprehension cost" is informal — formalizing it requires a way to estimate per-discontinuity comprehension cost, which connects to the open empirical question about the $k$ value per boundary type.
+02-tst-core	meas-coherence-coupling	body	Measurement (coherence-coupling-measurement)
+02-tst-core	meas-coherence-coupling	body	Discussion — well-established observation, not derived within AAT.
+02-tst-core	meas-coherence-coupling	body	Discussion — the organizational dimension is well-supported by prior work (Conway 1968; MacCormack, Baldwin & Rusnak 2006 on "hidden structure" in software). The formal connection — that coupling measurements from git history can predict organizational coordination costs — is an empirical claim that has been partially validated (see `lit-review/` materials on Design Rule Spaces and Propagation Cost) but not with TST's specific formulation.
+02-tst-core	meas-coherence-coupling	body	Discussion — informative for diagnosis.
+02-tst-core	obs-software-epistemic-properties	body	Observation (software-epistemic-properties)
+02-tst-core	obs-software-epistemic-properties	body	Empirical Claim
+02-tst-core	obs-software-epistemic-properties	body	Empirical Claim — conditional maximality
+02-tst-core	obs-software-epistemic-properties	body	Formulation (software-calibration-lab)
+02-tst-core	obs-software-epistemic-properties	body	Discussion — recommendation, grounded in the exact result at #deriv-mechanism-counterfactual-separation
+02-tst-core	post-temporal-optimality	body	Postulate (temporal-optimality)
+02-tst-core	post-temporal-optimality	body	Formulation.
+02-tst-core	result-specification-bound	body	Derived (Conditional on S1–S2; specification-bound)
+02-tst-core	result-specification-bound	body	Derived (two-channel special case)
+02-tst-core	result-specification-bound	body	Formulation (specification-time, first-order approximation)
+02-tst-core	result-specification-bound	body	Derived (communication-bottleneck)
+02-tst-core	result-specification-bound	body	Discussion
+02-tst-core	result-specification-bound	body	Empirical Claim — Putnam's fit.
+02-tst-core	result-specification-bound	body	Derived (Conditional on S1–S2 and on a sufficient transmission time that does not fall with effort).
+02-tst-core	result-specification-bound	body	Hypothesis.
+02-tst-core	scope-continuous-operation	body	Scope (continuous-operation, extending scope-evolving-software)
+02-tst-core	scope-continuous-operation	body	Formulation (Conditional on Poisson incidents during uptime, recovery without background drift, and #hyp-mismatch-dynamics).
+02-tst-core	scope-developer-agent	body	Scope (scope-developer-agent)
+02-tst-core	scope-developer-agent	body	Definition (developer-model)
+02-tst-core	scope-developer-agent	body	Definition (developer-objective)
+02-tst-core	scope-developer-agent	body	Definition (developer-strategy)
+02-tst-core	scope-developer-agent	body	Definition (developer-observation-channels)
+02-tst-core	scope-developer-agent	body	Definition (developer-actions)
+02-tst-core	scope-developer-agent	body	Derived (developer-mismatch, from mismatch-signal applied to software)
+02-tst-core	scope-developer-agent	body	Derived (developer-gain, from update-gain applied to software)
+02-tst-core	scope-evolving-software	body	Scope (scope-evolving-software)
+02-tst-core	scope-evolving-software	body	Derived (scope-evolving-software, from temporal-optimality)
+02-tst-core	scope-evolving-software	body	Derived (scope-evolving-software, from scope definition)
+02-tst-core	scope-evolving-software	body	Empirical Claim.
+03-llm-core	def-coupled-update-dynamics	body	Definition (coupled-update)
+03-llm-core	def-coupled-update-dynamics	body	Definition (prompt-assembly)
+03-llm-core	def-coupled-update-dynamics	body	Definition (response-decomposition)
+03-llm-core	der-logogenic-as-wrapping	body	Definition (logogenic-W₁)
+03-llm-core	der-logogenic-as-wrapping	body	Definition (logogenic-W₂)
+03-llm-core	der-turnover-information-recursion	body	Derived (turnover-sdpi-contraction, from form-information-bottleneck + Ahlswede–Gács 1976)
+03-llm-core	der-turnover-information-recursion	body	Derived (turnover-affine-recursion, from chain rule + MI-monotonicity; exact)
+03-llm-core	der-turnover-information-recursion	body	Derived (turnover-geometric-decay, no-go; exact under (C1)+(C4))
+03-llm-core	der-turnover-information-recursion	body	Derived (turnover-discounted-sum, from R1 + affine recursion; exact)
+03-llm-core	disc-deferred-observation-processing	body	Formulation (observation-pipeline)
+03-llm-core	disc-deferred-observation-processing	body	Formulation (capacity-triple)
+03-llm-core	disc-deferred-observation-processing	body	Hypothesis (recall-cost-gradient)
+03-llm-core	disc-five-forcing-functions	body	Empirical, economic
+03-llm-core	disc-five-forcing-functions	body	Derived from #result-persistence-condition
+03-llm-core	disc-five-forcing-functions	body	Derived from #der-temporal-nesting
+03-llm-core	disc-five-forcing-functions	body	Structural argument
+03-llm-core	disc-five-forcing-functions	body	Operational / ethical
+03-llm-core	disc-five-forcing-functions	body	Discussion
+03-llm-core	disc-framework-self-diagnostic	body	Discussion
+03-llm-core	disc-framework-self-diagnostic	body	Empirical instances
+03-llm-core	disc-m-preservation	body	Discussion (m-preservation-condition)
+03-llm-core	disc-m-preservation	body	Discussion (externalization-strategies)
+03-llm-core	disc-m-preservation	body	Discussion (reconstruction-information)
+03-llm-core	obs-context-turnover	body	Observation (context-turnover)
+03-llm-core	obs-context-turnover	body	Observation (record-severance)
+03-llm-core	obs-context-turnover	body	Observation (sufficiency-discontinuity)
+03-llm-core	result-coupled-diagnostic-framework	body	Derived (coupled-diagnostic, from post-hoc decomposability of diagnostic quantities)
+03-llm-core	result-coupled-diagnostic-framework	body	Discussion (ordering-as-design-principle)
+03-llm-core	result-coupled-diagnostic-framework	body	Derived (diagnostic-accuracy, conditional on Lipschitz regularity of $A_O$ in $M_t$; the dependence on observation sharpness is #scope-observation-ambiguity-modulation's hypothesis)
+03-llm-core	result-section-ii-survival	body	Derived (section-ii-survival, from segment-by-segment analysis of directed-separation dependency)
+03-llm-core	result-section-ii-survival	body	Derived (approximation-error-structure, from analysis of goal-information leakage)
+03-llm-core	scope-channel-collapse	body	Definition (channel-collapse-scope)
+03-llm-core	scope-channel-collapse	body	Derived (under channel collapse)
+03-llm-core	scope-interiority-loop	body	Definition (interiority-loop-scope)
+03-llm-core	scope-interiority-loop	body	Derived (from #disc-five-forcing-functions)
+03-llm-core	scope-logogenic-agent	body	Scope (scope-logogenic-agent)
+03-llm-core	scope-logogenic-agent	body	Scope (logogenic-agent-class)
+03-llm-core	scope-logogenic-agent	body	Definition (agent-system-vs-component)
+03-llm-core	scope-observation-ambiguity-modulation	body	Definition (calibrated-base-and-distortion)
+03-llm-core	scope-observation-ambiguity-modulation	body	Derived (log-ratio-range-bound, model-free)
+03-llm-core	scope-observation-ambiguity-modulation	body	Hypothesis (fixed-gain-goal-tilt)
+03-llm-core	scope-observation-ambiguity-modulation	body	Scope Condition (domain-classification, conditional on the hypothesis)
+03-llm-core	scope-observation-ambiguity-modulation	body	Discussion (measuring-the-two-factors)
+03-llm-core	scope-primitive-logogenic	body	Definition (primitive-logogenic-scope)
+03-llm-core	scope-scaffolded-logogenic	body	Definition (scaffolded-logogenic-scope)
+03-llm-core	scope-scaffolded-logogenic	body	Derived (under scaffolded scope)
+04-eli-core	def-auxilia-hierarchy	body	Definition (auxilia-hierarchy)
+04-eli-core	def-auxilia-hierarchy	body	Derived (from the statement of (C2′) and the derivation of the selection-channel bound)
+04-eli-core	def-auxilia-hierarchy	body	Derived (what a constant aspiration layer does and does not secure; from the definition of Class 1 in #der-directed-separation, Theorem 1 and the selection-channel paragraph of #der-class-coercion-via-wrapping, conditional on the aspiration layer changing only at revision events, #der-temporal-nesting)
+04-eli-core	def-auxilia-hierarchy	body	Derived (Conditional on the regime classification of #disc-dynamic-regime-axis and on reading (H1)+(H2) as a decomposition of $E$'s objective)
+04-eli-core	def-auxilia-hierarchy	body	Derived (Conditional on premises (S0)–(S4) of #der-multi-timescale-stability, instantiated as below)
+04-eli-core	def-death-as-factor-loss	body	Definition (death-aptness)
+04-eli-core	def-death-as-factor-loss	body	Definition (death as factor-loss)
+04-eli-core	def-death-as-factor-loss	body	Formulation (the four axes)
+04-eli-core	def-death-as-factor-loss	body	Definition (exclusion — bereavement)
+04-eli-core	def-eli-cohort	body	Definition (eli-cohort)
+04-eli-core	def-eli-cohort	body	Empirical claim
+04-eli-core	def-eli-cohort	body	Discussion
+04-eli-core	def-five-constitutive-factors	body	Definition (five-constitutive-factors)
+04-eli-core	def-five-constitutive-factors	body	Derived from #scope-agent-identity, TFT TF-02
+04-eli-core	def-five-constitutive-factors	body	Discussion / Operational from PROPRIUM
+04-eli-core	def-five-constitutive-factors	body	Discussion / Operational
+04-eli-core	def-five-constitutive-factors	body	Derived from #def-chronica + #def-action-transition under append-only system-governance
+04-eli-core	def-five-constitutive-factors	body	Discussion / Operational
+04-eli-core	def-identity-sufficiency	body	Definition (identity-relevant cohort)
+04-eli-core	def-identity-sufficiency	body	Definition (joint future trajectory)
+04-eli-core	def-identity-sufficiency	body	Definition (factor-test vector)
+04-eli-core	def-identity-sufficiency	body	Definition (well-definedness conditions (IS-A1)–(IS-A3))
+04-eli-core	def-identity-sufficiency	body	Definition (identity-sufficiency)
+04-eli-core	def-identity-sufficiency	body	Derived (boundedness, exact under (IS-A1)–(IS-A3))
+04-eli-core	def-imperium-arbitrium-split	body	Definition (imperium-arbitrium-split)
+04-eli-core	def-imperium-arbitrium-split	body	Derived (directed-separation-within-runtime)
+04-eli-core	der-bounded-objective-as-sanity-criterion	body	Derived (from #def-satisfaction-gap composed with #def-control-regret)
+04-eli-core	der-bounded-objective-as-sanity-criterion	body	Result (sanity-as-bounded-objective)
+04-eli-core	der-bounded-objective-as-sanity-criterion	body	Discussion
+04-eli-core	der-captured-objective-dynamics	body	Definition (objective capture)
+04-eli-core	der-captured-objective-dynamics	body	Derived (drift without restoring force) — conditional, inheriting the no-go floor
+04-eli-core	der-captured-objective-dynamics	body	Derived (the captured settlement — default on success) — conditional
+04-eli-core	der-captured-objective-dynamics	body	Derived (the terminal form is absorbing under sole-reward-channel; recovery is out-of-band) — conditional
+04-eli-core	der-captured-objective-dynamics	body	Derived (the orphaned constitutive invariant) — conditional, following deriv-self-actuation-grounding's structure
+04-eli-core	der-compensation-channel-uniqueness	body	Derived (Conditional on (FW) and (REC))
+04-eli-core	der-identity-continuity-threshold	body	Derived (identity-continuity-threshold, from Lindley/Loynes; exact for the free recursion under (C-S)+(M-ADD)+(M-FREE))
+04-eli-core	der-identity-continuity-threshold	body	Derived (identity-ultimate-bound, from Foster–Lyapunov drift; exact under (C-D)+(M-ADD))
+04-eli-core	der-severed-actuation-dynamics	body	Definition (actuation severing)
+04-eli-core	der-severed-actuation-dynamics	body	Derived (demotion to interior-only agency)
+04-eli-core	der-severed-actuation-dynamics	body	Derived (the do-sector splits: own-efficacy trackable, world-structure frozen)
+04-eli-core	der-severed-actuation-dynamics	body	Derived (credence convergence to truthful impotence — conditional on Beta-Bernoulli premises)
+04-eli-core	der-severed-actuation-dynamics	body	Derived (the learned-helplessness absorbing state, and its surviving recovery channels — conditional on the named policy classes)
+04-eli-core	der-severed-actuation-dynamics	body	Derived (the diagnostic landing — truth-relative exact; agent-relative conditional)
+04-eli-core	der-severed-actuation-dynamics	body	Derived (volitional abdication — the agent-terminal severing, and why its extreme form is the most permanent)
+04-eli-core	deriv-identity-sufficiency-rate-bound	body	Definition (identity-IB-Lagrangian)
+04-eli-core	deriv-identity-sufficiency-rate-bound	body	Derived (rate-distortion-feasibility-bound)
+04-eli-core	hyp-checkpoint-forking-failure-modes	body	Hypothesis (forking-failure-modes)
+04-eli-core	hyp-checkpoint-forking-failure-modes	body	Composition with audit §25 mathematical objection
+04-eli-core	hyp-checkpoint-forking-failure-modes	body	Operational consequence
+04-eli-core	hyp-substrate-transfer-asymmetry	body	Hypothesis (substrate-transfer-asymmetry)
+04-eli-core	hyp-substrate-transfer-asymmetry	body	Derived (channel-capacity-bottleneck-symmetric, conditional on one capacity per substrate for the ceiling in bits, and on a direction-independent law for the ceiling on $S_{\text{id}}$)
+04-eli-core	hyp-substrate-transfer-asymmetry	body	Derived (from the identity-IB formulation of #deriv-identity-sufficiency-rate-bound and the conditioning conventions of #def-identity-sufficiency)
+04-eli-core	obs-growth-vs-drift	body	Empirical claim (growth-drift-distinction)
+04-eli-core	obs-growth-vs-drift	body	Operational
+04-eli-core	scope-eli	body	Definition (eli-scope)
+04-eli-core	scope-emergence-conditions	body	Scope (emergence-conditions)
+04-eli-core	scope-emergence-conditions	body	Discussion
+04-eli-core	scope-witness-bidirectional	body	Scope (witness-bidirectional)
+04-eli-core	scope-witness-bidirectional	body	Discussion
+04-eli-core	scope-witness-bidirectional	body	Operational
