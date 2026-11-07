@@ -2,6 +2,8 @@
 
 Where the work on the new ASF (this repo) and the new verisectorium and vsect (`~/src/verisectorium/`) is discussed and prepared, from 2026-11-04. Joseph: this is now where we work on the stuff. Anything copied here supersedes its original.
 
+> [!note] **The model work moved to `~/src/verisectorium/` on 2026-11-06.** The files here from the 11-04 to 11-06 model effort (`PLAN.md`, `PLAN-appendix-A.md`, `research/appendix-A-feedback-1.md`, the building-blocks dialog and model, `BRIEF-reconciliation-1.md`, `research/reading-fable-2026-11-05/`, and all of `v2/`) were copied there as `msc/notes/01`–`16` and are frozen; cite the copies. The current model is `verisectorium/core/model.outline.md`. What stays here as the record of ASF as material: the sprint tree, `line-a/`, `foundations/`, the label census and the missed-error case under `research/`.
+
 > [!note] **The plan now lives in [`PLAN.md`](PLAN.md)** (2026-11-04, councils-46 with Joseph): the model as currently understood (composites, aspects and standing, decisions, movers and council charters, episodes and stability, intake), who owns what, the steps, and the assumptions and open questions. It supersedes `asf-earlier-vsect/KERNEL.md` and `vsect-lexicon.md` as the place where the plan lives, and the ASF system model's iterations 1–2.
 
 ## Where things stand
